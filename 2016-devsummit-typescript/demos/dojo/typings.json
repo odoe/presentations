@@ -1,0 +1,8 @@
+{
+  "name": "arcgis-js-api-sample-app",
+  "dependencies": {},
+  "devDependencies": {},
+  "ambientDependencies": {
+    "arcgis-js-api": "registry:dt/arcgis-js-api#3.15.0+20151201175518"
+  }
+}

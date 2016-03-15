@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "noImplicitAny": true,
+    "outDir": "src/app",
+		"removeComments": false,
+		"sourceMap": true,
+		"target": "es5"
+  },
+  "files": [
+    "src/app/main.ts",
+    "typings/browser.d.ts"
+  ]
+}
