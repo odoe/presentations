@@ -36,6 +36,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   background-image: url(end.png);
 }
 
+.reveal .resources{
+  font-size: .9em;
+}
+
 
 
 body {
