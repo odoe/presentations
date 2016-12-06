@@ -64,7 +64,7 @@ Rene Rubalcava
 
 ---
 
-## What makes 4.0 easier to use?
+## What makes 4.x easier to use?
 - Accessors
 - View Models (*crème de la crème*)
 - Maps and Views (`SceneView`, `MapView`)
@@ -236,7 +236,7 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     amd :{
-      loader: 'https://js.arcgis.com/4.0beta3/',
+      loader: 'https://js.arcgis.com/4.2/',
       configPath: 'config/dojo-config.js',
       packages: [
         'esri','dojo','dojox','dijit',
@@ -346,8 +346,57 @@ export default Ember.Component.extend({
 
 ---
 
+## VueJS
+- [doc](https://vuejs.org/)
+
+---
+
+## VueJS
+- Focus on components
+- Not a big learning curve
+- Virtual DOM
+
+---
+
+## VueJS
+
+```js
+// Create a Vue component
+Vue.component("camera-info", {
+  props: ["camera"],
+  template: "<div>" +
+            "<h2>Camera Details</h2>" +
+            "<p><strong>Heading</strong>: {{ camera.heading.toFixed(3) }}</p>" +
+            "<p><strong>Tilt</strong>: {{ camera.tilt.toFixed(3) }}</p>" +
+            "<p><strong>Latitude</strong>: {{ camera.position.latitude.toFixed(2) }}</p>" +
+            "<p><strong>Longitude</strong>: {{ camera.position.longitude.toFixed(2) }}</p>" +
+            "</div>"
+});
+```
+
+---
+
+## VueJS
+
+```js
+view.then(function() {
+  var info = new Vue({
+    el: "#info",
+    data: {
+      camera: view.camera
+    }
+  });
+  view.ui.add(info.$el, "top-right");
+  view.watch("camera", function() {
+    info.camera = view.camera;
+  });
+});
+```
+
+---
+
 ## Conclusion
- - 4.0 Enhancements make integration easier
+ - 4.x Enhancements make integration easier
  - Pick a framework and dig in
  - Learn your tools
 

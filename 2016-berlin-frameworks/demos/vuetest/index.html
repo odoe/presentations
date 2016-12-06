@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>VueJS Demo</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #info {
+      padding: 1em;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+  <script>
+    window.dojoConfig = {
+      packages: [
+      {
+        name: "vue",
+        location: location.pathname.replace(/\/[^/]+$/, '') + "/node_modules/vue/dist",
+        main: "vue"
+      }
+      ]
+    };
+  </script>
+  <script src="https://js.arcgis.com/4.1/"></script>
+</head>
+
+<body>
+  <div id="info" class="esri-widget">
+    <camera-info v-bind:camera="camera"></camera-info>
+  </div>
+  <div id="viewDiv"></div>
+  <script src="app.js"></script>
+</body>
+</html>
