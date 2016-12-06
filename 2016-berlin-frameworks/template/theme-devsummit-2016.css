@@ -13,11 +13,19 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 
 .reveal .slide-background {
-  background-image: url(background.png);
+  background-image: url(background-hashtag.png);
 }
 
 .reveal .slide-background.title {
   background-image: url(title.png);
+}
+.reveal .slide-background.frameworks {
+  background-image: url(js-frameworks-bw.png);
+  background-size: 20%;
+  background-repeat: repeat;
+}
+.slides > .frameworks.present{
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .reveal .slide-background.agenda {

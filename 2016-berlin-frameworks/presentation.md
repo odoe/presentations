@@ -8,15 +8,17 @@ Rene Rubalcava ([@odoenet](https://twitter.com/odoenet)) & Raul Jimenez ([@hhkao
 
 ---
 
-## The JavaScript framework `MADNESS`
+<!-- .slide: class="frameworks" -->
+
+## The JS framework `MADNESS`
 
 ![Please](images/madness.gif)
 
-Do I even need a framework??
+*Do I even need a framework??*
 
 ---
 
-## JavaScript Frameworks & Libraries: Timeline
+## Timeline: JS Frameworks & Libraries
 
 <img src="images/frameworks-evolution.png" style="height:650px;background: rgba(255,255,255,.5);padding: 0 3rem;" alt="Frameworks evolution"/>
 
@@ -84,7 +86,6 @@ How is the learning curve?
 
   * Lastest commit date
 
-
 ---
 
 ## Project & team
@@ -98,6 +99,74 @@ Do not forget the most important thing!:
 * Your team `skill sets`?
 * Your project `requirements`?
 
+---
+
+## Github projects
+
+To build nice apps with ArcGIS API for JS 3.X:
+* [angular-esri-map-v1](https://arcgis.github.io/angular-esri-map-site-v1/)
+* [esri-leaflet](http://esri.github.io/esri-leaflet/examples/clustering-feature-layers.html)
+* [calcite-maps](https://github.com/Esri/calcite-maps#whats-included) (Bootstrap)
+
+---
+
+## angular-esri-map-v1
+
+```html
+<esri-map id="map" map-options="map.options">
+    <esri-vector-tile-layer
+        url="//www.arcgis.com/sharing/rest/content/items/bf79e422e9454565ae0cbe9553cf6471/resources/styles/root.json">
+    </esri-vector-tile-layer>
+</esri-map>
+```
+[View live demo](https://arcgis.github.io/angular-esri-map-site-v1/#/examples/vector-tile-layer)
+
+---
+
+## esri-leaflet
+
+```javascript
+var map = L.map('map').setView([45.526, -122.667], 15);
+L.esri.basemapLayer('Streets').addTo(map);
+
+L.esri.Cluster.featureLayer({
+  url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Trimet_Transit_Stops/FeatureServer/0'
+}).addTo(map);
+```
+```html
+<link rel="stylesheet" href="path_to_source/leaflet.css" />
+<link rel="stylesheet" href="path_to_source/MarkerCluster.Default.css">
+<link rel="stylesheet" href="path_to_source/MarkerCluster.css">
+<!--
+  scripts:
+    - leaflet-src.js (L)
+    - esri-leaflet@2.0.6 (L.esri)
+    - leaflet.markercluster.js (L.markercluster)
+    - esri-leaflet-cluster@2.0.0 (L.esri.Cluster)
+-->
+```
+[View live demo](http://esri.github.io/esri-leaflet/examples/clustering-feature-layers.html)
+
+---
+
+## calcite-maps
+
+```html
+<body class="calcite-maps calcite-nav-top">
+
+  <nav class="navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark calcite-bgcolor-dark-blue">
+    <div class="calcite-title calcite-overflow-hidden">
+      <span class="calcite-title-main">Map Title</span>
+    </div>
+  </nav>
+
+  <div class="calcite-map calcite-map-absolute">
+    <div id="mapViewDiv"></div>
+  </div>
+
+</body>
+```
+[View live demo](http://esri.github.io/calcite-maps/samples/index.html)
 
 ---
 
@@ -480,6 +549,7 @@ export default Ember.Component.extend({
   * [2015 Video - Bootstrap: Taking Your Mapping UI and UX to the Next Level](http://video.esri.com/watch/4369/bootstrap-taking-your-mapping-ui-and-ux-to-the-next-level) – [PDF](http://proceedings.esri.com/library/userconf/devsummit15/papers/dev_int_154.pdf)
   * [A light-weight JS/CSS extension for to combine Bootstrap with ArcGIS JS (3.x) ](https://github.com/Esri/bootstrap-map-js)
   * [How to use our API for JavaScript (3.x) with Bootstap via Dojo-bootstrap](https://github.com/Esri/dojo-bootstrap-map-js)
+  * [Calcite-maps: A modern framework for designing map apps with Bootstrap](https://github.com/Esri/calcite-maps)
 
 ---
 
@@ -541,12 +611,13 @@ export default Ember.Component.extend({
 
 <!-- .slide: class="questions centered" -->
 
-## Questions
-Rene Rubalcava ([@odoenet](https://twitter.com/odoenet)) & Raul Jimenez ([@hhkaos](https://twitter.com/hhkaos))
+## Questions?
+
+**Help us to improve** filling out the survey
 
 ![Please](images/please.gif)
 
-*Fill out the survey!*
+Rene Rubalcava ([@odoenet](https://twitter.com/odoenet)) & Raul Jimenez ([@hhkaos](https://twitter.com/hhkaos))
 
 Slides: [github.com/odoe/presentations](https://github.com/odoe/presentations)
 
