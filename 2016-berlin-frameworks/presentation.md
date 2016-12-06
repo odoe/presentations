@@ -351,6 +351,23 @@ require(['esri/Map', 'esri/views/MapView'], function(...modules) {
 ## Packaged it up for you
 - [esri-system-js](https://github.com/Esri/esri-system-js)
 
+```ts
+esriSystem.register(
+  // array of Esri module names to load and then register with SystemJS
+  [
+    'esri/Map',
+    'esri/views/MapView',
+    'esri/widgets/Home/HomeViewModel',
+    'esri/request'
+  ],
+
+  // optional callback function
+  function() {
+    // then bootstrap application
+    System.import('app/boot')
+      .then(null, console.error.bind(console));
+  });
+```
 ---
 
 ## Angular 2
@@ -553,6 +570,39 @@ view.then(function() {
     info.camera = view.camera;
   });
 });
+```
+---
+
+## esri-loader
+
+- Load Esri modules in a non-AMD environment
+- [repo](https://github.com/tomwayson/esri-loader)
+
+---
+
+## esri-loader
+
+```js
+// import the esri-loader library
+import * as esriLoader from 'esri-loader';
+
+// has the ArcGIS API been added to the page?
+if (!esriLoader.isLoaded()) {
+  // no, lazy load it the ArcGIS API before using its classes
+  esriLoader.bootstrap((err) => {
+    if (err) {
+      console.error(err);
+    }
+    // once it's loaded, create the map
+    createMap();
+  }, {
+    // use a specific version instead of latest 4.x
+    url: 'https://js.arcgis.com/3.18/'
+  });
+} else {
+  // ArcGIS API is already loaded, just create the map
+  createMap();
+}
 ```
 
 ---
