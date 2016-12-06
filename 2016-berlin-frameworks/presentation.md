@@ -545,7 +545,8 @@ export default Ember.Component.extend({
   * [15 repos: esri-leaflet, esri-leaflet-geocoder, plugins, ...](https://github.com/search?q=org%3AEsri+leaflet)
   * [A leaflet plugin to display ArcGIS Web Map](https://github.com/ynunokawa/L.esri.WebMap)
 
-* Bootstrap | Follow: [@alaframboise](https://github.com/alaframboise)
+* Bootstrap | [@alaframboise](https://github.com/alaframboise)  [@TheBlueDog](https://github.com/TheBlueDog) | Calcite: [@paulcpeterson](https://github.com/paulcpeterson) & [@nicolaswise](https://github.com/nicolaswise)
+
   * [2015 Video - Bootstrap: Taking Your Mapping UI and UX to the Next Level](http://video.esri.com/watch/4369/bootstrap-taking-your-mapping-ui-and-ux-to-the-next-level) – [PDF](http://proceedings.esri.com/library/userconf/devsummit15/papers/dev_int_154.pdf)
   * [A light-weight JS/CSS extension for to combine Bootstrap with ArcGIS JS (3.x) ](https://github.com/Esri/bootstrap-map-js)
   * [How to use our API for JavaScript (3.x) with Bootstap via Dojo-bootstrap](https://github.com/Esri/dojo-bootstrap-map-js)
