@@ -1,0 +1,36 @@
+<script>
+function snippet() {
+  view = new MapView({
+    map: new Map({
+      basemap: "hybrid",
+      ground: "world-elevation"
+    }),
+    zoom: 5,
+    center: [-100, 40],
+    container: "viewDiv"
+  });
+
+  view.ui.add(new BasemapToggle({
+    view: view,
+    nextBasemap: "topo"
+  }), "top-right"); 
+
+
+  window.view.watch("center", function(center) {
+    window.log("center set to:", Math.round(center.longitude * 100) / 100, Math.round(center.latitude * 100) / 100);
+  });
+  
+  window.view.watch("map.basemap.title", function(title) {
+    window.log("basemap is now:", title);
+  });
+}
+
+modules = ["esri/widgets/BasemapToggle"];
+
+settings = {
+  disableOverviewMap: true
+};
+
+
+</script>
+<script src="./support/snippet.js"></script>

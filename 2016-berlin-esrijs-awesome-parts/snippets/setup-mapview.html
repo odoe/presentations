@@ -1,0 +1,32 @@
+<script>
+function snippet() {
+  view = new MapView({
+    container: "viewDiv",
+
+    map: new Map({
+      basemap: "streets",
+
+      layers: [ new FeatureLayer("http://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Enriched 2014 Alcoholic Beverage Spending With Population/FeatureServer/0") ]
+    }),
+
+    extent: {
+      xmax: -8516097.588717096,
+      xmin: -16176922.311568562,
+      ymax: 5675016.796821626,
+      ymin: 2739834.9106716383,
+
+      spatialReference: 102100
+    }
+  });
+}
+
+modules = ["esri/layers/FeatureLayer"];
+
+settings = {
+  disableOverviewMap: true,
+  disableLog: true
+};
+
+</script>
+
+<script src="./support/snippet.js"></script>
