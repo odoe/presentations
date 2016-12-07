@@ -368,6 +368,7 @@ esriSystem.register(
       .then(null, console.error.bind(console));
   });
 ```
+
 ---
 
 ## Angular 2
@@ -571,6 +572,7 @@ view.then(function() {
   });
 });
 ```
+
 ---
 
 ## esri-loader
