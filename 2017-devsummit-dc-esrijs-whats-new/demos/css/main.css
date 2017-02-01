@@ -1,0 +1,33 @@
+html,
+body,
+#viewDiv {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.esri-widget .esri-menu li:active,
+.esri-widget .esri-menu li:hover,
+.esri-widget .esri-menu li:focus,
+.esri-search__clear-button .esri-widget-button:hover,
+.esri-widget-button:hover,
+.esri-popup .esri-action:hover,
+.esri-popup .esri-popup-icon:hover {
+    color: #DD8888;
+    background-color: #454545;
+}
+
+.esri-popup .esri-popup-main,
+.esri-popup .esri-popup-main a,
+.esri-popup .esri-pointer .esri-pointer-direction,
+.esri-widget .esri-header,
+.esri-widget, .esri-widget-button,
+.esri-widget .esri-menu,
+.esri-popup .esri-button,
+.esri-action,
+.esri-popup .esri-action-text,
+.esri-widget .esri-menu {
+    color: #DD8888;
+    background-color: #000;
+}
