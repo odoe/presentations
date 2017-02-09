@@ -83,7 +83,6 @@ New core classes to get the job done
 
 ## Accessor - Properties watching
 
-
 ```js
 var view = new MapView({ map: map });
 
@@ -168,8 +167,9 @@ var view = new MapView({
 
 ## Accessor - Implementing
 
-- [Implementing Accessor](https://developers.arcgis.com/javascript/latest/guide/implementing-accessor/index.html)
-- TypeScript and Decorators
+[Implementing Accessor](https://developers.arcgis.com/javascript/latest/guide/implementing-accessor/index.html)
+
+TypeScript and Decorators
 
 ```ts
 import Accessor = require("esri/core/Accessor");
@@ -1007,6 +1007,8 @@ class HelloWorld extends declared(Widget) {
 
 ---
 
+<!-- .slide: class="section" -->
+
 # Arcade
 
 ---
@@ -1067,6 +1069,8 @@ return (max / total) * 100;
 [demo](https://developers.arcgis.com/javascript/latest/sample-code/visualization-arcade/index.html)
 
 ---
+
+<!-- .slide: class="questions" -->
 
 ## Questions?
 
