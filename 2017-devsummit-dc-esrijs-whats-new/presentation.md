@@ -482,8 +482,8 @@ var view = new SceneView({
 - Logic of the widget separated from the representation
 - View implementations made in esri/Accessor
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/widgets/zoom/index.html)
-- View's can be rewritten in [any framework](demos/widgets/framework/index.html)
-- ViewModels can be combined to create [Frankenwidgets](demos/widgets/frankenwidget/index.html)
+- View's can be rewritten in [any framework](demos/new/framework/index.html)
+- ViewModels can be combined to create [Frankenwidgets](demos/new/frankenwidget/index.html)
 
 ---
 
@@ -491,7 +491,7 @@ var view = new SceneView({
 
 - Managed overlay to place widgets over the view.
 - Well known widgets can be directly added or removed from the view
-- [Provides responsive information](demos/ui/responsive.html), [demo](demos/ui/popup-responsive/index.html)
+- [Provides responsive information](https://jsbin.com/zimijol/1)
 
 ```js
 var view = new MapView({
@@ -536,7 +536,7 @@ var legend = new Legend({
 view.ui.add(legend, "top-left");
 ```
 
-- [demo](demos/widgets/all-widgets.html)
+- [documentation](https://developers.arcgis.com/javascript/latest/sample-code/get-started-widgets/index.html)
 
 ---
 

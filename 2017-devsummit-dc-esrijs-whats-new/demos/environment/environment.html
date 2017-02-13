@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>4.3 - Environment</title>
+  <title>4.0 - Environment</title>
 
   <link rel="stylesheet" href="//js.arcgis.com/4.3/esri/css/main.css">
   <link rel="stylesheet" href="../commons/css/style.css">
@@ -81,7 +81,8 @@
       // ---------------------------------------------------------------------
 
       map = new Map({
-        basemap: "satellite"
+        basemap: "satellite",
+        ground: "world-elevation"
       });
       
       view = new SceneView({
@@ -244,11 +245,11 @@
           northPole: {
             position: [ -41.14, 77.37, 112241 ],
             heading: 359,
-            tilt: 179
+            tilt: 79
           }
         };
 
-        view.animateTo(new Camera(pois[poiName]));
+        view.goTo(new Camera(pois[poiName]));
       }
     });
 

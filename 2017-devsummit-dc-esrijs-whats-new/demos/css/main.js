@@ -68,7 +68,7 @@ require([
       legend.startup();
       var searchWidget = new Search({
         //Setting widget properties via viewModel is subject to
-        //change for the 4.3 final release
+        //change for the 4.0 final release
         viewModel: { // autocasts as new SearchViewModel()
           view: view
         }

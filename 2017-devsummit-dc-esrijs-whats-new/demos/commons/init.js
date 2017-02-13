@@ -8,7 +8,7 @@ define([
 ) {
 
 esriConfig.request.corsEnabledServers.push("genesis.esri.com");
-esriConfig.request.proxyUrl = "/proxy/proxy.php";
+esriConfig.request.proxyUrl = "/proxy/proxy.ashx";
 // esriConfig.defaults.io.proxyUrl = "/proxy-test/proxy.jsp";
 
 cartouche = query(".drawer ~ .applicationBar .cartouche");

@@ -4,24 +4,21 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>4.3 - Multiple Views</title>
+  <title>4.2 - Multiple Views</title>
 
-  <link rel="stylesheet" href="//js.arcgis.com/4.3/esri/css/main.css">
+  <link rel="stylesheet" href="//js.arcgis.com/4.2/esri/css/main.css">
   <link rel="stylesheet" href="../commons/css/style.css">
   <link rel="stylesheet" href="../commons/libs/codemirror/codemirror.css">
   <link rel="stylesheet" href="../commons/libs/codemirror/monokai.css">
+  <link href="../commons/widgets/LayerWidget/css/LayerWidget.css" rel="stylesheet" type="text/css">
 
   <script src="../commons/dojo-config.js"></script>
-  <script src="//js.arcgis.com/4.3/"></script>
+  <script src="//js.arcgis.com/4.2/"></script>
 
   <style>
-      html,
-      body,
       #contiguousViewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
         width: 100%;
+        height: 100%;
       }
       #alaskaViewDiv {
         position: absolute;
@@ -161,7 +158,7 @@
 </head>
 <body class="dark">
   <div class="application" style="overflow: hidden;">
-    <div id="contiguousViewDiv" class="view"></div>
+    <div id="contiguousViewDiv" class="view">
       <div id="alaskaViewDiv" class="view"></div>
       <div id="hawaiiViewDiv" class="view"></div>
       <div class="code manual right shadowed" style="top: 100px; bottom: 36px;">
@@ -210,11 +207,12 @@
     rotation: 324
   });
 </textarea>
+        </div>
     </div>
     <div class="applicationBar">
       <div class="content">
         <div class="cartouche">
-          <span class="label">4.3</span>
+          <span class="label">4.2</span>
         </div>
         <div class="main">
           <span class="title">Multiple Views</span>

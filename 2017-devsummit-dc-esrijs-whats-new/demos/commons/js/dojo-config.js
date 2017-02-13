@@ -1,5 +1,5 @@
 var dojoConfig = {
-  //isDebug: true,
+  isDebug: true,
   async: true,
   packages: [
     {

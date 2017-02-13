@@ -1,11 +1,14 @@
 var dojoConfig = {
-  //isDebug: true,
+  isDebug: true,
   async: true,
-  deps: ["commons/init"],
   packages: [
     {
       name: "commons",
       location: location.href.substring(0, location.href.lastIndexOf('/') + 1) + "../commons/js" 
+    },
+    {
+      name: "widgets",
+      location: location.href.substring(0, location.href.lastIndexOf('/') + 1) + "../commons/widgets" 
     },
     {
       name: "libs",
