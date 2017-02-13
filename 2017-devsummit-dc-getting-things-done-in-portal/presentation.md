@@ -83,6 +83,15 @@ Data Management & Automation
 
 ---
 
+## Resources
+
+- [Scripting with the ArcGIS REST API](http://server.arcgis.com/en/portal/latest/administer/linux/scripting-with-the-arcgis-rest-api.htm)
+- [esri.github.io](http://esri.github.io/)
+- [ago-assistant](http://ago-assistant.esri.com/)
+- [ArcGIS API for Python](https://developers.arcgis.com/python/)
+
+---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
@@ -91,7 +100,7 @@ Data Management & Automation
 
 René Rubalcava ([@odoenet](https://twitter.com/odoenet))
 
-Slides: [github.com/odoe/presentations/2017-devsummit-dc-getting-things-done-in-portal](github.com/odoe/presentations/2017-devsummit-dc-getting-things-done-in-portal/)
+Slides: [github.com/odoe/presentations/tree/master/2017-devsummit-dc-getting-things-done-in-portal](https://github.com/odoe/presentations/tree/master/2017-devsummit-dc-getting-things-done-in-portal)
 
 ---
 

@@ -314,7 +314,6 @@ var point = collection.getItemAt(0);
 
 ---
 
-
 ## Map and View architecture
 
 - One of the starting point of 4.x: bring 3D
