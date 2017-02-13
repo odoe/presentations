@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <title>4.3 - Multiple Views</title>
+  <title>MapImageLayer - Renderers</title>
 
   <link rel="stylesheet" href="//js.arcgis.com/4.3/esri/css/main.css">
   <link rel="stylesheet" href="../commons/css/style.css">
@@ -15,14 +15,6 @@
   <script src="//js.arcgis.com/4.3/"></script>
 
   <style>
-      html,
-      body,
-      #contiguousViewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-      }
       #alaskaViewDiv {
         position: absolute;
         width: 400px;
@@ -45,10 +37,11 @@
       #hawaiiViewDiv.hide, #alaskaViewDiv.hide {
         transform: translate(-416px);
       }
-
   </style>
 
-  <script type="text/javascript">
+  <script>
+    var map, view;
+
 
     require([
       'esri/Map',
@@ -95,7 +88,7 @@
 
       contiguousView = new MapView({
         map: map,
-        container: 'contiguousViewDiv',
+        container: 'viewDiv',
         ui: {
           padding: {
             top: 95
@@ -159,13 +152,13 @@
     });
   </script>
 </head>
-<body class="dark">
-  <div class="application" style="overflow: hidden;">
-    <div id="contiguousViewDiv" class="view"></div>
+<body class="light esri">
+  <div class="application">
+    <div id="viewDiv">
       <div id="alaskaViewDiv" class="view"></div>
       <div id="hawaiiViewDiv" class="view"></div>
-      <div class="code manual right shadowed" style="top: 100px; bottom: 36px;">
-<textarea class="codemirror">
+      <div id="code" class="code right shadowed visible" style="width: 800px;">
+        <textarea id="codemirror">
   map = new Map({
     basemap: albersBasemap,
     layers: [
@@ -175,54 +168,22 @@
     ]
   });
 
-  contiguousView = new MapView({
-    map: map,
-    container: 'contiguousViewDiv',  
-    center: {
-      x: -1008031,
-      y: 8029,
-      spatialReference: 102003
-    },
-    scale: 18489297
-  });
+  contiguousView = new MapView({...});
 
-  alaskaView = new MapView({
-    map: map,
-    container: 'alaskaViewDiv',  
-    center: {
-      x: -3607373,
-      y: 3808680,
-      spatialReference: 102003
-    },
-    rotation: 333,
-    scale: 36978595
-  });
+  alaskaView = new MapView({...});
 
-  hawaiiView = new MapView({
-    map: map,
-    container: 'hawaiiViewDiv',  
-    center: {
-      x: -6129704,
-      y: 207004,
-      spatialReference: 102003
-    },
-    scale: 9244648,
-    rotation: 324
-  });
-</textarea>
+  hawaiiView = new MapView({...});
+        </textarea>
+      </div>
+
     </div>
-    <div class="applicationBar">
+    <div class="applicationBar rougerose">
       <div class="content">
         <div class="cartouche">
           <span class="label">4.3</span>
         </div>
         <div class="main">
           <span class="title">Multiple Views</span>
-        </div>
-        <div class="actionBar">
-          <div class="button showcode">
-            <span>code</span>
-          </div>
         </div>
       </div>
     </div>

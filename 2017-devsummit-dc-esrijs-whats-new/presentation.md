@@ -397,7 +397,7 @@ var view = new SceneView({
   });
 ```
 
-[demo](demos/architecture/multiple-views.html)
+[demo](demos/new/multiple-views.html)
 
 ---
 
@@ -715,7 +715,7 @@ sceneView.environment = {
 
 ![3DVT](images/3d-vt.png)
 
-[demo](demos/4.2-new/3dvectortiles.html)
+[demo](demos/new/3dvectortiles.html)
 
 ---
 
@@ -725,7 +725,7 @@ sceneView.environment = {
 
 ![3DVT](images/custom-proj-vt.png)
 
-[demo](demos/4.2-new/custom_prj-vt.html)
+[demo](demos/new/custom_prj-vt.html)
 
 ---
 
@@ -801,7 +801,7 @@ map = new Map({
 });
 ```
 
-[demo](demos/4.2-new/pointclouds.html)
+[demo](demos/new/pointclouds.html)
 
 ---
 
