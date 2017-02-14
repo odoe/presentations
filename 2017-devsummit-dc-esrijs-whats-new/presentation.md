@@ -403,11 +403,11 @@ var view = new SceneView({
 
 ## LayerViews
 
-- `LayerViews` renders the layers on the view.
-- [LayerView](/https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-LayerView.html) has limited API so far.
+- [`LayerViews`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-LayerView.html) renders the layers on the view.
 - give access to data displayed on the screen
- - [Features](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-FeatureLayerView.html#queryFeatures)
- - Elevation data
+ - [FeatureLayerView#queryFeatures()](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-FeatureLayerView.html#queryFeatures)
+ - [GraohicsLayerView#queryGraphics()](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-GraphicsLayerView.html#queryGraphics)
+ - [ImageryLayerView#pixelData](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-ImageryLayerView.html#pixelData)
 
 ---
 
