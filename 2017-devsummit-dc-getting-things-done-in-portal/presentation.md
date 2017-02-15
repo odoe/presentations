@@ -69,7 +69,7 @@ Data Management & Automation
 
 - [ArcGIS Server and Portal for ArcGIS](https://developers.arcgis.com/authentication/arcgis-server-and-portal-for-arcgis/)
 
-- [_generateToken_](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Generate_Token/02r3000000m5000000/)
+- [_generateToken_](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Generate_Token/02r3000000m5000000/) - older Portals
 
 ![Secure](images/secure.jpg)
 
