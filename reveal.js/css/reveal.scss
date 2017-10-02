@@ -3,7 +3,7 @@
  * http://lab.hakim.se/reveal-js
  * MIT licensed
  *
- * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ * Copyright (C) 2017 Hakim El Hattab, http://hakim.se
  */
 
 
@@ -23,7 +23,7 @@ html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal i
 .reveal article, .reveal aside, .reveal canvas, .reveal details, .reveal embed,
 .reveal figure, .reveal figcaption, .reveal footer, .reveal header, .reveal hgroup,
 .reveal menu, .reveal nav, .reveal output, .reveal ruby, .reveal section, .reveal summary,
-.reveal time, .reveal mark, .reveal audio, video {
+.reveal time, .reveal mark, .reveal audio, .reveal video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -69,13 +69,13 @@ body {
 
 	&.visible {
 		opacity: 1;
-		visibility: visible;
+		visibility: inherit;
 	}
 }
 
 .reveal .slides section .fragment.grow {
 	opacity: 1;
-	visibility: visible;
+	visibility: inherit;
 
 	&.visible {
 		transform: scale( 1.3 );
@@ -84,7 +84,7 @@ body {
 
 .reveal .slides section .fragment.shrink {
 	opacity: 1;
-	visibility: visible;
+	visibility: inherit;
 
 	&.visible {
 		transform: scale( 0.7 );
@@ -101,7 +101,7 @@ body {
 
 .reveal .slides section .fragment.fade-out {
 	opacity: 1;
-	visibility: visible;
+	visibility: inherit;
 
 	&.visible {
 		opacity: 0;
@@ -111,19 +111,52 @@ body {
 
 .reveal .slides section .fragment.semi-fade-out {
 	opacity: 1;
-	visibility: visible;
+	visibility: inherit;
 
 	&.visible {
 		opacity: 0.5;
-		visibility: visible;
+		visibility: inherit;
 	}
 }
 
 .reveal .slides section .fragment.strike {
 	opacity: 1;
+	visibility: inherit;
 
 	&.visible {
 		text-decoration: line-through;
+	}
+}
+
+.reveal .slides section .fragment.fade-up {
+	transform: translate(0, 20%);
+
+	&.visible {
+		transform: translate(0, 0);
+	}
+}
+
+.reveal .slides section .fragment.fade-down {
+	transform: translate(0, -20%);
+
+	&.visible {
+		transform: translate(0, 0);
+	}
+}
+
+.reveal .slides section .fragment.fade-right {
+	transform: translate(-20%, 0);
+
+	&.visible {
+		transform: translate(0, 0);
+	}
+}
+
+.reveal .slides section .fragment.fade-left {
+	transform: translate(20%, 0);
+
+	&.visible {
+		transform: translate(0, 0);
 	}
 }
 
@@ -133,7 +166,7 @@ body {
 
 	&.current-fragment {
 		opacity: 1;
-		visibility: visible;
+		visibility: inherit;
 	}
 }
 
@@ -144,7 +177,7 @@ body {
 .reveal .slides section .fragment.highlight-blue,
 .reveal .slides section .fragment.highlight-current-blue {
 	opacity: 1;
-	visibility: visible;
+	visibility: inherit;
 }
 	.reveal .slides section .fragment.highlight-red.visible {
 		color: #ff2c2d
@@ -214,66 +247,68 @@ body {
 	-webkit-user-select: none;
 }
 
-.reveal .controls div {
+.reveal .controls button {
+	padding: 0;
 	position: absolute;
 	opacity: 0.05;
 	width: 0;
 	height: 0;
+	background-color: transparent;
 	border: 12px solid transparent;
 	transform: scale(.9999);
 	transition: all 0.2s ease;
-
+	-webkit-appearance: none;
 	-webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
 }
 
-.reveal .controls div.enabled {
+.reveal .controls .enabled {
 	opacity: 0.7;
 	cursor: pointer;
 }
 
-.reveal .controls div.enabled:active {
+.reveal .controls .enabled:active {
 	margin-top: 1px;
 }
 
-	.reveal .controls div.navigate-left {
+	.reveal .controls .navigate-left {
 		top: 42px;
 
 		border-right-width: 22px;
 		border-right-color: #000;
 	}
-		.reveal .controls div.navigate-left.fragmented {
+		.reveal .controls .navigate-left.fragmented {
 			opacity: 0.3;
 		}
 
-	.reveal .controls div.navigate-right {
+	.reveal .controls .navigate-right {
 		left: 74px;
 		top: 42px;
 
 		border-left-width: 22px;
 		border-left-color: #000;
 	}
-		.reveal .controls div.navigate-right.fragmented {
+		.reveal .controls .navigate-right.fragmented {
 			opacity: 0.3;
 		}
 
-	.reveal .controls div.navigate-up {
+	.reveal .controls .navigate-up {
 		left: 42px;
 
 		border-bottom-width: 22px;
 		border-bottom-color: #000;
 	}
-		.reveal .controls div.navigate-up.fragmented {
+		.reveal .controls .navigate-up.fragmented {
 			opacity: 0.3;
 		}
 
-	.reveal .controls div.navigate-down {
+	.reveal .controls .navigate-down {
 		left: 42px;
 		top: 74px;
 
 		border-top-width: 22px;
 		border-top-color: #000;
 	}
-		.reveal .controls div.navigate-down.fragmented {
+		.reveal .controls .navigate-down.fragmented {
 			opacity: 0.3;
 		}
 
@@ -317,11 +352,19 @@ body {
 .reveal .slide-number {
 	position: fixed;
 	display: block;
-	right: 15px;
-	bottom: 15px;
-	opacity: 0.5;
+	right: 8px;
+	bottom: 8px;
 	z-index: 31;
+	font-family: Helvetica, sans-serif;
 	font-size: 12px;
+	line-height: 1;
+	color: #fff;
+	background-color: rgba( 0, 0, 0, 0.4 );
+	padding: 5px;
+}
+
+.reveal .slide-number-delimiter {
+	margin: 0 3px;
 }
 
 /*********************************************
@@ -345,6 +388,7 @@ body {
 	bottom: 0;
 	left: 0;
 	margin: auto;
+	pointer-events: none;
 
 	overflow: visible;
 	z-index: 1;
@@ -363,9 +407,10 @@ body {
 	position: absolute;
 	width: 100%;
 	padding: 20px 0px;
+	pointer-events: auto;
 
 	z-index: 10;
-	transform-style: preserve-3d;
+	transform-style: flat;
 	transition: transform-origin 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985),
 				transform 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985),
 				visibility 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985),
@@ -400,6 +445,13 @@ body {
 	opacity: 1;
 }
 
+.reveal .slides>section:empty,
+.reveal .slides>section>section:empty,
+.reveal .slides>section[data-background-interactive],
+.reveal .slides>section>section[data-background-interactive] {
+	pointer-events: none;
+}
+
 .reveal.center,
 .reveal.center .slides,
 .reveal.center .slides section {
@@ -432,8 +484,14 @@ body {
  *********************************************/
 
 @mixin transition-global($style) {
-	.reveal .slides>section[data-transition=#{$style}],
-	.reveal.#{$style} .slides>section:not([data-transition]) {
+	.reveal .slides section[data-transition=#{$style}],
+	.reveal.#{$style} .slides section:not([data-transition]) {
+		@content;
+	}
+}
+@mixin transition-stack($style) {
+	.reveal .slides section[data-transition=#{$style}].stack,
+	.reveal.#{$style} .slides section.stack {
 		@content;
 	}
 }
@@ -496,6 +554,10 @@ body {
  *********************************************/
 
 @each $stylename in default, convex {
+	@include transition-stack(#{$stylename}) {
+		transform-style: preserve-3d;
+	}
+
 	@include transition-horizontal-past(#{$stylename}) {
 		transform: translate3d(-100%, 0, 0) rotateY(-90deg) translate3d(-100%, 0, 0);
 	}
@@ -513,6 +575,10 @@ body {
 /*********************************************
  * CONCAVE TRANSITION
  *********************************************/
+
+@include transition-stack(concave) {
+	transform-style: preserve-3d;
+}
 
 @include transition-horizontal-past(concave) {
 	transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
@@ -553,6 +619,10 @@ body {
 
 /*********************************************
  * CUBE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
  *********************************************/
 
 .reveal.cube .slides {
@@ -564,6 +634,7 @@ body {
 	min-height: 700px;
 	backface-visibility: hidden;
 	box-sizing: border-box;
+	transform-style: preserve-3d;
 }
 	.reveal.center.cube .slides section {
 		min-height: 0;
@@ -624,6 +695,10 @@ body {
 
 /*********************************************
  * PAGE TRANSITION
+ *
+ * WARNING:
+ * this is deprecated and will be removed in a
+ * future version.
  *********************************************/
 
 .reveal.page .slides {
@@ -635,6 +710,7 @@ body {
 	padding: 30px;
 	min-height: 700px;
 	box-sizing: border-box;
+	transform-style: preserve-3d;
 }
 	.reveal.page .slides section.past {
 		z-index: 12;
@@ -807,6 +883,7 @@ body {
 		height: 100%;
 		opacity: 0;
 		visibility: hidden;
+		overflow: hidden;
 
 		background-color: rgba( 0, 0, 0, 0 );
 		background-position: 50% 50%;
@@ -823,6 +900,7 @@ body {
 	.reveal .slide-background.present {
 		opacity: 1;
 		visibility: visible;
+		z-index: 2;
 	}
 
 	.print-pdf .reveal .slide-background {
@@ -839,7 +917,11 @@ body {
 	max-height: none;
 	top: 0;
 	left: 0;
+	object-fit: cover;
 }
+	.reveal .slide-background[data-background-size="contain"] video {
+		object-fit: contain;
+	}
 
 /* Immediate transition style */
 .reveal[data-background-transition=none]>.backgrounds .slide-background,
@@ -969,8 +1051,15 @@ body {
 	perspective-origin: 50% 50%;
 	perspective: 700px;
 
+	.slides {
+		// Fixes overview rendering errors in FF48+, not applied to
+		// other browsers since it degrades performance
+		-moz-transform-style: preserve-3d;
+	}
+
 	.slides section {
-		height: 700px;
+		height: 100%;
+		top: 0 !important;
 		opacity: 1 !important;
 		overflow: hidden;
 		visibility: visible !important;
@@ -1000,6 +1089,10 @@ body {
 
 	.backgrounds {
 		perspective: inherit;
+
+		// Fixes overview rendering errors in FF48+, not applied to
+		// other browsers since it degrades performance
+		-moz-transform-style: preserve-3d;
 	}
 
 	.backgrounds .slide-background {
@@ -1009,6 +1102,10 @@ body {
 		// This can't be applied to the slide itself in Safari
 		outline: 10px solid rgba(150,150,150,0.1);
 		outline-offset: 10px;
+	}
+
+	.backgrounds .slide-background.stack {
+		overflow: visible;
 	}
 }
 
@@ -1022,10 +1119,6 @@ body {
 .reveal.overview .backgrounds .slide-background,
 .reveal.overview-deactivating .backgrounds .slide-background {
 	transition: none;
-}
-
-.reveal.overview-animated .slides {
-	transition: transform 0.4s ease;
 }
 
 
@@ -1125,6 +1218,7 @@ body {
 			display: inline-block;
 			width: 40px;
 			height: 40px;
+			line-height: 36px;
 			padding: 0 10px;
 			float: right;
 			opacity: 0.6;
@@ -1152,6 +1246,7 @@ body {
 
 	.reveal .overlay .viewport {
 		position: absolute;
+		display: flex;
 		top: 40px;
 		right: 0;
 		bottom: 0;
@@ -1175,6 +1270,23 @@ body {
 		visibility: visible;
 	}
 
+	.reveal .overlay.overlay-preview.loaded .viewport-inner  {
+		position: absolute;
+		z-index: -1;
+		left: 0;
+		top: 45%;
+		width: 100%;
+		text-align: center;
+		letter-spacing: normal;
+	}
+	.reveal .overlay.overlay-preview .x-frame-error  {
+		opacity: 0;
+		transition: opacity 0.3s ease 0.3s;
+	}
+	.reveal .overlay.overlay-preview.loaded .x-frame-error  {
+		opacity: 1;
+	}
+
 	.reveal .overlay.overlay-preview.loaded .spinner {
 		opacity: 0;
 		visibility: hidden;
@@ -1188,8 +1300,8 @@ body {
 
 	.reveal .overlay.overlay-help .viewport .viewport-inner {
 		width: 600px;
-		margin: 0 auto;
-		padding: 60px;
+		margin: auto;
+		padding: 20px 20px 80px 20px;
 		text-align: center;
 		letter-spacing: normal;
 	}
@@ -1201,13 +1313,13 @@ body {
 	.reveal .overlay.overlay-help .viewport .viewport-inner table {
 		border: 1px solid #fff;
 		border-collapse: collapse;
-		font-size: 14px;
+		font-size: 16px;
 	}
 
 	.reveal .overlay.overlay-help .viewport .viewport-inner table th,
 	.reveal .overlay.overlay-help .viewport .viewport-inner table td {
 		width: 200px;
-		padding: 10px;
+		padding: 14px;
 		border: 1px solid #fff;
 		vertical-align: middle;
 	}
@@ -1226,7 +1338,7 @@ body {
 .reveal .playback {
 	position: fixed;
 	left: 15px;
-	bottom: 15px;
+	bottom: 20px;
 	z-index: 30;
 	cursor: pointer;
 	transition: all 400ms ease;
@@ -1288,8 +1400,48 @@ body {
  * SPEAKER NOTES
  *********************************************/
 
+// Hide on-page notes
 .reveal aside.notes {
 	display: none;
+}
+
+// An interface element that can optionally be used to show the
+// speaker notes to all viewers, on top of the presentation
+.reveal .speaker-notes {
+	display: none;
+	position: absolute;
+	width: 70%;
+	max-height: 15%;
+	left: 15%;
+	bottom: 26px;
+	padding: 10px;
+	z-index: 1;
+	font-size: 18px;
+	line-height: 1.4;
+	color: #fff;
+	background-color: rgba(0,0,0,0.5);
+	overflow: auto;
+	box-sizing: border-box;
+	text-align: left;
+	font-family: Helvetica, sans-serif;
+	-webkit-overflow-scrolling: touch;
+}
+
+.reveal .speaker-notes.visible:not(:empty) {
+	display: block;
+}
+
+@media screen and (max-width: 1024px) {
+	.reveal .speaker-notes {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.reveal .speaker-notes {
+		width: 90%;
+		left: 5%;
+	}
 }
 
 
@@ -1315,5 +1467,3 @@ body {
 .zoomed .reveal .roll span:after {
 	visibility: hidden;
 }
-
-
