@@ -1,10 +1,10 @@
 <!-- .slide: class="title" -->
 
-## ArcGIS API for JavaScript
-## Programming Patterns and API Fundamentals
+## ArcGIS API 4. xfor JavaScript
+## Advanced Topics
 Allan Laframboise & René Rubalcava
 
-[![octocat](template/octocat.png)](https://github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-programming-patterns)
+[![octocat](template/octocat.png)](https://github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-advanced-topics)
 
 ---
 
@@ -1237,7 +1237,7 @@ Allan Laframboise (alaframboise@esri.com) ([@AL_Laframboise](https://twitter.com
 
 Rene Rubalcava (rrubalcava@esri.com ) ([@odoenet](https://twitter.com/odoenet))
 
-Slides: [github.com/odoe/presentations/2017-European-DevSummit/jsapi-programming-patterns](github.com/odoe/presentations/2017-European-DevSummit/jsapi-programming-patterns)
+Slides: [github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-advanced-topics(github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-advanced-topics)
 
 ---
 
