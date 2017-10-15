@@ -1,6 +1,6 @@
 <!-- .slide: class="title" -->
 
-## ArcGIS API 4. xfor JavaScript
+## ArcGIS API 4.x for JavaScript
 ## Advanced Topics
 Allan Laframboise & René Rubalcava
 
