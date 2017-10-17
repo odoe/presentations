@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>Bivariate color generator</title>
+    <link rel="stylesheet" href="//js.arcgis.com/3.20/dijit/themes/claro/claro.css">
+
+    <script>
+      var dojoConfig = {
+        paths: {
+          modules: location.pathname.replace(/\/[^/]+$/, "") + "./modules"
+        }
+      };
+    </script>
+
+    <link rel="stylesheet" href="//jsdev.arcgis.com/3.20/esri/css/esri.css">
+    <script src="//jsdev.arcgis.com/3.20/"></script>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+  </head>
+
+  <body class="claro">
+    <div id="esri-map-container"></div>
+    <div id="basemapToggle-container"></div>
+    <div id="esri-colorinfoslider-container"><div style="padding: 8px;">
+      <div id="title"><h2>Bivariate color prototype</h2></div>
+      Service url: <input id="url-input" type="text" value="https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/us_county_educational_attainment_pop/FeatureServer/0"><img id="check" src="../img/checkmark.png"><br><br>
+      <div id="attSelection">
+        Field 1: <select id="select-field1"></select><br><br>
+        Norm. Field 1: <select id="norm-field1"></select><br><br>
+        Field 2: <select id="select-field2"></select><br><br>
+        Norm. Field 2: <select id="norm-field2"></select><br><br>
+        Color ramp:
+        <select id="ramp-select">
+          <option value="blue-orange-brown" selected>blue-orange-brown</option>
+          <option value="purple-green-blue">purple-green-blue</option>
+          <option value="blue-green-purple">blue-green-purple</option>
+          <option value="mustard-blue-wine">mustard-blue-wine</option>
+          <option value="pink-blue-purple">pink-blue-purple</option>
+          <option value="olive-blue-green">olive-blue-green</option>
+          <option value="yellow-cyan-blue">yellow-cyan-blue</option>
+          <option value="blue-pink-purple">blue-pink-purple</option>
+          <option value="purple-green-wine">purple-green-wine</option>
+        </select><br><br>
+        Classes: <select id="num-classes">
+          <option value=2>2</option>
+          <option value=3 selected>3</option>
+          <option value=4>4</option>
+        </select>
+        Cl. Method: <select id="class-method">
+          <option value="natural-breaks">Natural Breaks</option>
+          <option value="equal-interval">Equal Interval</option>
+          <option value="quantile" selected>Quantile</option>
+          <option value="smart-breaks">Smart Breaks</option>
+        </select>
+        <button id="redraw">Redraw</button>
+        <br><br>
+      </div></div>
+      <table>
+        <tr>
+          <td>
+            <table class="left-side">
+              <tr><td id="row1"></td></tr>
+              <tr><td id="row2"></td></tr>
+              <tr><td id="row3"></td></tr>
+              <tr><td id="row4"></td></tr>
+            </table>
+          </td>
+          <td><img id="legend" src=""></td>
+        </tr>
+        <tr><td></td>
+          <td>
+            <table class="bottom-row">
+              <tr><td id="col1"></td><td id="col2"></td><td id="col3"></td><td id="col4"></td></tr>
+            </table>
+          </td></tr>
+        <tr>
+          <td>
+            <b>Field 1</b> &uarr;<br>
+            <b>Field 2</b> &rarr;
+          </td>
+        </tr>
+      </table>
+      <img src="../img/busy-indicator.gif" id="spinner">
+    </div>
+    <textarea id="arcade-editor" rows="20" cols="65"></textarea>
+    <button id="edit-arcade">Edit Arcade Expression</button>
+    <button id="hide-arcade">Stop Editing</button>
+  </body>
+
+</html>
