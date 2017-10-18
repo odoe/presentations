@@ -12,16 +12,12 @@ René Rubalcava
 
 ---
 
-<!-- .slide: class="sponsor" -->
-
-
----
 <!-- .slide: class="section" -->
 
 ##  Visualization
 
 <p align="center">
-<img src="images/cedarcharts.png" alt="alt text"  width="550" height="550"> 
+<img src="images/cedarcharts.png" alt="alt text"  width="850" height="850"> 
 </p>
 
 ---
@@ -52,7 +48,6 @@ René Rubalcava
 
 ->Stephen Fews<-
 
-
 ----
 
 <!-- .slide: class="section" -->
@@ -72,7 +67,7 @@ René Rubalcava
 
 ## Cedar
 
-<h3 style="text-align: center; markdown="1">JavaScript Library for Creating Charts</h3>
+### JavaScript Library for Creating Charts
 
 
 <p align="center">
@@ -165,6 +160,11 @@ René Rubalcava
     - Customize or extend existing built-in chart types
     - Style and theme charts
 
+---
+
+
+<!-- .slide: class="section" -->
+
 ### Examples
 
 1. [Bar](https://esridc.github.io/cedar-amcharts/bar.html)
@@ -174,10 +174,8 @@ René Rubalcava
 5. [Line](https://esridc.github.io/cedar-amcharts/line.html)
 6. [Scatterplot](https://esridc.github.io/cedar-amcharts/scatter.html)
 
-
-
-
 ---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
