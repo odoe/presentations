@@ -12,6 +12,11 @@ René Rubalcava
 
 ---
 
+<!-- .slide: class="sponsor" -->
+
+
+---
+
 <!-- .slide: class="section" -->
 
 ##  Visualization
@@ -48,7 +53,7 @@ René Rubalcava
 
 #### Stephen Fews
 
-----
+---
 
 <!-- .slide: class="section" -->
 
