@@ -17,7 +17,7 @@ René Rubalcava
 ##  Visualization
 
 <p align="center">
-<img src="images/cedarcharts.png" alt="alt text"  width="850" height="850"> 
+<img src="images/cedarcharts.png" alt="alt text"  width="650" height="600"> 
 </p>
 
 ---
@@ -46,7 +46,7 @@ René Rubalcava
 
 ## "We should never forget that a **picture of data is not the goal;** it's only the means. Information visualization is all about **gaining the understanding so we can make good decisions."**
 
-->Stephen Fews<-
+#### Stephen Fews
 
 ----
 
