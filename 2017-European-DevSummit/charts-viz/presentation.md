@@ -20,7 +20,9 @@ René Rubalcava
 
 ##  Visualization
 
-![Cedar](images/cedarcharts.png)
+<p align="center">
+<img src="images/cedarcharts.png" alt="alt text"  width="550" height="550"> 
+</p>
 
 ---
 
@@ -31,12 +33,6 @@ René Rubalcava
 - Charts
 - Infographics
 - Tables
-
----
-
-<!-- .slide: class="section" -->
-
-## What makes an effective visualization?
 
 ---
 
@@ -54,12 +50,12 @@ René Rubalcava
 
 ## "We should never forget that a **picture of data is not the goal;** it's only the means. Information visualization is all about **gaining the understanding so we can make good decisions."**
 
-<h3 style="text-align: center; markdown="1">-Stephen Fews</h3>
+->Stephen Fews<-
 
 
 ----
 
-
+<!-- .slide: class="section" -->
 
 ### Understanding Data
 
@@ -128,8 +124,9 @@ René Rubalcava
 
 ## Where Are We Headed?
 
-
-![Astronaut](images/astronautransparent.png)
+<p align="center">
+<img src="images/astronautransparent.png" alt="alt text"  width="550" height="550"> 
+</p>
 
 ---
 
@@ -187,7 +184,9 @@ René Rubalcava
 
 **Help us to improve** filling out the survey
 
-![Survey](images/survey-slide.png)
+<p align="center">
+<img src="images/survey-slide.png" alt="alt text"  width="1000" height="600"> 
+</p>
 
 David Martinez ([@DavidJmart](https://twitter.com/DavidJmart))
 
