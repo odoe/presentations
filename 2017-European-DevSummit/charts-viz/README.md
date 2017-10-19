@@ -1,3 +1,3 @@
-# Using TypeScript with ArcGIS API for Javascript
+# Charts & Custom Visualizations Beyond the Map
 
-- Slides: https://odoe.github.io/presentations/2017-devsummit-ps-using-typescript/
+- Slides: Slides: https://odoe.github.io/presentations/2017-European-DevSummit/charts-viz/
