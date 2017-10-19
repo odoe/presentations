@@ -20,6 +20,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   background-image: url(title.png);
 }
 
+.reveal .slide-background.sponsor {
+  background-image: url(sponsor.png);
+}
+
 .reveal .slide-background.agenda {
   background-image: url(agenda.png);
 }

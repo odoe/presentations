@@ -2,13 +2,9 @@
 
 ## Charts & Custom Visualizations Beyond the Map
 
-David Martinez
+David Martinez & René Rubalcava
 
-René Rubalcava
-
-@DavidJmart
-
-@odoenet
+@DavidJmart / @odoenet
 
 ---
 
