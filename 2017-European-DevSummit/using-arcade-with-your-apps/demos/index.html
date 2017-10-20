@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Arcade Temperature</title>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.5/esri/css/main.css">
+<script src="https://js.arcgis.com/4.5/"></script>
+
+<style>
+  html, body, #viewDiv {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+   #info{
+    background-color: white;
+    padding: 10px;
+    max-width: 280px;
+  }
+</style>
+
+<script type="text/plain" id="temp-F">
+  // if no temp don't render feature
+  if(  IsEmpty($feature.TEMP)
+  ){
+    return null;
+  }
+
+  var t = $feature.TEMP;
+
+  return t;
+</script>
+
+<script type="text/plain" id="temp-C">
+  // if no temp don't render feature
+  if(  IsEmpty($feature.TEMP)
+  ){
+    return null;
+  }
+
+  // convert feature temperature from Farenheit to Celsius = (F - 32) * 5/9)
+  var t = ($feature.TEMP - 32) * 5/9;
+
+  return t;
+</script>
+
+<script>
+ require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer",
+    "esri/renderers/SimpleRenderer",
+    "esri/symbols/SimpleMarkerSymbol",
+    "esri/widgets/Legend",
+
+    "dojo/on",
+    "dojo/domReady!"
+  ], function(Map, MapView, FeatureLayer,
+    SimpleRenderer, SimpleMarkerSymbol,
+    Legend, on
+  ) {
+
+    // FeatureLayer options
+
+    var serviceUrl = "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/weather_stations_010417/FeatureServer/0";
+
+    var outFields = [ "ELEVATION", "STATION_NAME", "COUNTRY", "TEMP", "R_HUMIDITY",
+                     "WIND_SPEED", "WIND_CHILL", "HEAT_INDEX", "WEATHER" ];
+
+    var popupTemplate = {
+      title: "{STATION_NAME}, {COUNTRY}",
+	  /*expressionInfos: [{
+		name: "celsius",
+		title: "Temperature (°C)",
+		expression: "Round(($feature.TEMP - 32) * 5/9)"
+		}],*/
+      content: [{
+        type: "fields",
+        fieldInfos: [{
+          fieldName: "ELEVATION",
+          label: "Elevation"
+        }, {
+          fieldName: "TEMP",
+          label: "Temperature (°F)" 
+        }, /*{
+          fieldName: "expression/celsius"
+        },*/{
+          fieldName: "R_HUMIDITY",
+          label: "Relative humidity"
+        }, {
+          fieldName: "WIND_SPEED",
+          label: "Wind speed (km/hr)"
+        }, {
+          fieldName: "WIND_CHILL",
+          label: "Wind chill"
+        }, {
+          fieldName: "HEAT_INDEX",
+          label: "Heat index"
+        }, {
+          fieldName: "WEATHER",
+          label: "Weather conditions"
+        }]
+      }]
+    };
+
+    var weatherStationLayer = new FeatureLayer({
+      url: serviceUrl,
+      outFields: outFields,
+      popupTemplate: popupTemplate
+    });
+
+    var map = new Map({
+      basemap: "dark-gray",
+      layers: [ weatherStationLayer ]
+    });
+
+    var view = new MapView({
+      container: "viewDiv",
+      map: map,
+      center: [ 13.404954, 52.520008 ],
+      zoom: 5
+    });
+
+    view.then(function(evt){
+
+      var legend = new Legend({
+        view: view,
+        layerInfos: [{
+          layer: weatherStationLayer,
+          title: "Weather conditions"
+        }],
+        container: "legendDiv"
+      });
+      view.ui.add("info", "bottom-left");
+
+      changeRenderer(document.getElementById("change-viz").value);
+    });
+
+    var tempFArcade = document.getElementById("temp-F").text;
+	var tempCArcade = document.getElementById("temp-C").text;
+
+    // Renderers based on each of the Arcade expressions above
+
+    var tempFRenderer = new SimpleRenderer({
+      symbol: createSymbol(),
+      label: "Weather station",
+      visualVariables: [{
+        type: "color",
+        valueExpression: tempFArcade,
+        valueExpressionTitle: "Temperature (°F)",
+        stops: [
+          { value: -15, color: "#00C5FF" },
+          { value: 12, color: "#BEE8FF" },
+          { value: 32, color: "#fdf4d2" },
+          { value: 64, color: "#FF7F7F" },
+          { value: 82, color: "#E60000" }
+          /*{ value: -15, color: "#00C5FF" },
+          { value: 12, color: "#BEE8FF" },
+          { value: 32, color: "#fdf4d2" },
+          { value: 64, color: "#FF7F7F" },
+          { value: 82, color: "#E60000" }*/
+        ]
+      }]
+    });
+
+	
+	var tempCRenderer = new SimpleRenderer({
+      symbol: createSymbol(),
+      label: "Weather station",
+      visualVariables: [{
+        type: "color",
+        valueExpression: tempCArcade,
+        valueExpressionTitle: "Temperature (°C)",
+        stops: [
+          { value: -26, color: "#00C5FF" },
+          { value: -11, color: "#BEE8FF" },
+          { value: 0, color: "#fdf4d2" },
+          { value: 18, color: "#FF7F7F" },
+          { value: 28, color: "#E60000" }
+        ]
+      }]
+    });
+	
+    // Map renderers to select options and basemaps
+
+    var renderers = {
+      "temp-F": {
+        renderer: tempFRenderer,
+        basemap: "dark-gray"
+      },
+	  "temp-C": {
+        renderer: tempCRenderer,
+        basemap: "dark-gray"
+      }
+    };
+
+    // executes each time the user selects a new
+    // variable to visualize
+
+    function changeRenderer (variable){
+      var renderer = renderers[variable].renderer;
+      weatherStationLayer.renderer = renderer;
+
+      var basemap = renderers[variable].basemap;
+      if (basemap !== map.basemap){
+        map.basemap = basemap;
+      }
+    }
+
+    // fires on each change of the select
+
+    on(document.getElementById("change-viz"), "change", function(evt){
+      changeRenderer(evt.target.value);
+    });
+
+    // helper function for creating symbols
+
+    function createSymbol (){
+      var symbol = new SimpleMarkerSymbol({
+        outline: {
+          color: [ 92, 92, 92, 0.2 ],
+          width: 0.5
+        },
+        color: [0,0,0,0],
+        size: 16
+      });
+
+      return symbol;
+    }
+  });
+
+</script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <div id="info">
+    <select id="change-viz">
+      <option value="temp-F" selected>Temperature in °F</option>
+      <option value="temp-C">Temperature in °C</option>
+    </select>
+    <div id="legendDiv"></div>
+  </div>
+</body>
+</html>
