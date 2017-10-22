@@ -174,6 +174,7 @@ David Martinez & René Rubalcava
 4. [Timeclock](https://esridc.github.io/cedar-amcharts/radar.html)
 5. [Line](https://esridc.github.io/cedar-amcharts/line.html)
 6. [Scatterplot](https://esridc.github.io/cedar-amcharts/scatter.html)
+7. [Secure Services](demos/secure-services.html)
 
 ---
 
