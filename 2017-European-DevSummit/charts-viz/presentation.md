@@ -196,6 +196,15 @@ David Martinez & René Rubalcava
 
 ---
 
+<!-- .slide: class="section" -->
+
+### v1 Roadmap
+- [open issues](https://github.com/Esri/cedar/issues?q=is%3Aissue+is%3Aopen+label%3Av1x)
+- TLDR: `TODO: documentation!`
+- we welcome your [ideas](https://github.com/Esri/cedar/issues), and of course, [contributions](https://github.com/esri/contributing)
+
+---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
