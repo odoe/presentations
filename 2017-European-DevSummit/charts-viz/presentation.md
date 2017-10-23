@@ -18,7 +18,7 @@ David Martinez & René Rubalcava
 ##  Visualization
 
 <p align="center">
-<img src="images/cedarcharts.png" alt="alt text"  width="650" height="600"> 
+<img src="images/cedarcharts.png" alt="alt text"  width="650" height="600">
 </p>
 
 ---
@@ -72,7 +72,7 @@ David Martinez & René Rubalcava
 
 
 <p align="center">
-<img src="https://esri.github.io/cedar/img/cedar-logo-tree.png" alt="alt text"  width="550" height="550"> 
+<img src="https://esri.github.io/cedar/img/cedar-logo-tree.png" alt="alt text"  width="550" height="550">
 </p>
 
 ---
@@ -121,7 +121,7 @@ David Martinez & René Rubalcava
 ## Where Are We Headed?
 
 <p align="center">
-<img src="images/astronautransparent.png" alt="alt text"  width="550" height="550"> 
+<img src="images/astronautransparent.png" alt="alt text"  width="550" height="550">
 </p>
 
 ---
@@ -168,12 +168,12 @@ David Martinez & René Rubalcava
 
 ### Examples
 
-1. [Bar](https://esridc.github.io/cedar-amcharts/bar.html)
-2. [Time](https://esridc.github.io/cedar-amcharts/timeline.html)
-3. [Pie](https://esridc.github.io/cedar-amcharts/pie.html)
-4. [Timeclock](https://esridc.github.io/cedar-amcharts/radar.html)
-5. [Line](https://esridc.github.io/cedar-amcharts/line.html)
-6. [Scatterplot](https://esridc.github.io/cedar-amcharts/scatter.html)
+1. [Bar](https://esri.github.io/ember-cli-cedar/#/charts/bar)
+2. [Area](https://esri.github.io/ember-cli-cedar/#/charts/area)
+3. [Pie](https://esri.github.io/ember-cli-cedar/#/charts/pie)
+4. [Radar](https://esri.github.io/ember-cli-cedar/#/charts/radar)
+5. [Line](https://esri.github.io/ember-cli-cedar/#/charts/line)
+6. [Scatterplot](https://esri.github.io/ember-cli-cedar/#/charts/scatter)
 7. [Secure Services](demos/secure-services.html)
 
 ---
@@ -185,7 +185,7 @@ David Martinez & René Rubalcava
 **Help us to improve** filling out the survey
 
 <p align="center">
-<img src="images/survey-slide.png" alt="alt text"  width="1000" height="600"> 
+<img src="images/survey-slide.png" alt="alt text"  width="1000" height="600">
 </p>
 
 David Martinez ([@DavidJmart](https://twitter.com/DavidJmart))
