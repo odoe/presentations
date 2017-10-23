@@ -118,6 +118,21 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
+### Cedar in Hub & Open Data
+
+- [Hub](https://hub.arcgis.com/) & [Open Data](https://hub.arcgis.com/pages/open-data) requirements drive Cedar development
+- Add-on for Ember apps [ember-cli-cedar](https://github.com/Esri/ember-cli-cedar)
+- 2016 focused on flexibility & reliability of data queries:
+  - Better support for and examples of SQL expressions
+  - Ability to transform data returned from server
+  - Query callback for error handling
+  - Timeouts for slow loading Data
+- 2017 focussing on cedar v1...
+
+---
+
+<!-- .slide: class="section" -->
+
 ## Where Are We Headed?
 
 <p align="center">
@@ -128,27 +143,18 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
-### Cedar in Open Data
+### Cedar v1
 
-- [Open Data](http://opendata.arcgis.com/ ) and Hub requirements actively driving Cedar development
-- Better support and examples of SQL expressions in queries
-- Ability to transform data returned from server
-- Query callback for error handling
-- Timeouts for slow loading Data
-- Add-on for Ember apps [ember-cli-cedar](https://github.com/Esri/ember-cli-cedar)
+[Released in alpha last week!](https://github.com/Esri/cedar/releases/tag/v1.0.0-alpha)
 
-
----
-
-<!-- .slide: class="section" -->
-
-### Enhancements
-
-- Better support for multi-series charts
-    - Change to Cedar's JSON format (v1.0)
-- More chart types
-- Better default styling for charts
-
+- Better support for [multi-series charts](https://esri.github.io/ember-cli-cedar/#/charts/line)
+- Support for [joining multiple datasets](https://esri.github.io/ember-cli-cedar/#/charts/bar-grouped)
+- New chart types ([area](https://esri.github.io/ember-cli-cedar/#/charts/area), [radar](https://esri.github.io/ember-cli-cedar/#/charts/radar))
+- improved default styling for charts based on [Calcite](https://esri.github.io/calcite-bootstrap/colors.html)
+- Runtime (JavaScript) API improvements:
+ - Promise-based
+ - fluent
+ - streamlined, reduced footprint
 
 ---
 
@@ -156,7 +162,7 @@ David Martinez & René Rubalcava
 
 ### amCharts
 
-- Basing Cedar on [amCharts](https://www.amcharts.com/javascript-charts/) would make it easier to
+- Basing Cedar on [amCharts](https://www.amcharts.com/javascript-charts/) will make it easier to
     - Create and customize new chart types
     - Customize or extend existing built-in chart types
     - Style and theme charts
