@@ -122,6 +122,13 @@ David Martinez & René Rubalcava
 
 - [Hub](https://hub.arcgis.com/) & [Open Data](https://hub.arcgis.com/pages/open-data) requirements drive Cedar development
 - Add-on for Ember apps [ember-cli-cedar](https://github.com/Esri/ember-cli-cedar)
+
+---
+
+<!-- .slide: class="section" -->
+
+### Recent Improvements
+
 - 2016 focused on flexibility & reliability of data queries:
   - Better support for and examples of SQL expressions
   - Ability to transform data returned from server
@@ -151,18 +158,14 @@ David Martinez & René Rubalcava
 - Support for [joining multiple datasets](https://esri.github.io/ember-cli-cedar/#/charts/bar-grouped)
 - New chart types ([area](https://esri.github.io/ember-cli-cedar/#/charts/area), [radar](https://esri.github.io/ember-cli-cedar/#/charts/radar))
 - improved default styling for charts based on [Calcite](https://esri.github.io/calcite-bootstrap/colors.html)
-- Runtime (JavaScript) API improvements:
- - Promise-based
- - fluent
- - streamlined, reduced footprint
 
 ---
 
 <!-- .slide: class="section" -->
 
-### amCharts
+### v1 uses amCharts
 
-- Basing Cedar on [amCharts](https://www.amcharts.com/javascript-charts/) will make it easier to
+- Basing cedar on   [amCharts](https://www.amcharts.com/javascript-charts/) will make it easier to:
     - Create and customize new chart types
     - Customize or extend existing built-in chart types
     - Style and theme charts
@@ -181,6 +184,15 @@ David Martinez & René Rubalcava
 5. [Line](https://esri.github.io/ember-cli-cedar/#/charts/line)
 6. [Scatterplot](https://esri.github.io/ember-cli-cedar/#/charts/scatter)
 7. [Secure Services](demos/secure-services.html)
+
+---
+
+<!-- .slide: class="section" -->
+
+### More Intuitive JavaScript API
+- Async functions use promises instead of callbacks
+- fluent, chainable setters and methods
+- streamlined, reduced footprint
 
 ---
 
