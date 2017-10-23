@@ -18,7 +18,7 @@ David Martinez & René Rubalcava
 ##  Visualization
 
 <p align="center">
-<img src="images/cedarcharts.png" alt="alt text"  width="650" height="600"> 
+<img src="images/cedarcharts.png" alt="alt text"  width="650" height="600">
 </p>
 
 ---
@@ -72,7 +72,7 @@ David Martinez & René Rubalcava
 
 
 <p align="center">
-<img src="https://esri.github.io/cedar/img/cedar-logo-tree.png" alt="alt text"  width="550" height="550"> 
+<img src="https://esri.github.io/cedar/img/cedar-logo-tree.png" alt="alt text"  width="550" height="550">
 </p>
 
 ---
@@ -118,45 +118,54 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
+### Cedar in Hub & Open Data
+
+- [Hub](https://hub.arcgis.com/) & [Open Data](https://hub.arcgis.com/pages/open-data) requirements drive Cedar development
+- Add-on for Ember apps [ember-cli-cedar](https://github.com/Esri/ember-cli-cedar)
+
+---
+
+<!-- .slide: class="section" -->
+
+### Recent Improvements
+
+- 2016 focused on flexibility & reliability of data queries:
+  - Better support for and examples of SQL expressions
+  - Ability to transform data returned from server
+  - Query callback for error handling
+  - Timeouts for slow loading Data
+- 2017 focussing on cedar v1...
+
+---
+
+<!-- .slide: class="section" -->
+
 ## Where Are We Headed?
 
 <p align="center">
-<img src="images/astronautransparent.png" alt="alt text"  width="550" height="550"> 
+<img src="images/astronautransparent.png" alt="alt text"  width="550" height="550">
 </p>
 
 ---
 
 <!-- .slide: class="section" -->
 
-### Cedar in Open Data
+### Cedar v1
 
-- [Open Data](http://opendata.arcgis.com/ ) and Hub requirements actively driving Cedar development
-- Better support and examples of SQL expressions in queries
-- Ability to transform data returned from server
-- Query callback for error handling
-- Timeouts for slow loading Data
-- Add-on for Ember apps [ember-cli-cedar](https://github.com/Esri/ember-cli-cedar)
+[Released in alpha last week!](https://github.com/Esri/cedar/releases/tag/v1.0.0-alpha)
 
-
----
-
-<!-- .slide: class="section" -->
-
-### Enhancements
-
-- Better support for multi-series charts
-    - Change to Cedar's JSON format (v1.0)
-- More chart types
-- Better default styling for charts
-
+- Better support for [multi-series charts](https://esri.github.io/ember-cli-cedar/#/charts/line)
+- Support for [joining multiple datasets](https://esri.github.io/ember-cli-cedar/#/charts/bar-grouped)
+- New chart types ([area](https://esri.github.io/ember-cli-cedar/#/charts/area), [radar](https://esri.github.io/ember-cli-cedar/#/charts/radar))
+- improved default styling for charts based on [Calcite](https://esri.github.io/calcite-bootstrap/colors.html)
 
 ---
 
 <!-- .slide: class="section" -->
 
-### amCharts
+### v1 uses amCharts
 
-- Basing Cedar on [amCharts](https://www.amcharts.com/javascript-charts/) would make it easier to
+- Basing cedar on   [amCharts](https://www.amcharts.com/javascript-charts/) will make it easier to:
     - Create and customize new chart types
     - Customize or extend existing built-in chart types
     - Style and theme charts
@@ -168,13 +177,31 @@ David Martinez & René Rubalcava
 
 ### Examples
 
-1. [Bar](https://esridc.github.io/cedar-amcharts/bar.html)
-2. [Time](https://esridc.github.io/cedar-amcharts/timeline.html)
-3. [Pie](https://esridc.github.io/cedar-amcharts/pie.html)
-4. [Timeclock](https://esridc.github.io/cedar-amcharts/radar.html)
-5. [Line](https://esridc.github.io/cedar-amcharts/line.html)
-6. [Scatterplot](https://esridc.github.io/cedar-amcharts/scatter.html)
+1. [Bar](https://esri.github.io/ember-cli-cedar/#/charts/bar)
+2. [Area](https://esri.github.io/ember-cli-cedar/#/charts/area)
+3. [Pie](https://esri.github.io/ember-cli-cedar/#/charts/pie)
+4. [Radar](https://esri.github.io/ember-cli-cedar/#/charts/radar)
+5. [Line](https://esri.github.io/ember-cli-cedar/#/charts/line)
+6. [Scatterplot](https://esri.github.io/ember-cli-cedar/#/charts/scatter)
 7. [Secure Services](demos/secure-services.html)
+
+---
+
+<!-- .slide: class="section" -->
+
+### More Intuitive JavaScript API
+- Async functions use promises instead of callbacks
+- fluent, chainable setters and methods
+- streamlined, reduced footprint
+
+---
+
+<!-- .slide: class="section" -->
+
+### v1 Roadmap
+- [open issues](https://github.com/Esri/cedar/issues?q=is%3Aissue+is%3Aopen+label%3Av1x)
+- TLDR: `TODO: documentation!`
+- we welcome your [ideas](https://github.com/Esri/cedar/issues), and of course, [contributions](https://github.com/esri/contributing)
 
 ---
 
@@ -185,7 +212,7 @@ David Martinez & René Rubalcava
 **Help us to improve** filling out the survey
 
 <p align="center">
-<img src="images/survey-slide.png" alt="alt text"  width="1000" height="600"> 
+<img src="images/survey-slide.png" alt="alt text"  width="1000" height="600">
 </p>
 
 David Martinez ([@DavidJmart](https://twitter.com/DavidJmart))
