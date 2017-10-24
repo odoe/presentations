@@ -1,9 +1,9 @@
 <!-- .slide: class="title" -->
 
-## ArcGIS API for JavaScript: Getting Started
+# ArcGIS API for JavaScript: Getting Started
 
-### Andy Gup – [@agup](https://twitter.com/agup)
-### René Rubalcava – [@odoenet](https://twitter.com/odoenet)
+## Andy Gup – [@agup](https://twitter.com/agup)
+## René Rubalcava – [@odoenet](https://twitter.com/odoenet)
 
 ---
 
@@ -13,7 +13,7 @@
 
 <!-- .slide: class="section" -->
 
-# Agenda
+## Agenda
 
 - Introduction to the ArcGIS API 4.x for JavaScript
 - Fundamentals and Patterns
@@ -26,7 +26,7 @@
 
 ---
 
-# Introduction to the ArcGIS API 4.x for JavaScript
+## Introduction to the ArcGIS API 4.x for JavaScript
 
 - Simplified and consistent API
 - Write apps in ES6 or TypeScript
@@ -36,7 +36,7 @@
 
 ---
 
-# Where to begin?
+## Where to begin?
 
 <br>
 
@@ -48,6 +48,7 @@
 <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
 <script src="https://js.arcgis.com/4.4/"></script>
 ```
+
 ---
 
 ## Hello World Map
@@ -80,13 +81,13 @@
 
 ---
 
-### Map and View Relationship
+## Map and View Relationship
 
 ![Map-View](./images/mapview1.png)
 
 ---
 
-### Map and View Relationship
+## Map and View Relationship
 
 ![Map-View](./images/mapview2.png)
 
@@ -314,7 +315,7 @@ const view = new MapView({
 
 ---
 
-# Widgets!
+## Widgets!
 
 - ~20 Widgets out of the box <!-- .element: class="fragment" data-fragment-index="1" -->
 - Widgets help make great apps <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -422,8 +423,8 @@ const view = new SceneView({
 ---
 <!-- .slide: class="section" -->
 
-# Platform Integration
-### With ArcGIS Portal and ArcGIS Online
+## Platform Integration
+## With ArcGIS Portal and ArcGIS Online
 
 <br>
 - Creating Hosted Services
@@ -488,7 +489,7 @@ const view = new SceneView({
 ---
 <!-- .slide: class="section" -->
 
-# New Features
+## New Features
 
 ---
 
@@ -513,7 +514,7 @@ var dojoConfig = {
 
 ---
 
-# Draw API and SketchViewModel
+## Draw API and SketchViewModel
 
 ---
 
@@ -569,7 +570,7 @@ action.on("draw-complete", (event) => ...);
 ---
 <!-- .slide: class="section" -->
 
-# Custom Builds
+## Custom Builds
 
 ---
 
@@ -668,7 +669,7 @@ module.exports = {
 ---
 <!-- .slide: class="section" -->
 
-# 3rd Party JS Frameworks
+## 3rd Party JS Frameworks
 ## Module loaders
 - Open-source helper libraries and wrappers
 - Small internal + large external community effort
@@ -676,7 +677,7 @@ module.exports = {
 
 ---
 
-# 3rd Party JS Frameworks
+## 3rd Party JS Frameworks
 ## Module loaders
 - [esri-loader](https://github.com/Esri/esri-loader)
 - [angular-esri-loader](https://github.com/tomwayson/angular-esri-loader)
@@ -686,7 +687,7 @@ module.exports = {
 
 ---
 
-# 3rd Party JS Frameworks
+## 3rd Party JS Frameworks
 ## Module loaders
 ```js
   ngOnInit() {
@@ -711,7 +712,7 @@ module.exports = {
 
 ---
 
-# Developer Resources
+## Developer Resources
 - [github.com/esri](https://github.com/esri)
    - [JS API Resources](http://esriurl.com/resources)
 - [GeoNet Community for Web Developers](https://geonet.esri.com/community/developers/web-developers/arcgis-api-for-javascript)
@@ -727,8 +728,8 @@ module.exports = {
 
 ![Survey](images/survey-slide.png)
 
-### Andy Gup – [@agup](https://twitter.com/agup)
-### René Rubalcava – [@odoenet](https://twitter.com/odoenet)
+## Andy Gup – [@agup](https://twitter.com/agup)
+## René Rubalcava – [@odoenet](https://twitter.com/odoenet)
 
 ---
 
