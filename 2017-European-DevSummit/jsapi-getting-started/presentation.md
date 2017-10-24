@@ -472,7 +472,13 @@ const view = new SceneView({
 
 ## Visualizations
 - [Arcade Expressions](https://developers.arcgis.com/arcade/)
-- [Arcade Demo](https://codepen.io/andygup/pen/aLbBgg?editors=1010)
+
+---
+
+## Simple Arcade Demo
+
+<iframe height='600' scrolling='no' title='Wind Arcade' src='//codepen.io/andygup/embed/preview/pWmXZK/?height=265&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/andygup/pen/pWmXZK/'>Wind Arcade</a> by Andy (<a href='https://codepen.io/andygup'>@andygup</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
