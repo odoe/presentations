@@ -4,6 +4,7 @@
 
 ### Andy Gup – [@agup](https://twitter.com/agup)
 ### René Rubalcava – [@odoenet](https://twitter.com/odoenet)
+
 ---
 
 <!-- .slide: class="sponsor" -->
