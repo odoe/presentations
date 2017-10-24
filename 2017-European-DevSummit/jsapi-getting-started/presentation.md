@@ -1,6 +1,6 @@
 <!-- .slide: class="title" -->
 
-# ArcGIS API for JavaScript: Getting Started
+## ArcGIS API for JavaScript: Getting Started
 
 ## Andy Gup – [@agup](https://twitter.com/agup)
 ## René Rubalcava – [@odoenet](https://twitter.com/odoenet)
