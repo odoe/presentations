@@ -112,7 +112,7 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
-[Chart with Map](https://codepen.io/odoe/pen/EwvqZM)
+[Chart with Map](demos/secure-services.html)
 
 ---
 

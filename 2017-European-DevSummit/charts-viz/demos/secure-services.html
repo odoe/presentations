@@ -117,8 +117,7 @@
               //create the dataset w/ mappings
 
               const dataset = {
-                "url": `${layer.url}/0`,
-                // "url": `${layer.url.replace("http", "https")}/0`,
+                "url": `${layer.url.replace("http://", "https://")}/0`,
                 "query": {
                   "token": layer.credential.token,
                   "groupByFieldsForStatistics": "Country",
@@ -142,6 +141,37 @@
               chart.show({
                 elementId: "#chart"
               });
+
+  
+              chart.on("mouseover", (event, data) => {
+    if (data) {
+      highlightFeatures(data["Country"]);
+    }
+  });
+  
+  const query = layer.createQuery();
+  function highlightFeatures(country) {
+    query.returnGeometry = true;
+    query.where = `Country = '${country}'`;
+    layer.queryFeatures(query).then((result) => {
+      view.graphics.removeAll();
+      const graphics = result.features.map(x => {
+        const g = x.clone();
+        g.symbol = {
+            type: "simple-marker",
+            outline: {
+                width: 1,
+                color: [255, 255, 255, 1]
+            },
+            size: 14,
+            color: [0, 255, 255, 0.75]
+        };
+        return g;
+      });
+      view.graphics.addMany(graphics);
+    })
+    .catch(error => console.warn(error))
+  }
             });
           });
         }
@@ -158,6 +188,7 @@
             displayMap();
           }
         );
+
       }
     );
   </script>
