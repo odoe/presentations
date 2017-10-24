@@ -68,6 +68,7 @@
 ```
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## Fundamentals and Patterns
@@ -421,6 +422,7 @@ const view = new SceneView({
 </iframe>
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## Platform Integration
@@ -438,6 +440,7 @@ const view = new SceneView({
 </iframe>
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## Visualizations
@@ -487,6 +490,7 @@ const view = new SceneView({
 - [3D Local Scenes](https://developers.arcgis.com/javascript/latest/sample-code/scene-local/live/index.html)
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## New Features
@@ -568,6 +572,7 @@ action.on("draw-complete", (event) => ...);
 </iframe>
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## Custom Builds
@@ -667,6 +672,7 @@ module.exports = {
 ```
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## 3rd Party JS Frameworks
