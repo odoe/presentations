@@ -21,7 +21,6 @@
 - Visualizations (2D and 3D)
 - New Features
 - _Bonus - Custom Builds_
-- JS Framework Integration
 - Questions
 
 ---
