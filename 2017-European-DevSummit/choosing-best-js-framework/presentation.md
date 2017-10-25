@@ -157,6 +157,16 @@ npm install angular-esri-loader
 
 ---
 
+## Community Contributions (Thank YOU!)
+
+* angular-esri-components by @TheKeithStewart
+* esri-webpack-typescript by @lobsteropteryx
+
+@davetimmins, @ScottONeal, @willisd2, @trkbrkr2000, @Robert-W, @gund, @oppoudel and others!
+
+
+---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
