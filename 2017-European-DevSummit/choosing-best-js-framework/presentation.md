@@ -147,7 +147,6 @@ npm install angular-esri-loader
 
 ```
 
-
 ---
 
 <!-- .slide: class="section" -->
