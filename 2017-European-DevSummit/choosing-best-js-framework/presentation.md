@@ -62,6 +62,22 @@ Andy Gup & René Rubalcava
 
 ---
 
+## Coming soon - Example Apps
+
+---
+
+<!-- .slide: class="apps1" -->
+
+---
+
+<!-- .slide: class="apps2" -->
+
+---
+
+<!-- .slide: class="apps3" -->
+
+---
+
 ## Why use a framework?
  - Simplify workflow
  - All teams on same page
