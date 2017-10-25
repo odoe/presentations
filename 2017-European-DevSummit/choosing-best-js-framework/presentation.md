@@ -14,19 +14,6 @@ Andy Gup & René Rubalcava
 
 ---
 
-<!-- .slide: class="agenda" -->
-
-## Agenda
-
-- Options
-- Angular
-- Ember
-- React
-- VueJS
-- Elm
-
----
-
 <!-- .slide: class="section" -->
 
 # Options
