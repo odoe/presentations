@@ -108,6 +108,7 @@ define([
 ## Module loaders
 - [esri-loader](https://github.com/Esri/esri-loader)
 - [angular-esri-loader](https://github.com/tomwayson/angular-esri-loader)
+- [esri-angular-cli-example](https://github.com/tomwayson/esri-angular-cli-example)
 - [esri-loader-react](https://github.com/davetimmins/esri-loader-react)
 - [ember-esri-loader](https://github.com/Esri/ember-esri-loader)
 - [ember-cli-amd](https://github.com/Esri/ember-cli-amd)
@@ -135,6 +136,17 @@ this.esriLoader.load({
 
 ---
 
+## [angular-esri-loader](https://github.com/tomwayson/angular-esri-loader) (Angular 4 or 5)
+
+```js
+
+npm install angular-esri-loader
+
+```
+
+
+---
+
 <!-- .slide: class="section" -->
 
 ## Demos
@@ -142,6 +154,16 @@ this.esriLoader.load({
 ---
 
 ## More Stuff
+
+---
+
+## Community Contributions (Thank YOU!)
+
+* angular-esri-components by @TheKeithStewart
+* esri-webpack-typescript by @lobsteropteryx
+
+@davetimmins, @ScottONeal, @willisd2, @trkbrkr2000, @Robert-W, @gund, @oppoudel and others!
+
 
 ---
 
