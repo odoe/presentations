@@ -8,25 +8,6 @@ René Rubalcava [@odoenet](https://twitter.com/odoenet)
 
 ---
 
-<!-- .slide: class="agenda" -->
-
-## Agenda
-
-- Fundamentals
-  - Map and View
-  - Basemap, Ground and Operational Layers
-  - Layers
-  - LayerViews
-  - Widgets and UI
-  - ArcGIS Platform
-- Programming patterns
-  - Interactivity with Input Manager
-  - Working with API Objects
-  - Promises
-  - Loadable
-
----
-
 <!-- .slide: class="section" -->
 
 # Fundamentals
@@ -218,32 +199,6 @@ map.layers = map.allLayers
   .filter(function (layer) {
     layer.title.indexOf("some search");
   });
-```
-
----
-
-## Basemap, Ground and Operational Layers
-
-- There is a layer class that can contain layers too!: `GroupLayer`
-- `GroupLayer` shares the same layer management API as the `Map.layers`.
-
-```js
-const layer1 = new TileLayer(...);
-const layer2 = new TileLayer(...);
-
-const group = new GroupLayer({
-  layers: [layer1, layer2]
-});
-
-map.add(group);
-
-// same as Map
-group.add();
-group.addMany();
-group.remove();
-group.removeMany();
-group.removeAll();
-
 ```
 
 ---
@@ -463,7 +418,7 @@ const featureLayer = new FeatureLayer({
 
 ## LayerViews
 
-<iframe height='600' scrolling='no' title='FeatureLayer' src='//codepen.io/odoe/embed/preview/vJdVpQ/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/vJdVpQ/'>FeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='LayerView - Solution' src='//codepen.io/odoe/embed/preview/vJdVpQ/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/vJdVpQ/'>LayerView - Solution</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -1074,6 +1029,18 @@ action.on("draw-complete", (event) => ...);
 
 <iframe height='600' scrolling='no' title='Draw API' src='//codepen.io/odoe/embed/preview/zEOdBz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOdBz/'>Draw API</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+
+---
+
+<!-- .slide: class="apps1" -->
+
+---
+
+<!-- .slide: class="apps2" -->
+
+---
+
+<!-- .slide: class="apps3" -->
 
 ---
 
