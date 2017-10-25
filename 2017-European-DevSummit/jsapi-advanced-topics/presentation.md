@@ -2,7 +2,7 @@
 
 ## ArcGIS API 4.x for JavaScript
 ## Advanced Topics
-Allan Laframboise & René Rubalcava
+René Rubalcava [@odoenet](https://twitter.com/odoenet)
 
 [![octocat](template/octocat.png)](https://github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-advanced-topics)
 
@@ -39,37 +39,23 @@ Allan Laframboise & René Rubalcava
 
 ## Map and View
 
-Getting Started in 2D
- - need a `Map` with data
- - and a `MapView` with a container
-
-```js
-const map = new Map({
-  basemap: "topo"
-});
-
-const view = new MapView({
-  map: map,
-  container: "viewDiv"
-});
-```
-
----
-
-## Map and View
-
 Getting Started in 3D
  - need a `Map` with data
- - and a `SceneView` with a container
+ - and a `MapView`/`SceneView` with a container
 
 ```js
 const map = new Map({
   basemap: "topo"
 });
 
-const view = new SceneView({
+const mapView = new MapView({
   map: map,
-  container: "viewDiv"
+  container: "viewDiv1"
+});
+
+const sceneView = new SceneView({
+  map: map,
+  container: "viewDiv2"
 });
 ```
 
@@ -99,17 +85,6 @@ const view = new SceneView({
 ## Map and View
 
 ![Map&View](images/api-diagram-2.png)
-
----
-
-## Basemap, Ground and Operational Layers
-
-Layers are separated into 3 main groups.
- - `basemap`
- - `ground`
- - operational `layers`
-
-`basemap` and `ground` gives context to the operational `layers`.
 
 ---
 
@@ -297,49 +272,7 @@ const layer = map.allLayers.find(function (layer) {
 
 ---
 
-## Supported Layers
-
-- `TileLayer`
-- `GraphicsLayer`
-- `FeatureLayer`
-- `CSVLayer`
-- `GroupLayer`
-- `ImageryLayer`
-- `MapImageLayer`
-- `OpenStreetMapLayer`
-- `StreamLayer`
-- `VectorTileLayer`
-- `WebTileLayer`
-- `GeoRSSLayer`
-
----
-
-## 3D Only Layer
-
-- `ElevationLayer`
-- `IntegratedMeshLayer`
-- `PointCloudLayer`
-- `SceneLayer`
-
----
-
-## TileLayer
-
-- Layer that displays square images stitched together.
-- It's fast to display because the tiles are cached.
-- It as a URL at points to a Map Service
-
----
-
-## TileLayer
-
-```js
-const transportationLyr = new TileLayer({
-  url: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer",
-  id: "streets",
-  visible: false
-});
-```
+## Layers of Interest
 
 ---
 
@@ -401,8 +334,9 @@ const graphic = new Graphic({
     id: 1,
     city: "Los Angeles"
   },
-  geometry: new Point({x: xValue, y: yValue}),
-  symbol: new SimpleMarkerSymbol({
+  geometry: { type: "point", x: xValue, y: yValue },
+  symbol: {
+    type: "simple-marker",
     style: 'circle',
     color: 'red',
     size: 10,
@@ -410,7 +344,7 @@ const graphic = new Graphic({
       color: 'rgba(255, 255, 255, 0.5)'
       width: 4
     }
-  }),
+  },
   popupTemplate: {
     title: "My Awesome Graphic!",
     content: "{*}" // display all fields
@@ -473,9 +407,10 @@ const featureLayer = new FeatureLayer({
     type: "string"
   }],
   // Define a renderer for the layer
-  renderer: new SimpleRenderer({
+  renderer: {
     type: "simple",
-    symbol: new SimpleMarkerSymbol({
+    symbol: {
+      type: "simple-marker",
       style: 'circle',
       color: 'red',
       size: 10,
@@ -483,8 +418,8 @@ const featureLayer = new FeatureLayer({
         color: 'rgba(255, 255, 255, 0.5)'
         width: 4
       }
-    })
-  }),
+    }
+  },
   popupTemplate: {
     title: "{title}",
     content: "{description}"
@@ -507,148 +442,29 @@ const featureLayer = new FeatureLayer({
 
 ## MapImageLayer
 
-```javascript
-const layer = new MapImageLayer({
-  url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
-  sublayers: [
-  {
-    id: 0,
-    visible: true
-  },
-  {
-    id: 1,
-    visible: true
-  },
-  {
-    id: 2,
-    visible: true,
-    definitionExpression: "pop2000 > 1000000"
-  },
-  {
-    id: 3,
-    visible: false
-  }]
-});
-```
+<iframe height='600' scrolling='no' title='Webinar - MapImageLayer - Renderer' src='//codepen.io/odoe/embed/preview/rzbYqv/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rzbYqv/'>Webinar - MapImageLayer - Renderer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
-## MapImageLayer
+## WMSLayer
 
-```javascript
-const layer = new MapImageLayer({
-  url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
-  sublayers: [
-  ...
-  {
-    id: 3,
-    visible: true,
-    renderer:  new SimpleRenderer({
-      symbol: new SimpleFillSymbol({
-        style: "solid",
-        color: "dodgerblue",
-        outline: {
-          width: 0.5,
-          color: "white"
-        }
-      }),
-      label: "State boundaries"
-    }),
-    opacity: 0.5
-  }
-  ]
-});
-```
+<iframe height='600' scrolling='no' title='WMS' src='//codepen.io/odoe/embed/preview/zEaLmX/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEaLmX/'>WMS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## WMTSLayer
+
+<iframe height='600' scrolling='no' title='4.x - WMTS' src='//codepen.io/odoe/embed/preview/qjMQaG/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/qjMQaG/'>4.x - WMTS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
 ## LayerViews
 
----
-
-## LayerViews
-
-![Map&View](images/api-diagram-1.png)
-
----
-
-## LayerViews
-
-- `LayerViews` renders the layers on the screen.
-- [LayerView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-layers-LayerView.html) has limited API so far.
-- Give info about layer rendering
-- Give access to data displayed on the screen
- - Features
- - Elevation data
-
----
-
-## LayerViews
-
-- There is a layerview per layer in the map
-  - except if the layer is not supported
-    - incompatible SpatialReference
-    - incompatible tile cache
-    - 3D layer and a MapView
-- Like `Map`, a view has multiple collection of layerviews.
-
----
-
-## LayerViews
-
-- access a layerview with [`View.whenLayerView()`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#whenLayerView) 
-
-```js
-  const map = new Map({
-    basemap: 'topo'
-  });
-  const mapView = new MapView({
-    map: map,
-    container: 'mapDiv'
-  });
-
-  const layer = new FeatureLayer(...)
-  map.add(layer);
-
-  view.whenLayerView(layer)
-    .then(layerView =>  layerView.visible = false);
-```
-- or [`View.allLayerViews`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#allLayerViews) 
-
----
-
-## LayerViews
-
-- A layerview indicates if the layer is `suspended` (not displayed)
-```js
-view.whenLayerView(fLayer)
-.then(layerView => {
-  console.log(layerView.suspended);
-});
-```
-
----
-
-## LayerViews
-
-- FeatureLayer and LayerViews can be queried
-- `featureLayer.queryFeatures()` - query features on the service
-- `featureLayerView.queryFeatures()` - query features displayed in the view
-
----
-
-## LayerViews
-
-```js
-view.whenLayerView(fLayer)
-.then(layerView => {
-  const query = new Query();
-  query.geometry = view.extent;
-  layerView.queryFeatures(q).then(features => {
-    // do something with features
-  });
-});
-```
+<iframe height='600' scrolling='no' title='FeatureLayer' src='//codepen.io/odoe/embed/preview/vJdVpQ/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/vJdVpQ/'>FeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -658,18 +474,7 @@ view.whenLayerView(fLayer)
 
 ## Widgets
 
-- [Out of the box widgets at 4.3](https://developers.arcgis.com/javascript/latest/sample-code/get-started-widgets/index.html):
- - Zoom
- - Attribution
- - Compass
- - Home
- - Locate
- - Search
- - Legend
- - LayerList
- - Popup
-   - [dockable](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/sandbox.html?sample=popup-docking-position)
-   - [custom actions](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/sandbox.html?sample=popup-custom-action)
+- [Out of the box widgets at 4.x](https://developers.arcgis.com/javascript/latest/sample-code/get-started-widgets/index.html):
 - New design and user experience
 
 ---
@@ -677,9 +482,23 @@ view.whenLayerView(fLayer)
 ## Widgets
 
 - Extensibility through:
- - [CSS](demos/css/index.html), [matching vectortiles](demos/css-vectortiles/index.html)
+ - CSS
  - [SASS](https://github.com/Esri/jsapi-resources/blob/master/4.x/bower/dojo/SASS.md)
  - [View Model](https://github.com/Esri/arcgis-js-api/tree/4master/widgets)
+
+---
+
+## Widgets - Custom Theme
+
+<iframe height='600' scrolling='no' title='Dodger Blue' src='//codepen.io/odoe/embed/preview/pwVExr/?height=300&theme-id=31222&default-tab=html,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/pwVExr/'>Dodger Blue</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Widgets - Branded Apps
+
+<iframe height='300' scrolling='no' title='Branded Apps' src='//codepen.io/odoe/embed/preview/owdYXK/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/owdYXK/'>Branded Apps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -688,8 +507,13 @@ view.whenLayerView(fLayer)
 - New architecture
 - Logic of the widget separated from the representation
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
-- View's can be rewritten in [any framework](demos/widgets/framework/index.html)
-- ViewModels can be combined to create [Frankenwidgets](demos/widgets/frankenwidget/index.html)
+
+---
+
+## Widgets - ViewModel with Angular
+
+<iframe height='600' scrolling='no' title='ArcGIS JS API View Models - Angular' src='//codepen.io/odoe/embed/preview/bRMqLE/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/bRMqLE/'>ArcGIS JS API View Models - Angular</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -837,67 +661,15 @@ const featureLayer = new FeatureLayer({
 
 ## Popups - MediaInfos
 
-- Charts
-
-```js
-{
-  type: "media",
-  mediaInfos: [
-    {
-      title: "<b>Population</b>",
-      type: "column-chart",
-      caption: "",
-      value: {
-        theme: "BlueDusk",
-        fields: [ "POP2000", "POP2007" ]
-      }
-    }
-  ]
-}
-```
+<iframe height='600' scrolling='no' title='Popups - MediaInfos' src='//codepen.io/odoe/embed/preview/zdabVW/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zdabVW/'>Popups - MediaInfos</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
 ## Popups - Custom actions
 
-```js
-// PopupTemplate
-{
-  title: '{Name}',
-  content: '{*}',
-  actions: [{
-      id: 'alcohol-details',
-      className: 'esri-icon-description',
-      title: 'Events'
-  }]
-}
-```
-
----
-
-## Popups - Custom actions
-
-```js
-view.popup.viewModel.on("trigger-action", event => {
-  const action = event.action;
-  if (action.id === "customer-details") {
-    const attributes = view.popup.viewModel.selectedFeature.attributes;
-    const customerGroup = attributes.CUSTOMER_GROUP;
-    esriRequest(customAPIURL, {
-      query: {
-        group: customerGroup
-      },
-      responseType: "json"
-    })
-    .then(response => {
-      // parse response data and update popup content
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }
-});
-```
+<iframe height='600' scrolling='no' title='Custom Actions' src='//codepen.io/odoe/embed/preview/rzvxBq/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rzvxBq/'>Custom Actions</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -1090,8 +862,9 @@ watchUtils.whenTrue(view, "stationary", () => {
 ### API Objects - autocasting and single constructor
 
 ```js
-  // 4.0
-  new SimpleMarkerSymbol({
+  // 4.x
+  {
+    type: "simple",
     style: 'square',
     color: 'red',
     size: 10,
@@ -1099,7 +872,7 @@ watchUtils.whenTrue(view, "stationary", () => {
       color: 'rgba(255, 255, 255, 0.5)'
       width: 4
     }
-  });
+  };
 
   // 3.x
   new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_SQUARE, 10,
@@ -1175,7 +948,7 @@ view.then(() => {
 
 - brings better control, and scheduling of loading resources.
 - extension of `esri/core/Promise`
-- in 3.x, instanciating a layer loads it. in 4.0, it's an explicit call
+- in 3.x, instanciating a layer loads it. in 4.x, it's an explicit call
 - the views automatically loads the map and its layers
 
 ---
@@ -1220,13 +993,95 @@ In a single page application, get a feature from a FeatureLayer from a WebMap wi
 
 ---
 
+---
+
+<!-- .slide: class="section" -->
+
+## New Features
+
+---
+
+## WebGL FeatureLayer
+
+- Beta feature in 4.5 release
+
+```js
+var dojoConfig = {
+  has: {
+    "esri-featurelayer-webgl": 1
+  }
+};
+```
+
+---
+
+## WebGL FeatureLayer
+
+<iframe height='600' scrolling='no' title='WebGL FeatureLayer' src='//codepen.io/odoe/embed/preview/zEOZKz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOZKz/'>WebGL FeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Draw API and SketchViewModel
+
+---
+
+## SketchViewModel
+
+```js
+const sketch = new SketchViewModel({
+  view: view,
+  pointSymbol: {
+    ...
+  },
+  polylineSymbol: {
+    ...
+  },
+  polygonSymbol: {
+    ...
+  }
+});
+
+sketch.on("draw-complete", (event) => ...);
+sketch.create("polyline"); // point, polyline, polygon
+```
+
+---
+
+## SketchViewModel
+
+<iframe height='600' scrolling='no' title='YrKVBW' src='//codepen.io/odoe/embed/preview/YrKVBW/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YrKVBW/'>YrKVBW</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Draw API
+
+- More fine-grained control
+
+```js
+const draw = new Draw({ view });
+const action = draw.create(type); // point, polygon, polyline
+action.on("vertex-add", (event) => ...);
+action.on("vertex-remove", (event) => ...);
+action.on("cursor-update", (event) => ...);
+action.on("draw-complete", (event) => ...);
+```
+
+---
+
+## Draw API
+
+<iframe height='600' scrolling='no' title='Draw API' src='//codepen.io/odoe/embed/preview/zEOdBz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOdBz/'>Draw API</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
 
 ![Survey](images/survey-slide.png)
-
-Allan Laframboise (alaframboise@esri.com) ([@AL_Laframboise](https://twitter.com/AL_Laframboise))
 
 Rene Rubalcava (rrubalcava@esri.com ) ([@odoenet](https://twitter.com/odoenet))
 
