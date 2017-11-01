@@ -24,12 +24,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
   background-image: url(apps2.png);
 }
 
-.reveal .slide-background.apps.slide-apps3 {
-  background-image: url(apps2.png);
-}
-
-.reveal .slide-apps1 {
-  background-image: url(apps1.png);
+.reveal .slide-background.apps3 {
+  background-image: url(apps3.png);
 }
 
 .reveal .slide-background.title {

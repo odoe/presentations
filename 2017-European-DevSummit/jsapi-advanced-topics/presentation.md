@@ -69,6 +69,13 @@ const sceneView = new SceneView({
 
 ---
 
+## One Map, Many Views
+
+<iframe height='600' scrolling='no' title='Composite Views' src='//codepen.io/odoe/embed/preview/zEgaRo/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEgaRo/'>Composite Views</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
 ## Basemap, Ground and Operational Layers
 
 - `basemap` and `ground` can be set by well-know ids:
@@ -104,12 +111,12 @@ const map = new Map({
   basemap: {
     // Layers drawn at the bottom
     baseLayers: [
-      new TileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
+      new TileLayer(...)
     ],
 
     // Layers drawn on top
     referenceLayers: [
-      new TileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer")
+      new TileLayer(...)
     ],
   },
 
@@ -185,26 +192,6 @@ map.add(layer);
 
 ## Basemap, Ground and Operational Layers
 
-- More `Collection` API goodness
-
-```js
-function isOperational(layer) {
-  return !map.basemap.baseLayers.includes(layer)
-    && !map.basemap.reference.includes(layer)
-    && !map.ground.includes(layer);
-}
-
-map.layers = map.allLayers
-  .filter(isOperational)
-  .filter(function (layer) {
-    layer.title.indexOf("some search");
-  });
-```
-
----
-
-## Basemap, Ground and Operational Layers
-
 - a layer can only be in one place.
 - there are layers in multiple places:
   - Pro: easy to swap a basemap with another
@@ -240,18 +227,8 @@ const layer = map.allLayers.find(function (layer) {
 
 ## WebTileLayer
 
-```js
-const tiledLayer = new WebTileLayer({
-  urlTemplate: "http://{subDomain}.tile.stamen.com/toner/{level}/{col}/{row}.png",
-  subDomains: ["a", "b", "c", "d"],
-  copyright: "Map tiles by <a href=\"http://stamen.com/\">Stamen Design</a>, " +
-    "under <a href=\"http://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a>. " +
-    "Data by <a href=\"http://openstreetmap.org/\">OpenStreetMap</a>, " +
-    "under <a href=\"http://creativecommons.org/licenses/by-sa/3.0\">CC BY SA</a>."
-});
-```
-API [sample](https://developers.arcgis.com/javascript/latest/sample-code/layers-webtile-3d/index.html)  
-[OSM](https://developers.arcgis.com/javascript/latest/sample-code/layers-osm-3d/index.html)
+<iframe height='600' scrolling='no' title='WebTileLayer' src='//codepen.io/odoe/embed/preview/boXKjP/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/boXKjP/'>WebTileLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -397,28 +374,28 @@ const featureLayer = new FeatureLayer({
 
 ## MapImageLayer
 
-<iframe height='600' scrolling='no' title='Webinar - MapImageLayer - Renderer' src='//codepen.io/odoe/embed/preview/rzbYqv/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rzbYqv/'>Webinar - MapImageLayer - Renderer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Webinar - MapImageLayer - Renderer' src='//codepen.io/odoe/embed/preview/rzbYqv/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rzbYqv/'>Webinar - MapImageLayer - Renderer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## WMSLayer
 
-<iframe height='600' scrolling='no' title='WMS' src='//codepen.io/odoe/embed/preview/zEaLmX/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEaLmX/'>WMS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='WMS' src='//codepen.io/odoe/embed/preview/zEaLmX/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEaLmX/'>WMS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## WMTSLayer
 
-<iframe height='600' scrolling='no' title='4.x - WMTS' src='//codepen.io/odoe/embed/preview/qjMQaG/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/qjMQaG/'>4.x - WMTS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='4.x - WMTS' src='//codepen.io/odoe/embed/preview/qjMQaG/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/qjMQaG/'>4.x - WMTS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## LayerViews
 
-<iframe height='600' scrolling='no' title='LayerView - Solution' src='//codepen.io/odoe/embed/preview/vJdVpQ/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/vJdVpQ/'>LayerView - Solution</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='LayerView - Solution' src='//codepen.io/odoe/embed/preview/vJdVpQ/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/vJdVpQ/'>LayerView - Solution</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -445,14 +422,14 @@ const featureLayer = new FeatureLayer({
 
 ## Widgets - Custom Theme
 
-<iframe height='600' scrolling='no' title='Dodger Blue' src='//codepen.io/odoe/embed/preview/pwVExr/?height=300&theme-id=31222&default-tab=html,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/pwVExr/'>Dodger Blue</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Dodger Blue' src='//codepen.io/odoe/embed/preview/pwVExr/?height=600&theme-id=31222&default-tab=html,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/pwVExr/'>Dodger Blue</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## Widgets - Branded Apps
 
-<iframe height='300' scrolling='no' title='Branded Apps' src='//codepen.io/odoe/embed/preview/owdYXK/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/owdYXK/'>Branded Apps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Branded Apps' src='//codepen.io/odoe/embed/preview/owdYXK/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/owdYXK/'>Branded Apps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -467,8 +444,12 @@ const featureLayer = new FeatureLayer({
 
 ## Widgets - ViewModel with Angular
 
-<iframe height='600' scrolling='no' title='ArcGIS JS API View Models - Angular' src='//codepen.io/odoe/embed/preview/bRMqLE/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/bRMqLE/'>ArcGIS JS API View Models - Angular</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='ArcGIS JS API View Models - Angular' src='//codepen.io/odoe/embed/preview/bRMqLE/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/bRMqLE/'>ArcGIS JS API View Models - Angular</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+
+---
+
+## Widgets - Custom Widgets Demo
 
 ---
 
@@ -616,14 +597,14 @@ const featureLayer = new FeatureLayer({
 
 ## Popups - MediaInfos
 
-<iframe height='600' scrolling='no' title='Popups - MediaInfos' src='//codepen.io/odoe/embed/preview/zdabVW/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zdabVW/'>Popups - MediaInfos</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Popups - MediaInfos' src='//codepen.io/odoe/embed/preview/zdabVW/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zdabVW/'>Popups - MediaInfos</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## Popups - Custom actions
 
-<iframe height='600' scrolling='no' title='Custom Actions' src='//codepen.io/odoe/embed/preview/rzvxBq/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rzvxBq/'>Custom Actions</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Custom Actions' src='//codepen.io/odoe/embed/preview/rzvxBq/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rzvxBq/'>Custom Actions</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -725,21 +706,6 @@ portal.load()
 
 ## Interactivity with view events
 
-- Use view events to interact with the view
-- [List of events](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#events-summary)
-- You can stop the propagation of the event to prevent the default behavior
-
-```js
-view.on("drag", event => {
-  // user won't be able to drag
-  event.stopPropagation();
-})
-```
-
----
-
-## Interactivity with view events
-
 - Access the features on click
 
 ```js
@@ -753,6 +719,13 @@ view.on("click", ({ x, y }) => {
 });
 ```
 [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/view-hittest/index.html)
+
+---
+
+## GroupLayer
+
+<iframe height='600' scrolling='no' title='WatLayers' src='//codepen.io/odoe/embed/preview/JrdXqe/?height=600&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/JrdXqe/'>WatLayers</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -840,46 +813,6 @@ watchUtils.whenTrue(view, "stationary", () => {
 
 ## Promises
 
-- All asynchronous methods return a promise, no more [events](https://developers.arcgis.com/javascript/jsapi/querytask-amd.html#events)
-- The basic pattern looks like this:
-
-```js
-  someAsyncFunction().then(resolvedVal => {
-      //This is called when the promise resolves
-      console.log(resolvedVal);  //logs the value the promise resolves to
-    })
-    .catch(error => {
-      //This function is called when the promise is rejected
-      console.error(error);  //logs the error message
-    })
-```
-
----
-
-## Promises
-
-- Classes may be Promise
- - Load resources
- - Asychronously initialized `Layer`, `WebMap`, `WebScene`, `View`
- - `view.then()` replaces `map.on('load', ...)`
-
-```js
-const map = new Map({...})
-
-view = new SceneView({
-  map: map,
-  //...
-});
-
-view.then(() => {
-  // the view is ready to go
-});
-```
-
----
-
-## Promises
-
 ```js
 view.then(() => {
   return view.whenLayerView(map.findLayerById("awesomeLayer"));
@@ -948,8 +881,6 @@ In a single page application, get a feature from a FeatureLayer from a WebMap wi
 
 ---
 
----
-
 <!-- .slide: class="section" -->
 
 ## New Features
@@ -972,7 +903,7 @@ var dojoConfig = {
 
 ## WebGL FeatureLayer
 
-<iframe height='600' scrolling='no' title='WebGL FeatureLayer' src='//codepen.io/odoe/embed/preview/zEOZKz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOZKz/'>WebGL FeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='WebGL FeatureLayer' src='https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=visualization-vv-color-animate' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
 </iframe>
 
 ---
@@ -1005,7 +936,7 @@ sketch.create("polyline"); // point, polyline, polygon
 
 ## SketchViewModel
 
-<iframe height='600' scrolling='no' title='YrKVBW' src='//codepen.io/odoe/embed/preview/YrKVBW/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YrKVBW/'>YrKVBW</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='YrKVBW' src='//codepen.io/odoe/embed/preview/YrKVBW/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YrKVBW/'>YrKVBW</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -1027,7 +958,7 @@ action.on("draw-complete", (event) => ...);
 
 ## Draw API
 
-<iframe height='600' scrolling='no' title='Draw API' src='//codepen.io/odoe/embed/preview/zEOdBz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOdBz/'>Draw API</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Draw API' src='//codepen.io/odoe/embed/preview/zEOdBz/?height=600&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOdBz/'>Draw API</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -1050,7 +981,7 @@ action.on("draw-complete", (event) => ...);
 
 ![Survey](images/survey-slide.png)
 
-Rene Rubalcava (rrubalcava@esri.com ) ([@odoenet](https://twitter.com/odoenet))
+Rene Rubalcava (rrubalcava@esri.com) ([@odoenet](https://twitter.com/odoenet))
 
 Slides: [github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-advanced-topics(github.com/odoe/presentations/tree/master/2017-European-DevSummit/jsapi-advanced-topics)
 
