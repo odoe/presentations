@@ -42,11 +42,11 @@ Getting Started in 2D
  - and a `MapView` with a container
 
 ```js
-var map = new Map({
+const map = new Map({
   basemap: "topo"
 });
 
-var view = new MapView({
+const view = new MapView({
   map: map,
   container: "viewDiv"
 });
@@ -61,11 +61,11 @@ Getting Started in 3D
  - and a `SceneView` with a container
 
 ```js
-var map = new Map({
+const map = new Map({
   basemap: "topo"
 });
 
-var view = new SceneView({
+const view = new SceneView({
   map: map,
   container: "viewDiv"
 });
@@ -125,7 +125,7 @@ Layers are separated into 3 main groups.
 - `basemap` and `ground` can be set by well-know ids:
 
 ```js
-var map = new Map({
+const map = new Map({
 
   /*
    streets, satellite, hybrid, terrain, topo, gray,
@@ -150,7 +150,7 @@ var map = new Map({
 - or by specifying them
 
 ```js
-var map = new Map({
+const map = new Map({
 
   basemap: {
     // Layers drawn at the bottom
@@ -180,7 +180,7 @@ var map = new Map({
 - `basemap` can also be set by item id.
 
 ```js
-var map = new Map({
+const map = new Map({
 
   basemap: {
     portalItem: {
@@ -198,7 +198,7 @@ var map = new Map({
 - `Map.layers` contains `Layer` objects with the operational data the user interacts with.
 
 ```js
-var map = new Map({
+const map = new Map({
 
   layers: [
     new MapImageLayer(...),
@@ -247,7 +247,7 @@ function isOperational(layer) {
 
 map.layers = map.allLayers
   .filter(isOperational)
-  .filter(function (layer) {
+  .filter(layer => {
     layer.title.indexOf("some search");
   });
 ```
@@ -260,10 +260,10 @@ map.layers = map.allLayers
 - `GroupLayer` shares the same layer management API as the `Map.layers`.
 
 ```js
-var layer1 = new TileLayer(...);
-var layer2 = new TileLayer(...);
+const layer1 = new TileLayer(...);
+const layer2 = new TileLayer(...);
 
-var group = new GroupLayer({
+const group = new GroupLayer({
   layers: [layer1, layer2]
 });
 
@@ -293,7 +293,7 @@ group.removeAll();
   - contains the layers from every collection
 
 ```js
-var layer = map.allLayers.find(function (layer) {
+const layer = map.allLayers.find(layer => {
   return layer.title === "what I'm looking for";
 });
 ```
@@ -341,7 +341,7 @@ var layer = map.allLayers.find(function (layer) {
 ## TileLayer
 
 ```js
-var transportationLyr = new TileLayer({
+const transportationLyr = new TileLayer({
   url: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer",
   id: "streets",
   visible: false
@@ -360,7 +360,7 @@ var transportationLyr = new TileLayer({
 ## WebTileLayer
 
 ```js
-var tiledLayer = new WebTileLayer({
+const tiledLayer = new WebTileLayer({
   urlTemplate: "http://{subDomain}.tile.stamen.com/toner/{level}/{col}/{row}.png",
   subDomains: ["a", "b", "c", "d"],
   copyright: "Map tiles by <a href=\"http://stamen.com/\">Stamen Design</a>, " +
@@ -386,7 +386,7 @@ API [sample](https://developers.arcgis.com/javascript/latest/sample-code/layers-
 ## GraphicsLayer
 
 ```js
-var graphicsLayer = new GraphicsLayer({
+const graphicsLayer = new GraphicsLayer({
   graphics: [graphic1, graphic2, graphic3]
 });
 
@@ -403,21 +403,22 @@ API [3D sample](https://developers.arcgis.com/javascript/latest/sample-code/grap
 ## GraphicsLayer - create a Graphic
 
 ```js
-var graphic = new Graphic({
+const graphic = new Graphic({
   attributes: {
     id: 1,
     city: "Los Angeles"
   },
-  geometry: new Point({x: xValue, y: yValue}),
-  symbol: new SimpleMarkerSymbol({
+  geometry: { type: "point", x: xValue, y: yValue },
+  symbol: {
+    type: "simple-marker",
     style: 'circle',
     color: 'red',
     size: 10,
     outline: {
-      color: 'rgba(255, 255, 255, 0.5)'
+      color: "rgba(255, 255, 255, 0.5)"
       width: 4
     }
-  }),
+  },
   popupTemplate: {
     title: "My Awesome Graphic!",
     content: "{*}" // display all fields
@@ -445,12 +446,12 @@ graphicsLayer.add(graphic);
 
 ```javascript
 // Create via URL
-var featureLayer = new FeatureLayer({
+const featureLayer = new FeatureLayer({
   url: "http://services6.arcgis.com/m3L8QUZ93HeaQzKv/arcgis/rest/services/BeerAndBurgerJoints/FeatureServer/0"
 });
 
 // Create via a Portal item
-var featureLayer = new FeatureLayer({
+const featureLayer = new FeatureLayer({
   portalItem: {
     id: "b126510e440744169943fd8ccc9b0c4e"
   }
@@ -462,7 +463,7 @@ var featureLayer = new FeatureLayer({
 ## FeatureLayer - FeatureCollection
 
 ```javascript
-var featureLayer = new FeatureLayer({
+const featureLayer = new FeatureLayer({
   objectIdField: "item_id",
   geometryType: "point",
   // Define the fields of the graphics in the FeatureLayer
@@ -480,9 +481,10 @@ var featureLayer = new FeatureLayer({
     type: "string"
   }],
   // Define a renderer for the layer
-  renderer: new SimpleRenderer({
+  renderer: {
     type: "simple",
-    symbol: new SimpleMarkerSymbol({
+    symbol: {
+      type: "simple-marker",
       style: 'circle',
       color: 'red',
       size: 10,
@@ -490,8 +492,8 @@ var featureLayer = new FeatureLayer({
         color: 'rgba(255, 255, 255, 0.5)'
         width: 4
       }
-    })
-  }),
+    }
+  },
   popupTemplate: {
     title: "{title}",
     content: "{description}"
@@ -515,7 +517,7 @@ var featureLayer = new FeatureLayer({
 ## MapImageLayer
 
 ```javascript
-var layer = new MapImageLayer({
+const layer = new MapImageLayer({
   url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
   sublayers: [
   {
@@ -543,24 +545,26 @@ var layer = new MapImageLayer({
 ## MapImageLayer
 
 ```javascript
-var layer = new MapImageLayer({
+const layer = new MapImageLayer({
   url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
   sublayers: [
   ...
   {
     id: 3,
     visible: true,
-    renderer:  new SimpleRenderer({
-      symbol: new SimpleFillSymbol({
+    renderer: {
+      type: "simple",
+      symbol: {
+        type: "simple-fill",
         style: "solid",
         color: "dodgerblue",
         outline: {
           width: 0.5,
           color: "white"
         }
-      }),
+      },
       label: "State boundaries"
-    }),
+    },
     opacity: 0.5
   }
   ]
@@ -606,19 +610,19 @@ var layer = new MapImageLayer({
 - access a layerview with [`View.whenLayerView()`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#whenLayerView) 
 
 ```js
-  var map = new Map({
+  const map = new Map({
     basemap: 'topo'
   });
-  var mapView = new MapView({
+  const mapView = new MapView({
     map: map,
     container: 'mapDiv'
   });
 
-  var layer = new FeatureLayer(...)
+  const layer = new FeatureLayer(...)
   map.add(layer);
 
   view.whenLayerView(layer)
-    .then(function(layerView) {
+    .then(layerView => {
       layerView.visible = false
     });
 ```
@@ -631,7 +635,7 @@ var layer = new MapImageLayer({
 - A layerview indicates if the layer is `suspended` (not displayed)
 ```js
 view.whenLayerView(fLayer)
-.then(function(layerView) {
+.then(layerView => {
   console.log(layerView.suspended);
 });
 ```
@@ -650,10 +654,10 @@ view.whenLayerView(fLayer)
 
 ```js
 view.whenLayerView(fLayer)
-.then(function(layerView) {
-  var query = new Query();
+.then(layerView => {
+  const query = fLayer.createQuery();
   query.geometry = view.extent;
-  layerView.queryFeatures(q).then(function(features) {
+  layerView.queryFeatures(q).then(features => {
     // do something with features
   });
 });
@@ -710,7 +714,7 @@ view.whenLayerView(fLayer)
 - [Guide](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html)
 
 ```js
-var view = new MapView({
+const view = new MapView({
 
   ui: {
 
@@ -735,11 +739,11 @@ var view = new MapView({
 - API to add widgets or any DOM element to the 4 corners of the view
 
 ```js
-var view = new MapView({
+const view = new MapView({
   //...
 });
 
-var legend = new Legend({
+const legend = new Legend({
   //...
 });
 
@@ -754,7 +758,7 @@ view.ui.add(legend, "top-left");
 
 ```js
 // basic popup
-var featureLayer = new FeatureLayer({
+const featureLayer = new FeatureLayer({
   url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3",
   outFields: ["*"],
   popupTemplate: {
@@ -822,7 +826,7 @@ content: [
 - Custom content
 
 ```js
-var featureLayer = new FeatureLayer({
+const featureLayer = new FeatureLayer({
   url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/2",
   outFields: ["*"],
   popupTemplate: {
@@ -887,21 +891,21 @@ var featureLayer = new FeatureLayer({
 ## Popups - Custom actions
 
 ```js
-view.popup.viewModel.on("trigger-action", function(event) {
-  var action = event.action;
+view.popup.viewModel.on("trigger-action", event => {
+  const action = event.action;
   if (action.id === "customer-details") {
-    var attributes = view.popup.viewModel.selectedFeature.attributes;
-    var customerGroup = attributes.CUSTOMER_GROUP;
+    const attributes = view.popup.viewModel.selectedFeature.attributes;
+    const customerGroup = attributes.CUSTOMER_GROUP;
     esriRequest(customAPIURL, {
       query: {
         group: customerGroup
       },
       responseType: "json"
     })
-    .then(function(response ) {
+    .then(response => {
       // parse response data and update popup content
     })
-    .otherwise(function() {
+    .catch(error => {
       console.log(error);
     });
   }
@@ -929,13 +933,13 @@ view.popup.viewModel.on("trigger-action", function(event) {
 - Loading a `WebScene`
 
 ```js
-var scene = new WebScene({
+const scene = new WebScene({
   portalItem: {
     id: "082c4fd545104f159db39da11ea1e675"
   }
 });
 
-var view = new SceneView({
+const view = new SceneView({
   map: scene,
   container: "viewDiv"
 });
@@ -948,7 +952,7 @@ var view = new SceneView({
 - Loading a layer from an item.
 
 ```js
-var promise = Layer.fromPortalItem({
+const promise = Layer.fromPortalItem({
   portalItem: {
     id: '8444e275037549c1acab02d2626daaee',
     portal: {
@@ -956,11 +960,11 @@ var promise = Layer.fromPortalItem({
     }
   }
 })
-.then(function(layer) {
+.then(layer => {
   // Adds the layer to the map once it loads
   map.add(layer);
 })
-.otherwise(function(error) {
+.otherwise(error => {
   //handle the error
 });
 ```
@@ -974,16 +978,16 @@ var promise = Layer.fromPortalItem({
 - Access Portal Items
 
 ```js
-var portal = new Portal();
+const portal = new Portal();
 
 // Setting authMode to immediate signs the user in once loaded
 portal.authMode = 'immediate';
 
 // Once loaded, user is signed in
 portal.load()
-  .then(function() {
+  .then(() => {
     // Create query parameters for the portal search
-    var queryParams = new PortalQueryParams({
+    const queryParams = new PortalQueryParams({
       query: 'owner:' + portal.user.username,
       sortField: 'numViews',
       sortOrder: 'desc',
@@ -1012,7 +1016,7 @@ portal.load()
 - You can stop the propagation of the event to prevent the default behavior
 
 ```js
-view.on("drag", function(event) {
+view.on("drag", event => {
   // user won't be able to drag
   event.stopPropagation();
 })
@@ -1025,15 +1029,12 @@ view.on("drag", function(event) {
 - Access the features on click
 
 ```js
-view.on("click", function(evt){
-  var screenPoint = {
-    x: evt.x,
-    y: evt.y
-  };
+view.on("click", ({ x, y }) => {
+  const screenPoint = {x, y};
   view.hitTest(screenPoint)
-    .then(function(response){
+    .then(response => {
        // do something with the result graphic
-       var graphic = response.results[0].graphic;
+       const graphic = response.results[0].graphic;
     });
 });
 ```
@@ -1102,8 +1103,9 @@ watchUtils.whenTrue(view, "stationary", () => {
 ### API Objects - autocasting and single constructor
 
 ```js
-  // 4.0
-  new SimpleMarkerSymbol({
+  // 4.x
+  {
+    type: "simple-marker",
     style: 'square',
     color: 'red',
     size: 10,
@@ -1127,18 +1129,7 @@ watchUtils.whenTrue(view, "stationary", () => {
 - All asynchronous methods return a promise, no more [events](https://developers.arcgis.com/javascript/jsapi/querytask-amd.html#events)
 - The basic pattern looks like this:
 
-```js
-  someAsyncFunction().then(
-    function(resolvedVal){
-      //This is called when the promise resolves
-      console.log(resolvedVal);  //logs the value the promise resolves to
-    },
-    function(error){
-      //This function is called when the promise is rejected
-      console.error(error);  //logs the error message
-    }
-  );
-```
+TODO - add promise details
 
 ---
 
@@ -1150,14 +1141,14 @@ watchUtils.whenTrue(view, "stationary", () => {
  - `view.then()` replaces `map.on('load', ...)`
 
 ```js
-var map = new Map({...})
+const map = new Map({...})
 
 view = new SceneView({
   map: map,
   //...
 });
 
-view.then(function() {
+view.when(() => {
   // the view is ready to go
 });
 ```
@@ -1167,18 +1158,18 @@ view.then(function() {
 ## Promises
 
 ```js
-view.then(function() {
+view.when(() => {
   return view.whenLayerView(map.findLayerById("awesomeLayer"));
 })
-.then(function(layerView) {
+.then(layerView => {
   return watchUtils.whenFalseOnce(layerView, "updating");
 })
-.then(function(result) {
-  var layerView = result.target;
+.then(result => {
+  const layerView = result.target;
   return layerView.queryFeatures();
 })
 .then(doSomethingWithFeatures)
-.otherwise(errorHandler);
+.catch(errorHandler);
 ```
 
 [API sample](https://developers.arcgis.com/javascript/latest/sample-code/chaining-promises/index.html)
@@ -1209,25 +1200,25 @@ view.then(function() {
 In a single page application, get a feature from a FeatureLayer from a WebMap without displaying it, ASAP!
 
 ```js
-  var webmap = new WebMap({
+  const webmap = new WebMap({
     portalItem: {
       id: 'affa021c51944b5694132b2d61fe1057'
     }
   });
 
   webmap.load()
-    .then(function() {
+    .then(() => {
       return webmap.getLayer('myFeatureLayerId').load();
     })
-    .then(function(featureLayer) {
+    .then(featureLayer => {
       return featureLayer.queryFeatures({
         where: 'OBJECTID = 1'
       });
     })
-    .then(function(result) {
+    .then(result => {
       displayDetails(result.features[0]);
     })
-    .otherwise(function(error) {
+    .otherwise(error => {
       console.error(error);
     });
 ```
@@ -1240,7 +1231,7 @@ In a single page application, get a feature from a FeatureLayer from a WebMap wi
 
 ![Survey](images/survey-slide.png)
 
-Matt Driscoll (mdriscoll@esri.com) ([@ycabon](https://twitter.com/driskull))
+Matt Driscoll (mdriscoll@esri.com) ([@driskull](https://twitter.com/driskull))
 
 Rene Rubalcava (rrubalcava@esri.com ) ([@odoenet](https://twitter.com/odoenet))
 
