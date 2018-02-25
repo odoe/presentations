@@ -19,7 +19,7 @@ Matt Driscoll & René Rubalcava
   - ArcGIS Platform
 - Programming patterns
   - Interactivity with Input Manager
-  - Working with API Objects
+  - Working with Accessor
   - Promises
   - Loadable
 
@@ -75,16 +75,7 @@ const view = new SceneView({
 
 ## Map and View
 
-- `Map` is holding on the different layers.
-  - _What the world is composed of_
-- `MapView` and `SceneView` displays each layer on the screen.
-  - _A window on that world_
-
----
-
-## Map and View
-
-- `Map` is holding on the different layers.
+- `Map` has information about the layers.
   - _What the world is composed of_
 - `MapView` and `SceneView` displays each layer on the screen.
   - _A window on that world_
@@ -109,7 +100,7 @@ const view = new SceneView({
 
 ---
 
-## Basemap, Ground and Operational Layers
+## Basemap, Ground, and Operational Layers
 
 Layers are separated into 3 main groups.
  - `basemap`
@@ -120,13 +111,12 @@ Layers are separated into 3 main groups.
 
 ---
 
-## Basemap, Ground and Operational Layers
+## Basemap, Ground, and Operational Layers
 
 - `basemap` and `ground` can be set by well-know ids:
 
 ```js
 const map = new Map({
-
   /*
    streets, satellite, hybrid, terrain, topo, gray,
    dark-gray, oceans, national-geographic, osm,
@@ -139,13 +129,12 @@ const map = new Map({
    world-elevation 
    */
   ground: "world-elevation" 
-
 });
 ```
 
 ---
 
-## Basemap, Ground and Operational Layers
+## Basemap, Ground, and Operational Layers
 
 - or by specifying them
 
@@ -155,18 +144,24 @@ const map = new Map({
   basemap: {
     // Layers drawn at the bottom
     baseLayers: [
-      new TileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
+      new TileLayer({
+        url: "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"
+      })
     ],
 
     // Layers drawn on top
     referenceLayers: [
-      new TileLayer("https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer")
+      new TileLayer({
+        url: "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer"
+      })
     ],
   },
 
   ground: {
     layers: [
-      new ElevationLayer("https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer")
+      new ElevationLayer({
+        url: "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer"
+      })
     ]
   }
 
@@ -175,9 +170,10 @@ const map = new Map({
 
 ---
 
-## Basemap, Ground and Operational Layers
+## Basemap, Ground, and Operational Layers
 
 - `basemap` can also be set by item id.
+- should probably be used in production
 
 ```js
 const map = new Map({
@@ -193,7 +189,7 @@ const map = new Map({
 
 ---
 
-## Basemap, Ground and Operational Layers
+## Basemap, Ground, and Operational Layers
 
 - `Map.layers` contains `Layer` objects with the operational data the user interacts with.
 
@@ -210,77 +206,7 @@ const map = new Map({
 
 ---
 
-## Basemap, Ground and Operational Layers
-
-- At any point you can modify any on those groups of layers using the `Collection` API.
-
-```js
-// basemap
-map.basemap.baseLayers.add(layer);
-map.basemap.baseLayers.addMany([layer]);
-map.basemap.baseLayers.remove(layer);
-map.basemap.baseLayers.removeMany([layer]);
-map.basemap.baseLayers.removeAll();
-
-map.basemap.referenceLayers.add(layer);
-
-map.ground.add(layer);
-
-map.layers.add(layer);
-
-// short hand
-map.add(layer);
-```
-
----
-
-## Basemap, Ground and Operational Layers
-
-- More `Collection` API goodness
-
-```js
-function isOperational(layer) {
-  return !map.basemap.baseLayers.includes(layer)
-    && !map.basemap.reference.includes(layer)
-    && !map.ground.includes(layer);
-}
-
-map.layers = map.allLayers
-  .filter(isOperational)
-  .filter(layer => {
-    layer.title.indexOf("some search");
-  });
-```
-
----
-
-## Basemap, Ground and Operational Layers
-
-- There is a layer class that can contain layers too!: `GroupLayer`
-- `GroupLayer` shares the same layer management API as the `Map.layers`.
-
-```js
-const layer1 = new TileLayer(...);
-const layer2 = new TileLayer(...);
-
-const group = new GroupLayer({
-  layers: [layer1, layer2]
-});
-
-map.add(group);
-
-// same as Map
-group.add();
-group.addMany();
-group.remove();
-group.removeMany();
-group.removeAll();
-
-```
-
----
-
-## Basemap, Ground and Operational Layers
+## Basemap, Ground, and Operational Layers
 
 - a layer can only be in one place.
 - there are layers in multiple places:
@@ -291,6 +217,7 @@ group.removeAll();
 
 - They can be easily searched using `Map.allLayers`
   - contains the layers from every collection
+  - I mean _everything_
 
 ```js
 const layer = map.allLayers.find(layer => {
@@ -301,32 +228,6 @@ const layer = map.allLayers.find(layer => {
 ---
 
 ## Layers
-
----
-
-## Supported Layers
-
-- `TileLayer`
-- `GraphicsLayer`
-- `FeatureLayer`
-- `CSVLayer`
-- `GroupLayer`
-- `ImageryLayer`
-- `MapImageLayer`
-- `OpenStreetMapLayer`
-- `StreamLayer`
-- `VectorTileLayer`
-- `WebTileLayer`
-- `GeoRSSLayer`
-
----
-
-## 3D Only Layer
-
-- `ElevationLayer`
-- `IntegratedMeshLayer`
-- `PointCloudLayer`
-- `SceneLayer`
 
 ---
 
@@ -460,48 +361,27 @@ const featureLayer = new FeatureLayer({
 
 ---
 
-## FeatureLayer - FeatureCollection
+## FeatureLayer - WebGL
 
-```javascript
-const featureLayer = new FeatureLayer({
-  objectIdField: "item_id",
-  geometryType: "point",
-  // Define the fields of the graphics in the FeatureLayer
-  fields: [{
-    name: "item_id",
-    alias: "Item ID",
-    type: "oid"
-  }, {
-    name: "description",
-    alias: "Description",
-    type: "string"
-  }, {
-    name: "title",
-    alias: "Title",
-    type: "string"
-  }],
-  // Define a renderer for the layer
-  renderer: {
-    type: "simple",
-    symbol: {
-      type: "simple-marker",
-      style: 'circle',
-      color: 'red',
-      size: 10,
-      outline: {
-        color: 'rgba(255, 255, 255, 0.5)'
-        width: 4
-      }
+- To display greater than 180,000 features
+- We are already pushing limits of SVG
+- Currently with hosted feature services
+
+---
+
+## FeatureLayer - WebGL
+
+```html
+<script>
+  var dojoConfig = {
+    has: {
+      "esri-featurelayer-webgl": 1
     }
-  },
-  popupTemplate: {
-    title: "{title}",
-    content: "{description}"
-  },
-  // This is a collection of Graphics
-  source: [graphic1, graphic2, graphic3]
-});
+  };
+</script>
 ```
+
+- That's it
 
 ---
 
@@ -570,6 +450,12 @@ const layer = new MapImageLayer({
   ]
 });
 ```
+
+---
+
+## SceneLayer
+
+// TODO
 
 ---
 
@@ -646,7 +532,7 @@ view.whenLayerView(fLayer)
 
 - FeatureLayer and LayerViews can be queried
 - `featureLayer.queryFeatures()` - query features on the service
-- `featureLayerView.queryFeatures()` - query features displayed in the view
+- `featureLayerView.queryFeatures()` - query features on the client
 
 ---
 
@@ -671,18 +557,6 @@ view.whenLayerView(fLayer)
 
 ## Widgets
 
-- [Out of the box widgets at 4.3](https://developers.arcgis.com/javascript/latest/sample-code/get-started-widgets/index.html):
- - Zoom
- - Attribution
- - Compass
- - Home
- - Locate
- - Search
- - Legend
- - LayerList
- - Popup
-   - [dockable](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/sandbox.html?sample=popup-docking-position)
-   - [custom actions](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/sandbox.html?sample=popup-custom-action)
 - New design and user experience
 
 ---
@@ -1042,7 +916,7 @@ view.on("click", ({ x, y }) => {
 
 ---
 
-## Working with API Objects
+## Working with Accessor
 
 - Objects are have properties that can be:
   - read and set
@@ -1052,7 +926,7 @@ view.on("click", ({ x, y }) => {
 
 ---
 
-### API Objects - property access
+### Accessor - property access
 
 ```ts
 console.log(layer.opacity);
@@ -1074,7 +948,7 @@ view.set("map.basemap.title", "new title");
 
 ---
 
-### API Objects - property watching
+### Accessor - property watching
 
 ```ts
 mapView.watch("scale", (newValue, oldValue, property, target) => {
@@ -1100,7 +974,7 @@ watchUtils.whenTrue(view, "stationary", () => {
 
 ---
 
-### API Objects - autocasting and single constructor
+### Accessor - autocasting and single constructor
 
 ```js
   // 4.x
@@ -1129,7 +1003,23 @@ watchUtils.whenTrue(view, "stationary", () => {
 - All asynchronous methods return a promise, no more [events](https://developers.arcgis.com/javascript/jsapi/querytask-amd.html#events)
 - The basic pattern looks like this:
 
-TODO - add promise details
+```js
+layer.queryFeatures(query).then(handleResult).catch(handleError);
+```
+
+---
+
+## Promises with async/await
+
+- work with native promises
+
+```js
+const doQuery = async (query) => {
+  const results = await layer.queryFeatures(query);
+  const transformedResults = results.map(transformData);
+  return transformedResults;
+}
+```
 
 ---
 
@@ -1139,6 +1029,8 @@ TODO - add promise details
  - Load resources
  - Asychronously initialized `Layer`, `WebMap`, `WebScene`, `View`
  - `view.then()` replaces `map.on('load', ...)`
+
+ - We add `when()` to the API.
 
 ```js
 const map = new Map({...})
