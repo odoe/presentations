@@ -175,17 +175,8 @@ const map = new Map({
 - `basemap` can also be set by item id.
 - should probably be used in production
 
-```js
-const map = new Map({
-
-  basemap: {
-    portalItem: {
-      id: "8b3d38c0819547faa83f7b7aca80bd76"
-    }
-  }
-
-});
-```
+<iframe height='500' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -385,6 +376,11 @@ const featureLayer = new FeatureLayer({
 
 ---
 
+<iframe height='500' scrolling='no' title='FL - WebGL' src='//codepen.io/odoe/embed/preview/PJByNy/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/PJByNy/'>FL - WebGL</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
 ## MapImageLayer
 
 - Displays layers and sublayers from Map Services
@@ -424,38 +420,15 @@ const layer = new MapImageLayer({
 
 ## MapImageLayer
 
-```javascript
-const layer = new MapImageLayer({
-  url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer",
-  sublayers: [
-  ...
-  {
-    id: 3,
-    visible: true,
-    renderer: {
-      type: "simple",
-      symbol: {
-        type: "simple-fill",
-        style: "solid",
-        color: "dodgerblue",
-        outline: {
-          width: 0.5,
-          color: "white"
-        }
-      },
-      label: "State boundaries"
-    },
-    opacity: 0.5
-  }
-  ]
-});
-```
+<iframe height='500' scrolling='no' title='MapImageLayer' src='//codepen.io/odoe/embed/preview/QQPwGw/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/QQPwGw/'>MapImageLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
 ## SceneLayer
 
-// TODO
+<iframe height='500' scrolling='no' title='3D Visualizations' src='//codepen.io/odoe/embed/preview/GQLgxL/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/GQLgxL/'>3D Visualizations</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -494,37 +467,14 @@ const layer = new MapImageLayer({
 ## LayerViews
 
 - access a layerview with [`View.whenLayerView()`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#whenLayerView) 
-
-```js
-  const map = new Map({
-    basemap: 'topo'
-  });
-  const mapView = new MapView({
-    map: map,
-    container: 'mapDiv'
-  });
-
-  const layer = new FeatureLayer(...)
-  map.add(layer);
-
-  view.whenLayerView(layer)
-    .then(layerView => {
-      layerView.visible = false
-    });
-```
 - or [`View.allLayerViews`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#allLayerViews) 
 
 ---
 
 ## LayerViews
 
-- A layerview indicates if the layer is `suspended` (not displayed)
-```js
-view.whenLayerView(fLayer)
-.then(layerView => {
-  console.log(layerView.suspended);
-});
-```
+<iframe height='500' scrolling='no' title='LayerView' src='//codepen.io/odoe/embed/preview/NymGbB/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/NymGbB/'>LayerView</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -533,21 +483,6 @@ view.whenLayerView(fLayer)
 - FeatureLayer and LayerViews can be queried
 - `featureLayer.queryFeatures()` - query features on the service
 - `featureLayerView.queryFeatures()` - query features on the client
-
----
-
-## LayerViews
-
-```js
-view.whenLayerView(fLayer)
-.then(layerView => {
-  const query = fLayer.createQuery();
-  query.geometry = view.extent;
-  layerView.queryFeatures(q).then(features => {
-    // do something with features
-  });
-});
-```
 
 ---
 
@@ -997,6 +932,13 @@ watchUtils.whenTrue(view, "stationary", () => {
     new Color([255,0,0]), 4),
     new Color([255,255,255,0.25]));
 ```
+
+---
+
+### Accessor - autocast with Collections
+
+<iframe height='500' scrolling='no' title='Collection - DS' src='//codepen.io/odoe/embed/preview/LQvPoV/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/LQvPoV/'>Collection - DS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
