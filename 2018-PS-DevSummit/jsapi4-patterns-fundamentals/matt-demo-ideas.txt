@@ -1,3 +1,7 @@
+Past demos:
+
+https://github.com/ycabon/presentations/tree/gh-pages/2017-devsummit/programming-patterns-and-api-fundamentals/demos
+
 Matt Demo:
 
 ui components
