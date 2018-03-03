@@ -486,7 +486,8 @@ const layer = new MapImageLayer({
 
 ---
 
-<!-- Matt -->
+<!-- End Rene -->
+<!-- Start Matt -->
 
 ## Widgets and UI
 
@@ -520,28 +521,12 @@ const layer = new MapImageLayer({
 ## UI
 
 - Managed overlay to place widgets over the view.
-- Well known widgets can be directly added or removed from the view
+- [Well known widgets](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-ui-DefaultUI.html#components) can be directly added or removed from the view
 - Popups are responsive
 - [Guide](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html)
 
-```js
-const view = new MapView({
-
-  ui: {
-
-    padding: {
-      top: 16,
-      left: 16,
-      right: 16,
-      bottom: 16
-    },
-
-    components: ["zoom", "compass", "attribution"]
-
-  }
-
-});
-```
+<iframe height='500' scrolling='no' title='UI Components' src='//codepen.io/driskull/embed/preview/QQPxYa/?height=500&theme-id=0&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/driskull/pen/QQPxYa/'>UI Components</a> by Matt Driscoll (<a href='https://codepen.io/driskull'>@driskull</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -941,6 +926,9 @@ watchUtils.whenTrue(view, "stationary", () => {
 </iframe>
 
 ---
+
+<!-- End Matt -->
+<!-- Start Rene -->
 
 ## Promises
 
