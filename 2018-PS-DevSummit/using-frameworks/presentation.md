@@ -11,12 +11,7 @@ René Rubalcava
 
 ## Agenda
 
-- Options
-- Angular
-- Ember
-- React
-- VueJS
-- Elm
+- tbd
 
 ---
 
@@ -87,311 +82,34 @@ define([
 
 ---
 
-<!-- .slide: class="section" -->
-
-## Angular
-
-![Angular](images/angular2.png)
-
----
-
-## Features
-
-- Directives are Web Components
-- Dependency Injection
-- *RxJS*
-- Uses [_SystemJS_](https://github.com/systemjs/systemjs)
-- _TypeScript_
-
----
-
-## esri-system-js
-
-```js
-    esriSystem.register(
-    // array of Esri module names to load and then register with SystemJS
-    [
-        'esri/Map',
-        'esri/views/SceneView',
-        'esri/layers/FeatureLayer'
-    ],
-    // optional callback function
-    function() {
-        // then bootstrap application
-        System.import('app/main')
-        .then(null, console.error.bind(console));
-    });
-```
-
-- [github](https://github.com/Esri/esri-system-js)
-
----
-
-## Component
-
-```ts
-import { Component } from '@angular/core';
-
-@Component({
-    selector: 'my-app',
-    styles: [`
-        section {
-            width: 100%;
-            margin: 0 auto;
-            padding: 4em 0 0 0;
-        }
-        `],
-    template: `
-        <main>
-            <section>
-                <esri-scene-view></esri-scene-view>
-            </section>
-        </main>
-        `
-})
-export class AppComponent { }
-```
-
----
-
-## Injectable
-
-```ts
-import { Injectable } from "@angular/core";
-
-import EsriMap from "esri/Map";
-
-@Injectable()
-export class SimpleMapService {
-    map: EsriMap;
-    constructor() {
-        this.map = new EsriMap({
-            basemap: "satellite",
-            ground: "world-elevation"
-        });
-    }
-}
-```
-
----
-
-## Dependency Injection
-
-```ts
-import { Component, ElementRef, Input, Output, EventEmitter } from "@angular/core";
-import SceneView from "esri/views/SceneView";
-import { SimpleMapService } from "./map.services";
-
-@Component({
-    selector: "esri-scene-view",
-    template: `<div id="viewDiv" style="height:600px"><ng-content></ng-content></div>`,
-    providers: [SimpleMapService]
-})
-export class EsriSceneViewComponent {
-    @Output() viewCreated = new EventEmitter();
-
-    view: any = null;
-
-    constructor(
-        private _mapService: SimpleMapService,
-        private elRef: ElementRef
-    ) {}
-
-    ngOnInit() {
-        this.view = new SceneView({
-            container: this.elRef.nativeElement.firstChild,
-            map: this._mapService.map,
-            camera: {...}
-        })
-    }
-}
-```
-
----
-
-## Angular
-
-- Lots of iterations since announced
-- Stabilizing
-
----
+## React
 
 <!-- .slide: class="section" -->
 
-## Ember
-![Ember](images/ember.png)
-
----
-
-## Features
-
-- The Ember Way
- - *Ember way or get out the way!*
-- Focus on Web Components
-- [ember-cli](http://ember-cli.com/)
- - Robust add-on system
- - Great for teams!
-
----
-
-## We use it!
-
-- Operations Dashboard
-- Open Data
-- Workforce Web App
-
----
-
-## Challenges
-
-- Uses it's own synchronous *AMD-like* loader
-- Doesn't like RequireJS or Dojo loaders
-
----
-
-## Solutions!
-
-- So we wrote an addon to help with that
-- [ember-cli-amd](https://github.com/esri/ember-cli-amd)
-
----
-
-## Configure
-
-### `ember install ember-cli-amd`
-
-```javascript
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
-module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
-    amd :{
-      loader: 'https://js.arcgis.com/4.3/',
-      packages: [
-        'esri','dojo','dojox','dijit',
-        'moment', 'dgrid', 'dstore'
-      ]
-    }
-  });
-  return app.toTree();
-};
-```
-
----
-
-## Map as a Service
-
-```js
-import Ember from 'ember';
-import EsriMap from 'esri/Map';
-
-export default Ember.Service.extend({
-  map: null,
-
-  loadMap() {
-    let map = this.get('map');
-    if (map) {
-      return map;
-    }
-    else {
-      map = new EsriMap({
-        basemap: 'hybrid',
-        ground: 'world-elevation'
-      });
-      this.set('map', map);
-      return map;
-    }
-  }
-});
-
-```
-
----
-
-## Component
-
-```js
-import Ember from 'ember';
-import SceneView from 'esri/views/SceneView';
-
-export default Ember.Component.extend({
-
-  classNames: ['viewDiv'],
-
-  mapService: Ember.inject.service('map'),
-
-  didInsertElement() {
-    let map = this.get('map');
-    if (!map) {
-      map = this.get('mapService').loadMap();
-      this.set('map', map);
-    }
-  },
-
-  createMap: function() {
-    let map = this.get('map');
-    let view = new SceneView({
-      map,
-      container: this.elementId,
-      center: [-101.17, 21.78],
-      zoom: 10
-    });
-    view.then(x => this.set('view', x));
-  }.observes('map')
-
-});
-
-```
-
----
-
-## Add Component
-
-```js
-{{esri-map}}
-```
-
-_Magic_
-
----
-
-## Ember
-
+- Populat UI Library (not really a framework)
 - Large community
-- Flexible ecosystem
-  - Lots of [addons!](https://www.emberaddons.com/)
+- Very flexible (`setState()`, MobX, Redux, Flux)
 
 ---
-
-<!-- .slide: class="section" -->
 
 ## React
-![React](images/react.png)
 
----
+```ts
 
-## Features
+export class WebMapView extends React.Component<WebMapViewProps, {}>{
+  mapDiv: HTMLDivElement;
 
-- Technically, _not a framework_
-- Reusable, composable components
-- JSX - declarative
+  componentDidMount() {
+    const view = new MapView({
+      map: this.props.webmap,
+      container: this.mapDiv
+    });
+    this.props.onload(view);
+  }
 
----
-
-## Components
-
-```tsx
-class Recenter extends React.Component<Props, State> {
-  state = { x: 0, y: 0, interacting: false };
-  ...
   render() {
-    let style: Style = {
-      textShadow: this.state.interacting ? '-1px 0 red, 0 1px red, 1px 0 red, 0 -1px red' : ''
-    };
-    let { x, y } = this.state;
     return (
-      <div className='recenter-tool'  style={style} onClick={this.defaultCenter}>
-        <p>x: {Number(x).toFixed(3)}</p>
-        <p>y: {Number(y).toFixed(3)}</p>
+      <div className="webmap" ref={(element: HTMLDivElement) => this.mapDiv = element}>
       </div>
     );
   }
@@ -400,147 +118,110 @@ class Recenter extends React.Component<Props, State> {
 
 ---
 
-## Compose
+## React
 
-```tsx
-view.then(() => {
-  ReactDOM.render(
-    <div>
-      <Recenter view={view} initialCenter={[-100.33, 25.69]} />
-    </div>,
-    document.getElementById('appDiv')
-  );
-}, (err: Error) => {
-  console.warn('Error: ', err);
+```ts
+const webmap = new WebMap({
+  portalItem: {
+    id: "3ff64504498c4e9581a7a754412b6a9e"
+  },
+  layers: [featureLayer]
 });
+
+ReactDOM.render(
+  <div className="main">
+    <Header appName="Webpack App"/>
+    <WebMapView webmap={webmap} onload={onComponentLoad} />
+  </div>,
+  document.querySelector("#app")
+);
 ```
 
 ---
 
-## State Management for React
+<!-- .slide: class="section" -->
 
-- [Redux](http://redux.js.org/)
-- [MobX](https://mobx.js.org/)
-- [Create React App](https://github.com/facebookincubator/create-react-app) - React cli
+## Hyperapp
+
+- minimal framework
+- tiny (1KB)
+- Inspired by [Elm](http://elm-lang.org/)
+- _State -> Actions -> View_
 
 ---
 
-## Can use esri-loader
+## Hyperapp
 
-```js
-createMap() {
-  dojoRequire(['esri/Map', 'esri/views/MapView'], (Map, MapView) => { 
-    new MapView({
-      container: this.refs.mapView,
-      map: new Map({basemap: 'topo'})
-    })
-  });
+- State
+
+```ts
+export const state: State = {
+  webmap: new EsriMap({
+    basemap: {
+      portalItem: {
+        id: "4f2e99ba65e34bb8af49733d9778fb8e"
+      }
+    },
+    ground: "world-elevation",
+    layers: [sceneLayer]
+  }),
+  view: new SceneView({
+    ...
+  }),
+  scene: sceneLayer
 }
-componentWillMount() {
-  if (!isLoaded()) {
-    bootstrap((err) => {
-      if (err) { console.error(err) }
-      this.createMap();
-    }, {
-      url: 'https://js.arcgis.com/4.3/'
-    });
-  } else {
-    this.createMap();
+```
+
+---
+
+## Hyperapp
+
+- Actions
+
+```ts
+const years = {
+  "1915": "CNSTRCT_YR < 1915",
+  "2015": "CNSTRCT_YR > 2015",
+  "all": "1=1"
+};
+
+export const actions: Actions = {
+  addMapView: element => state => {
+    state.view.container = element;
+  },
+  filterScene: year => state => {
+    state.scene.definitionExpression = years[year];
   }
 }
 ```
 
 ---
 
-## React
+## Hyperapp
 
-- Very popular, large community
-- Has one job
-- Variety of ways it can be used
+- Views
 
----
-
-<!-- .slide: class="section" -->
-
-## VueJS
-![VueJS](images/vue-logo.png)
-
----
-
-## Features
-
-- Not a framework, but so so nice
-- Build components
-- Simple
-- _Small_ (under 20kb)
-
----
-
-## Easy to integrate
-
-```js
-Vue.component("camera-info", {
-  props: ["camera"],
-  template: "<div>" +
-            "<h2>Camera Details</h2>" +
-            "<p><strong>Heading</strong>: {{ camera.heading.toFixed(3) }}</p>" +
-            "<p><strong>Tilt</strong>: {{ camera.tilt.toFixed(3) }}</p>" +
-            "<p><strong>Latitude</strong>: {{ camera.position.latitude.toFixed(2) }}</p>" +
-            "<p><strong>Longitude</strong>: {{ camera.position.longitude.toFixed(2) }}</p>" +
-            "</div>"
-});
-view.then(function() {
-  var info = new Vue({
-    el: "#info",
-    data: { camera: view.camera }
-  });
-  view.ui.add(info.$el, "top-right");
-  view.watch("camera", function() {
-    info.camera = view.camera;
-  });
-});
+```ts
+export const filter = (state: State, actions: Actions) =>
+  h("nav",
+    {
+      class: "footer-item"
+    },
+    [
+      h(...),
+      h("button",
+        {
+          class: "btn modifier-class btn-clear btn-grouped",
+          onclick: () => actions.filterScene("2015")
+        },
+        [
+          "After 2015"
+        ]
+      ),
+      h(...)
+    ]
+  );
 ```
-
----
-
-## Has a cli!
-
-- Uses templates!
-
-```js
-<template>
-    ...
-    <div id="viewDiv"></div>
-    ...
-</template>
-```
-
----
-
-## Can use esri-loader
-
-```js
-import * as esriLoader from 'esri-loader'
-export default {
-  ...
-  mounted () {
-    const createMap = () => {
-      esriLoader.dojoRequire([
-        'esri/Map',
-        'esri/views/SceneView',
-        'esri/core/watchUtils'
-      ], (EsriMap, SceneView, watchUtils) => {
-        ...
-        return view
-      })
-    }
-    ...
-  },
-  ...
-}
-```
-
-[vue-cli demo](https://github.com/odoe/vue-jsapi4)
 
 ---
 
@@ -696,20 +377,6 @@ viewCard card =
 
 ---
 
-## TypeScript
-  - 2.2 introduced [mixins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins) and `object` type
-  - Future updates
-
----
-
-## Notable Mentions
-
-- [Riot](http://riotjs.com/)
-- [Mithril](http://mithril.js.org/) - _hyperscript_
-- [Cycle](https://cycle.js.org/)
-
----
-
 <!-- .slide: class="questions" -->
 
 ## Questions?
@@ -718,9 +385,11 @@ viewCard card =
 
 ![Survey](images/survey-slide.png)
 
+Tom Wayson ([@tomwayson](https://twitter.com/tomwayson))
+
 Rene Rubalcava ([@odoenet](https://twitter.com/odoenet))
 
-Slides: [github.com/odoe/presentations/2017-devsummit-ps-using-frameworks/](github.com/odoe/presentations/2017-devsummit-ps-using-frameworks)
+Slides: [github.com/odoe/presentations/tree/master/2018-PS-DevSummit/using-frameworks](https://github.com/odoe/presentations/tree/master/2018-PS-DevSummit/using-frameworks)
 
 ---
 
