@@ -496,10 +496,19 @@ const layer = new MapImageLayer({
 ## Widgets
 
 - New design and user experience
+  - Accessibility
+  - UX
+  - Extensibility
 
 ---
 
 ## Widgets
+
+// todo
+// use other css demo from widgets session
+// remove vector tile demo
+// link to SCSS usage and explain
+// link to viewModel docs and explain
 
 - Extensibility through:
  - [CSS](demos/css/index.html), [matching vectortiles](demos/css-vectortiles/index.html)
@@ -510,6 +519,8 @@ const layer = new MapImageLayer({
 
 ## Widgets - View Model
 
+// todo: cleanup with info from other sessions
+
 - New architecture
 - Logic of the widget separated from the representation
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
@@ -519,6 +530,8 @@ const layer = new MapImageLayer({
 ---
 
 ## UI
+
+// todo: cleanup with info from other sessions
 
 - Managed overlay to place widgets over the view.
 - [Well known widgets](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-ui-DefaultUI.html#components) can be directly added or removed from the view
