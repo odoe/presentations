@@ -525,7 +525,6 @@ const layer = new MapImageLayer({
 - Logic of the widget separated from the representation
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
 - View's can be rewritten in [any framework](demos/widgets/framework/index.html)
-- ViewModels can be combined to create [Frankenwidgets](demos/widgets/frankenwidget/index.html)
 
 ---
 
