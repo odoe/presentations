@@ -504,15 +504,15 @@ const layer = new MapImageLayer({
 
 ## Widgets
 
-// todo: link to SCSS usage and explain
-// todo: link to viewModel docs and explain
-
 - Extensibility through:
- - [Styling Guide](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
- - [CSS Themes](demos/ui/themes.html)
- - [SASS](https://github.com/Esri/jsapi-resources/blob/master/4.x/bower/dojo/SASS.md)
- - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
- - [View Model](https://github.com/Esri/arcgis-js-api/tree/4master/widgets)
+ - Styling
+  - [Styling Guide](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
+  - [CSS Themes](demos/ui/themes.html)
+  - [Github JSAPI Resources SASS](https://github.com/Esri/jsapi-resources/blob/master/4.x/bower/dojo/SASS.md)
+ - Widget Views
+  - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
+  - [Widget SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html)
+  - [Custom Widget Demo](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/index.html)
 
 ---
 
@@ -523,7 +523,7 @@ const layer = new MapImageLayer({
 - New architecture
 - Logic of the widget separated from the representation
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
-- View's can be rewritten in [any framework](demos/widgets/framework/index.html)
+- View's can be rewritten in any framework using ViewModels.
 
 ---
 
@@ -543,6 +543,8 @@ const layer = new MapImageLayer({
 
 ## UI
 
+// todo: add using codepen
+
 - API to add widgets or any DOM element to the 4 corners of the view
 
 ```js
@@ -560,6 +562,8 @@ view.ui.add(legend, "top-left");
 ---
 
 ## Popups
+
+// todo: look through popup test apps to see what should be added here
 
 - First entry point to detailed data
 
@@ -846,6 +850,12 @@ view.on("click", ({ x, y }) => {
 });
 ```
 [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/view-hittest/index.html)
+
+---
+
+## Collections
+
+// todo
 
 ---
 
