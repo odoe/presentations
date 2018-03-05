@@ -504,15 +504,14 @@ const layer = new MapImageLayer({
 
 ## Widgets
 
-// todo
-// use other css demo from widgets session
-// remove vector tile demo
-// link to SCSS usage and explain
-// link to viewModel docs and explain
+// todo: link to SCSS usage and explain
+// todo: link to viewModel docs and explain
 
 - Extensibility through:
- - [CSS](demos/css/index.html), [matching vectortiles](demos/css-vectortiles/index.html)
+ - [Styling Guide](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
+ - [CSS Themes](demos/ui/themes.html)
  - [SASS](https://github.com/Esri/jsapi-resources/blob/master/4.x/bower/dojo/SASS.md)
+ - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
  - [View Model](https://github.com/Esri/arcgis-js-api/tree/4master/widgets)
 
 ---

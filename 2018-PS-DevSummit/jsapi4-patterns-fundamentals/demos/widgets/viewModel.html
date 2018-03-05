@@ -22,34 +22,28 @@
 
   <script src="https://js.arcgis.com/4.7"></script>
 
-  <script>
+  <script type="text/javascript">
     require([
       "esri/Map",
-      "esri/views/MapView"
-    ], function (Map, MapView) {
-      const view = new MapView({
-        ui: {
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function (
+      Map,
+      MapView
+    ) {
 
-          padding: {
-            top: 16,
-            left: 16,
-            right: 16,
-            bottom: 16
-          },
+      var map = new Map({
+        basemap: "topo"
+      });
 
-          components: ["zoom", "compass", "attribution"]
-
-        },
+      var view = new MapView({
         container: "viewDiv",
-        map: new Map({
-          basemap: "topo"
-        }),
-        center: [-116.5, 33.80],
-        scale: 50000
+        map: map
       });
 
     });
   </script>
+
 </head>
 
 <body>

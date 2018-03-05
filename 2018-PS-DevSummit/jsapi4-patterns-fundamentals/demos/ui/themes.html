@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+
+  <link id="themeLink" rel="stylesheet" href="https://js.arcgis.com/4.7/esri/themes/light/main.css">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    var searchExpand, view, map, search;
+
+    require([
+      "esri/views/SceneView",
+      "esri/WebScene",
+
+      "esri/widgets/Expand",
+
+      "esri/widgets/Search",
+      "esri/widgets/LayerList",
+      "esri/widgets/Legend",
+      "esri/widgets/Print",
+
+      "dojo/domReady!"
+    ], function (
+      SceneView,
+      WebScene,
+      Expand,
+      Search,
+      LayerList,
+      Legend,
+      Print
+    ) {
+
+        scene = new WebScene({
+          portalItem: {
+            id: "66adfe99eeaf40fc82ad1e94751cff0b"
+          }
+        });
+
+        view = new SceneView({
+          container: "viewDiv",
+          map: scene
+        });
+
+        var themes = [
+          "light",
+          "dark",
+          "light-blue",
+          "dark-blue",
+          "light-green",
+          "dark-green",
+          "light-purple",
+          "dark-purple",
+          "light-red",
+          "dark-red"
+        ];
+
+        var selectMenuNode = document.createElement("select");
+        view.ui.add(selectMenuNode, "top-left");
+
+        selectMenuNode.onchange = function () {
+          var themeLinkNode = document.getElementById("themeLink");
+          themeLinkNode.href = "https://js.arcgis.com/4.7/esri/themes/" + selectMenuNode.value + "/main.css";
+        };
+
+        themes.forEach(function (theme) {
+          var optionNode = document.createElement("option");
+          optionNode.value = theme;
+          optionNode.textContent = theme;
+          selectMenuNode.appendChild(optionNode);
+        });
+
+        // LayerList
+        layerList = new LayerList({
+          view: view
+        });
+        view.ui.add(layerList, "bottom-right");
+
+        // Search
+        search = new Search({
+          view: view
+        });
+
+        view.ui.add(search, "top-right");
+
+        // Print
+        print = new Print({
+          view: view
+        });
+
+        printExpand = new Expand({
+          view: view,
+          content: print
+        });
+
+        view.ui.add(printExpand, "bottom-left");
+
+      });
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
