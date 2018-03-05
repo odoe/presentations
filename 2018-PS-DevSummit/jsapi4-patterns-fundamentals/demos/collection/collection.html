@@ -23,16 +23,28 @@
   <script src="https://js.arcgis.com/4.7"></script>
 
   <script type="text/javascript">
+    var myCollection;
     require([
-      "esri/core/Collection",
-      "dojo/domReady!"
+      "esri/core/Collection"
     ], function (
       Collection
     ) {
 
-        var myCollection = new Collection();
+        myCollection = new Collection();
 
-        myCollection.push();
+        //myCollection.push(1);
+
+        //myCollection.addMany([2, 3, 4]);
+
+        // myCollection.on("change", function (event) {
+        //   console.log(event);
+        // })
+
+        // myCollection.pop();
+
+        // myCollection.find(function(item){
+        //   return item === 3;
+        // });
 
       });
   </script>

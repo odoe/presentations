@@ -16,6 +16,13 @@
       height: 100%;
     }
 
+    /* .esri-legend {
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      height: 150px;
+    } */
+
   </style>
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
@@ -24,16 +31,20 @@
 
   <script type="text/javascript">
     require([
-      "esri/Map",
+      "esri/WebMap",
       "esri/views/MapView",
+      "esri/widgets/Legend",
       "dojo/domReady!"
     ], function (
-      Map,
-      MapView
+      WebMap,
+      MapView,
+      Legend
     ) {
 
-      var map = new Map({
-        basemap: "topo"
+      var map = new WebMap({
+        portalItem: {
+          id: "2364a7046a62417d8a92eec4494d5a45"
+        }
       });
 
       var view = new MapView({
@@ -41,7 +52,14 @@
         map: map
       });
 
+      var legend = new Legend({
+        view: view
+      });
+
+      view.ui.add(legend, "manual");
+
     });
+
   </script>
 
 </head>
@@ -51,3 +69,4 @@
 </body>
 
 </html>
+

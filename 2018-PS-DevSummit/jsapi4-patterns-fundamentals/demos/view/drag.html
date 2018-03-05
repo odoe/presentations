@@ -41,7 +41,14 @@
         map: map
       });
 
+      view.on("drag", function (event) {
+        console.log(event);
+        // user won't be able to drag
+        event.stopPropagation();
+      })
+
     });
+
   </script>
 
 </head>
@@ -51,3 +58,4 @@
 </body>
 
 </html>
+
