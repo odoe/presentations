@@ -140,31 +140,21 @@ const map = new Map({
 
 ```js
 const map = new Map({
-
   basemap: {
     // Layers drawn at the bottom
     baseLayers: [
-      new TileLayer({
-        url: "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"
-      })
+      new TileLayer({ url: baselayer })
     ],
-
     // Layers drawn on top
     referenceLayers: [
-      new TileLayer({
-        url: "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer"
-      })
+      new TileLayer({ url: refUrl })
     ],
   },
-
   ground: {
     layers: [
-      new ElevationLayer({
-        url: "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer"
-      })
+      new ElevationLayer({ url: elevationUrl })
     ]
   }
-
 });
 ```
 
