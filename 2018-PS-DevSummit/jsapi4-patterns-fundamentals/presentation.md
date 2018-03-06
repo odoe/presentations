@@ -476,8 +476,8 @@ const layer = new MapImageLayer({
 
 ---
 
-<!-- End Rene -->
-<!-- Start Matt -->
+<!-- End Presenter: Rene -->
+<!-- Start Presenter: Matt -->
 
 ## Widgets and UI
 
@@ -489,41 +489,56 @@ const layer = new MapImageLayer({
   - Accessibility
   - UX
   - Extensibility
+- New architecture
+  - Views + ViewModels
 
 ---
 
-## Widgets
+## Widgets Styling
 
-- Extensibility through:
- - Styling
+- Styling
+  - Sass
   - [Styling Guide](https://developers.arcgis.com/javascript/latest/guide/styling/index.html)
   - [CSS Themes](demos/ui/themes.html)
   - [Github JSAPI Resources SASS](https://github.com/Esri/jsapi-resources/blob/master/4.x/bower/dojo/SASS.md)
- - Widget Views
-  - [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
-  - [Widget SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html)
-  - [Custom Widget Demo](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/index.html)
+
+---
+
+## All The Widgets!
+
+- [OOB Widgets Demo](demos/widgets/all-the-widgets.html)
 
 ---
 
 ## Widgets - View Model
 
-// todo: cleanup with info from other sessions
-
-- New architecture
 - Logic of the widget separated from the representation
+- Provide APIs to support view 
+- [ZoomViewModel](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom-ZoomViewModel.html) 
+
+---
+
+## Widgets - Views
+
+- Extends `esri/widgets/Widget` [Widget](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Widget.html)
+- Rely on ViewModel
+- Focus on UI   
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
 - View's can be rewritten in any framework using ViewModels.
 
 ---
 
-## UI
+## Widgets - Learn More
 
-// todo: cleanup with info from other sessions
+- [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
+- [Custom Widget Demo](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/index.html)
+
+---
+
+## UI
 
 - Managed overlay to place widgets over the view.
 - [Well known widgets](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-ui-DefaultUI.html#components) can be directly added or removed from the view
-- Popups are responsive
 - [Guide](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html)
 
 <iframe height='500' scrolling='no' title='UI Components' src='//codepen.io/driskull/embed/preview/QQPxYa/?height=500&theme-id=0&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/driskull/pen/QQPxYa/'>UI Components</a> by Matt Driscoll (<a href='https://codepen.io/driskull'>@driskull</a>) on <a href='https://codepen.io'>CodePen</a>.
@@ -532,8 +547,6 @@ const layer = new MapImageLayer({
 ---
 
 ## UI
-
-// todo: add using codepen
 
 - API to add widgets or any DOM element to the 4 corners of the view
 
@@ -554,6 +567,8 @@ view.ui.add(legend, "top-left");
 ## Popups
 
 // todo: look through popup test apps to see what should be added here
+
+- Popups are responsive
 
 - First entry point to detailed data
 
@@ -845,7 +860,9 @@ view.on("click", ({ x, y }) => {
 
 ## Collections
 
-// todo
+- `esri/core/Collection`
+- [Collection Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-Collection.html)
+- [Collection Demo](demos/collection/collection.html)
 
 ---
 
@@ -938,8 +955,8 @@ watchUtils.whenTrue(view, "stationary", () => {
 
 ---
 
-<!-- End Matt -->
-<!-- Start Rene -->
+<!-- End Presenter: Matt -->
+<!-- Start Presenter: Rene -->
 
 ## Promises
 

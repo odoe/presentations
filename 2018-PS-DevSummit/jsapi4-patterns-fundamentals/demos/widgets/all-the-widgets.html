@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/BasemapGallery",
+      "esri/widgets/BasemapToggle",
+      "esri/widgets/Directions",
+      "esri/widgets/Expand",
+      "esri/widgets/Fullscreen",
+      "esri/widgets/Home",
+      "esri/widgets/LayerList",
+      "esri/widgets/Legend",
+      "esri/widgets/Locate",
+      "esri/widgets/Print",
+      "esri/widgets/ScaleBar",
+      "esri/widgets/Track",
+      "dojo/domReady!"
+    ], function (
+      WebMap,
+      MapView,
+      BasemapGallery,
+      BasemapToggle,
+      Directions,
+      Expand,
+      Fullscreen,
+      Home,
+      LayerList,
+      Legend,
+      Locate,
+      Print,
+      ScaleBar,
+      Track
+    ) {
+
+        var map = new WebMap({
+          portalItem: {
+            id: "1960c657c05a4b14b31580be290cdd0d"
+          }
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          ui: {
+            components: ["attribution", "navigation-toggle", "compass", "zoom"]
+          },
+          map: map
+        });
+
+        var basemapGallery = new BasemapGallery({
+          view: view
+        });
+        var bmgExpand = new Expand({
+          view: view,
+          content: basemapGallery
+        });
+        view.ui.add(bmgExpand, "top-right");
+
+        var basemapToggle = new BasemapToggle({
+          view: view
+        });
+        view.ui.add(basemapToggle, "bottom-left");
+
+        var directions = new Directions({
+          view: view
+        });
+        var dirExpand = new Expand({
+          view: view,
+          expandIconClass: "esri-icon-directions",
+          content: directions
+        });
+        view.ui.add(dirExpand, "top-right");
+
+        var fullscreen = new Fullscreen({
+          view: view
+        });
+        view.ui.add(fullscreen, "top-left");
+
+        var layerList = new LayerList({
+          view: view
+        });
+        var llExpand = new Expand({
+          view: view,
+          content: layerList
+        });
+        view.ui.add(llExpand, "top-right");
+
+        var legend = new Legend({
+          view: view
+        });
+        var legExpand = new Expand({
+          view: view,
+          content: legend
+        });
+        view.ui.add(legExpand, "top-left");
+
+        var locate = new Locate({
+          view: view
+        });
+        view.ui.add(locate, "top-left");
+
+        var print = new Print({
+          view: view
+        });
+        var prExpand = new Expand({
+          view: view,
+          content: print
+        });
+        view.ui.add(prExpand, "top-left");
+
+        var scalebar = new ScaleBar({
+          view: view
+        });
+        view.ui.add(scalebar, "bottom-right");
+
+        var track = new Track({
+          view: view
+        });
+        view.ui.add(track, "top-left");
+
+      });
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
