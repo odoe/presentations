@@ -506,7 +506,7 @@ const layer = new MapImageLayer({
 
 ## All The Widgets!
 
-- [OOB Widgets Demo](demos/widgets/all-the-widgets.html)
+- [Out of the Box Major Widgets Demo](demos/widgets/all-the-widgets.html)
 
 ---
 
@@ -539,11 +539,12 @@ const layer = new MapImageLayer({
 ## UI
 
 - Managed overlay to place widgets over the view.
+- Padding
+  - UI.padding defines spacing for widgets/UI.
+  - View.padding defines spacing for center, and extent, etc. (work off a subsection of the full view)
 - [Well known widgets](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-ui-DefaultUI.html#components) can be directly added or removed from the view
 - [UI Guide](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html)
-
-<iframe height='500' scrolling='no' title='UI Components' src='//codepen.io/driskull/embed/preview/QQPxYa/?height=500&theme-id=0&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/driskull/pen/QQPxYa/'>UI Components</a> by Matt Driscoll (<a href='https://codepen.io/driskull'>@driskull</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+- [UI Padding Demo](demos/ui/padding.html)
 
 ---
 
