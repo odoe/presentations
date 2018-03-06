@@ -525,6 +525,7 @@ const layer = new MapImageLayer({
 - Focus on UI   
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
 - View's can be rewritten in any framework using ViewModels.
+- [Simple View Demo](demos/widgets/viewModel-use.html)
 
 ---
 
