@@ -706,27 +706,7 @@ const featureLayer = new FeatureLayer({
 
 ## Popups - Custom actions
 
-```js
-view.popup.viewModel.on("trigger-action", event => {
-  const action = event.action;
-  if (action.id === "customer-details") {
-    const attributes = view.popup.viewModel.selectedFeature.attributes;
-    const customerGroup = attributes.CUSTOMER_GROUP;
-    esriRequest(customAPIURL, {
-      query: {
-        group: customerGroup
-      },
-      responseType: "json"
-    })
-    .then(response => {
-      // parse response data and update popup content
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }
-});
-```
+[Popup Actions demo](demos/widgets/popup-actions.html)
 
 ---
 
@@ -752,7 +732,7 @@ view.popup.viewModel.on("trigger-action", event => {
 
 ## Popups - Setting via promises
 
-// todo
+[Popup Promises Demo](demos/widgets/popup-promises.html)
 
 ---
 
