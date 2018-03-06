@@ -223,8 +223,8 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #2DD4CB;
-  text-decoration: none;
+  color: #fff;
+  text-decoration: underline;
   -webkit-transition: color 0.15s ease;
   -moz-transition: color 0.15s ease;
   transition: color 0.15s ease;
