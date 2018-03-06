@@ -963,7 +963,7 @@ watchUtils.whenTrue(view, "stationary", () => {
 
 ### Accessor - autocast with Collections
 
-// todo: create demo for this
+[Demo Autocast Collection](demos/collection/autoCast-collection.html)
 
 ---
 
