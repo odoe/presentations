@@ -1005,6 +1005,10 @@ watchUtils.whenTrue(view, "stationary", () => {
 
 ## Promises
 
+---
+
+## Promises
+
 - All asynchronous methods return a promise, no more [events](https://developers.arcgis.com/javascript/jsapi/querytask-amd.html#events)
 - The basic pattern looks like this:
 
