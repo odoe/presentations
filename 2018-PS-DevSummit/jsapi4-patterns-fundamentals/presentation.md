@@ -506,7 +506,7 @@ const layer = new MapImageLayer({
 
 ## All The Widgets!
 
-- [Out of the Box Major Widgets Demo](demos/widgets/all-the-widgets.html)
+- [Out of the Box Widgets Demo](demos/widgets/all-the-widgets.html)
 
 ---
 
@@ -525,11 +525,11 @@ const layer = new MapImageLayer({
 - Focus on UI   
 - Views' source code available in the [SDK](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Zoom.html)
 - View's can be rewritten in any framework using ViewModels.
-- [Simple View Demo](demos/widgets/viewModel-use.html)
+- [Simple Widget View Demo](demos/widgets/viewModel-use.html)
 
 ---
 
-## Widgets - Learn More
+## Widgets - Development Doc
 
 - [Widget Development Doc](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
 - [Custom Widget Tutorial](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/index.html)
