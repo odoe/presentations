@@ -562,6 +562,8 @@ const legend = new Legend({
 view.ui.add(legend, "top-left");
 ```
 
+[UI Manual Positioning](demos/ui/manual.html)
+
 ---
 
 ## Popups
@@ -838,6 +840,8 @@ view.on("drag", event => {
 })
 ```
 
+[Drag Demo](demos/view/drag.html)
+
 ---
 
 ## Interactivity with view events
@@ -854,7 +858,16 @@ view.on("click", ({ x, y }) => {
     });
 });
 ```
-[API Sample](https://developers.arcgis.com/javascript/latest/sample-code/view-hittest/index.html)
+- [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/view-hittest/index.html)
+- [Drag Demo](demos/view/onclick.html)
+
+---
+
+## goTo() with View
+
+- Sets the view to a given target.
+  - Navigate to a geometry/feature/location
+- [view.goTo() Demo](demos/view/goTo.html)
 
 ---
 
