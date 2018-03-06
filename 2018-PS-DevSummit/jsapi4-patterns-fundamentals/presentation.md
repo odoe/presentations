@@ -963,8 +963,7 @@ watchUtils.whenTrue(view, "stationary", () => {
 
 ### Accessor - autocast with Collections
 
-<iframe height='500' scrolling='no' title='Collection - DS' src='//codepen.io/odoe/embed/preview/LQvPoV/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/LQvPoV/'>Collection - DS</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+// todo: create demo for this
 
 ---
 
