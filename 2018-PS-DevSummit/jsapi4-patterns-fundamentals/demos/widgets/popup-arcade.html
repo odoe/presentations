@@ -24,24 +24,63 @@
 
   <script type="text/javascript">
     require([
+      "esri/Graphic",
+      "esri/PopupTemplate",
       "esri/Map",
       "esri/views/MapView",
       "dojo/domReady!"
     ], function (
+      Graphic,
+      PopupTemplate,
       Map,
       MapView
     ) {
 
-      var map = new Map({
-        basemap: "topo"
-      });
+        var map = new Map({
+          basemap: "topo"
+        });
 
-      var view = new MapView({
-        container: "viewDiv",
-        map: map
-      });
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 13,
+          center: [-117, 34]
+        });
 
-    });
+        view.on("click", function (evt) {
+          evt.stopPropagation();
+
+          var graphic = new Graphic({
+            geometry: evt.mapPoint,
+
+            attributes: {
+              type1: 3,
+              type2: 1,
+              type3: 2,
+            },
+
+            popupTemplate: new PopupTemplate({
+              title: "Arcade Example",
+              content: "{expression/total} total items.",
+              expressionInfos: [{
+                "name": "total",
+                "title": "Total Items",
+                "expression": "$feature.type1 + $feature.type2 + $feature.type3",
+                "returnType": "number"
+              }]
+            })
+
+          });
+
+          var features = [graphic];
+
+          view.popup.open({
+            features: features,
+            location: evt.mapPoint
+          });
+
+        });
+      });
   </script>
 
 </head>

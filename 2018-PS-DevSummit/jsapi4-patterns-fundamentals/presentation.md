@@ -569,10 +569,7 @@ view.ui.add(legend, "top-left");
 
 ## Popups
 
-// todo: look through popup test apps to see what should be added here
-
 - Popups are responsive
-
 - First entry point to detailed data
 
 ```js
@@ -730,6 +727,32 @@ view.popup.viewModel.on("trigger-action", event => {
   }
 });
 ```
+
+---
+
+## Popups - DockOptions
+
+[DockOptions Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
+[DockOptions demo](demos/widgets/popup-dockOptions.html)
+
+---
+
+## Popups - Arcade
+
+[Arcade Info](https://developers.arcgis.com/arcade/)
+[Arcade Demo](demos/widgets/popup-arcade.html)
+
+---
+
+## Popups - Advanced Setting Content
+
+[Popup Advanced Demo](demos/widgets/popup-content-function.html)
+
+---
+
+## Popups - Setting via promises
+
+// todo
 
 ---
 
