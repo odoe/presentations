@@ -531,8 +531,8 @@ const layer = new MapImageLayer({
 
 ## Widgets - Learn More
 
-- [Widget Development](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
-- [Custom Widget Demo](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/index.html)
+- [Widget Development Doc](https://developers.arcgis.com/javascript/latest/guide/custom-widget/index.html)
+- [Custom Widget Tutorial](https://developers.arcgis.com/javascript/latest/sample-code/widgets-custom-widget/index.html)
 
 ---
 
@@ -540,7 +540,7 @@ const layer = new MapImageLayer({
 
 - Managed overlay to place widgets over the view.
 - [Well known widgets](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-ui-DefaultUI.html#components) can be directly added or removed from the view
-- [Guide](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html)
+- [UI Guide](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html)
 
 <iframe height='500' scrolling='no' title='UI Components' src='//codepen.io/driskull/embed/preview/QQPxYa/?height=500&theme-id=0&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/driskull/pen/QQPxYa/'>UI Components</a> by Matt Driscoll (<a href='https://codepen.io/driskull'>@driskull</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -589,6 +589,7 @@ const featureLayer = new FeatureLayer({
 ## Popups - Fields and Aliases
 
 - First entry point to detailed data
+- [Popup Content Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-PopupTemplate.html#content)
 
 ```js
 content: [
@@ -604,15 +605,7 @@ content: [
           digitSeparator: true
         }
       },
-      {
-        fieldName: "POP2007",
-        visible: true,
-        label: "Population for year 2007",
-        format: {
-          places: 0,
-          digitSeparator: true
-        }
-      }  
+      ...  
     ]
   }
 ]
@@ -702,35 +695,69 @@ const featureLayer = new FeatureLayer({
 }
 ```
 
----
-
-## Popups - Custom actions
-
 [Popup Actions demo](demos/widgets/popup-actions.html)
 
 ---
 
 ## Popups - DockOptions
 
-[DockOptions Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
-[DockOptions demo](demos/widgets/popup-dockOptions.html)
+```js
+view.popup.set("dockOptions", {
+  breakpoint: false,
+  buttonEnabled: false,
+  position: "bottom-center"
+});
+```
+
+- [DockOptions Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
+- [DockOptions demo](demos/widgets/popup-dockOptions.html)
 
 ---
 
 ## Popups - Arcade
 
-[Arcade Info](https://developers.arcgis.com/arcade/)
-[Arcade Demo](demos/widgets/popup-arcade.html)
+```js
+popupTemplate: new PopupTemplate({
+  title: "Arcade Example",
+  content: "{expression/total} total items.",
+  expressionInfos: [{
+    "name": "total",
+    "title": "Total Items",
+    "expression": "$feature.type1 + $feature.type2 + $feature.type3",
+    "returnType": "number"
+  }]
+})
+```
+
+- [Arcade Info](https://developers.arcgis.com/arcade/)
+- [Arcade Demo](demos/widgets/popup-arcade.html)
 
 ---
 
 ## Popups - Advanced Setting Content
+
+```js
+popupTemplate: new PopupTemplate({
+  content: getChart,
+  title: function (event) {
+    var graphic = event.graphic;
+    return graphic.attributes.title;
+  },
+})
+```
 
 [Popup Advanced Demo](demos/widgets/popup-content-function.html)
 
 ---
 
 ## Popups - Setting via promises
+
+```js
+view.popup.open({
+  promises: [promise1, promise2, promise3],
+  location: event.mapPoint
+});
+```
 
 [Popup Promises Demo](demos/widgets/popup-promises.html)
 
@@ -742,7 +769,8 @@ const featureLayer = new FeatureLayer({
 
 ## ArcGIS Platform
 
-- [redesigned API](https://developers.arcgis.com/javascript/latest/api-reference/esri-portal-Portal.html)
+- redesigned API 
+  - [Portal API](https://developers.arcgis.com/javascript/latest/api-reference/esri-portal-Portal.html)
 - access portal information: basemaps, featuring content
 - query items, users, groups
 - loading items like layers, webmap and webscene
@@ -863,7 +891,7 @@ view.on("click", ({ x, y }) => {
 });
 ```
 - [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/view-hittest/index.html)
-- [Drag Demo](demos/view/onclick.html)
+- [Click Demo](demos/view/onclick.html)
 
 ---
 
