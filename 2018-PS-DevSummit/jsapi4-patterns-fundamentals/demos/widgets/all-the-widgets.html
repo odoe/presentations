@@ -75,6 +75,7 @@
         });
         var bmgExpand = new Expand({
           view: view,
+          group: "right",
           content: basemapGallery
         });
         view.ui.add(bmgExpand, "top-right");
@@ -89,6 +90,7 @@
         });
         var dirExpand = new Expand({
           view: view,
+          group: "right",
           expandIconClass: "esri-icon-directions",
           content: directions
         });
@@ -104,6 +106,7 @@
         });
         var llExpand = new Expand({
           view: view,
+          group: "right",
           content: layerList
         });
         view.ui.add(llExpand, "top-right");
@@ -113,6 +116,7 @@
         });
         var legExpand = new Expand({
           view: view,
+          group: "left",
           content: legend
         });
         view.ui.add(legExpand, "top-left");
@@ -127,6 +131,7 @@
         });
         var prExpand = new Expand({
           view: view,
+          group: "left",
           content: print
         });
         view.ui.add(prExpand, "top-left");
