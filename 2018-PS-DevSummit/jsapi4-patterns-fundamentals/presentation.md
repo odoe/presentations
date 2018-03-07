@@ -445,17 +445,6 @@ const layer = new MapImageLayer({
 
 ## LayerViews
 
-- There is a layerview per layer in the map
-  - except if the layer is not supported
-    - incompatible SpatialReference
-    - incompatible tile cache
-    - 3D layer and a MapView
-- Like `Map`, a view has multiple collection of layerviews.
-
----
-
-## LayerViews
-
 - access a layerview with [`View.whenLayerView()`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#whenLayerView) 
 - or [`View.allLayerViews`](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-View.html#allLayerViews) 
 
