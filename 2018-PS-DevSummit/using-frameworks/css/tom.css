@@ -1,0 +1,8 @@
+.reveal img.inline {
+  margin: 0;
+  vertical-align: middle;
+}
+
+.reveal .visible-links a {
+  color: white;
+}
