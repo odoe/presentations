@@ -37,12 +37,25 @@
         // var PointCollection = Collection.ofType(Point);
         // myCollection = new PointCollection;
 
+
+        function displayCollection() {
+          var node = document.getElementById("collection");
+          node.innerHTML = JSON.stringify(myCollection.toArray());
+        }
+
+        myCollection.on("change", function (event) {
+          displayCollection();
+        });
+
+        displayCollection();
+
         var pt = {
           latitude: 34,
           longitude: -117
         };
 
         myCollection.add(pt);
+
 
       });
 
@@ -51,7 +64,10 @@
 </head>
 
 <body>
-  Use "myCollection" in Console :)
+  <div>
+    <h2>Collection</h2>
+    <pre id="collection"></pre>
+  </div>
 </body>
 
 </html>
