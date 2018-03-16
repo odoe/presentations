@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>CSVLayer - Earthquakes</title>
+
+<style>
+  html,
+  body,
+  #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+<script>
+  var dojoConfig = {
+    has: {
+      "esri-featurelayer-webgl": 1
+    }
+  }
+</script>
+<script src="https://js.arcgis.com/4.7/"></script>
+
+<script>
+require([
+  "esri/Map",
+  "esri/layers/CSVLayer",
+  "esri/views/MapView",
+  "esri/config",
+  "esri/widgets/Legend",
+  "dojo/domReady!"
+], function(
+  Map,
+  CSVLayer,
+  MapView,
+  esriConfig,
+  Legend
+) {
+
+  // If CSV files are not on the same domain as your website, a CORS enabled server
+  // or a proxy is required.
+  var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.csv";
+  esriConfig.request.corsEnabledServers.push(url);
+
+  // Paste the url into a browser's address bar to download and view the attributes
+  // in the CSV file. These attributes include:
+  // * mag - magnitude
+  // * type - earthquake or other event such as nuclear test
+  // * place - location of the event
+  // * time - the time of the event
+
+  var template = {
+    title: "Earthquake Info",
+    content: "Magnitude {mag} {type} hit {place} on {time}."
+  };
+
+  var earthquakesLayer = new CSVLayer({
+    url: url,
+    copyright: "USGS Earthquakes",
+    title: "Earthquakes from last 7 days (magnitude 2.5+)",
+    popupTemplate: template
+  });
+
+  var magnitudeWithColor = {
+    type: "color",
+    field: "mag",
+    legendOptions: {
+      title: "Magnitude"
+    },
+    stops: [
+      { value: 2, color: "#fffcd4" },
+      { value: 3, color: "#b1cdc2" },
+      { value: 4, color: "#629eb0" },
+      { value: 5, color: "#38627a" },
+      { value: 6, color: "#0d2644" }
+    ]
+  };
+
+  var magnitudeWithSize = {
+    type: "size",
+    field: "mag",
+    legendOptions: {
+      title: "Magnitude"
+    },
+    stops: [
+      { value: 2, size: "4px" },
+      { value: 3, size: "10px" },
+      { value: 4, size: "20px" },
+      { value: 5, size: "40px" },
+      { value: 6, size: "60px" }
+    ]
+  };
+
+  // set the renderer on the layer
+  earthquakesLayer.renderer = {
+    type: "simple",
+    symbol: {
+      type: "simple-marker",
+      size: "10px",
+      color: [ 100, 0, 0, 1 ],
+      outline: {
+        color: "white",
+        width: 0.5
+      }
+    },
+    visualVariables: [ magnitudeWithSize ]
+  };
+
+  var map = new Map({
+    basemap: "topo",
+    layers: [ earthquakesLayer ]
+  });
+
+  var view = new MapView({
+    container: "viewDiv",
+    center: [138, 35],
+    zoom: 3,
+    map: map
+  });
+
+  view.ui.add(new Legend({ view: view }), "bottom-left");
+
+});
+</script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

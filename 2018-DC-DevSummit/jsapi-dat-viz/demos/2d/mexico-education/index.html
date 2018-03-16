@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Education in Mexico</title>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+
+<style>
+  html,
+  body,
+  #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<script>
+  var dojoConfig = {
+    has: {
+      "esri-featurelayer-webgl": 1
+    }
+  };
+</script>
+
+<script src="https://js.arcgis.com/4.6/"></script>
+
+<script>
+require([
+  "esri/Map",
+  "esri/layers/FeatureLayer",
+  "esri/views/MapView",
+  "esri/widgets/Legend",
+  "dojo/domReady!"
+], function(
+  Map,
+  FeatureLayer,
+  MapView,
+  Legend
+) {
+
+  var url = "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Mexico_demographics/FeatureServer/0";
+
+  var template = {
+    title: "{NAME}",
+    content: "{EDUC01_CY} people in this municipality have never"
+      + " formally attended any school.",
+    fieldInfos: [{
+      fieldName: "EDUC01_CY",
+      format: {
+        places: 0,
+        digitSeperator: true
+      }
+    }]
+  };
+
+  var layer = new FeatureLayer({
+    url: url,
+    outFields: [ "EDUC01_CY", "NAME" ],
+    title: "Mexican municipalities",
+    popupTemplate: template
+  });
+
+  var noEducation = {
+    type: "color",
+    field: "EDUC01_CY",
+    normalizationField: "EDUCA_BASE",
+    legendOptions: {
+      title: "% population that never attended any school"
+    },
+    stops: [
+     { value: 0, color: "#fffcd4" },
+     { value: 0.0565, color: "#b1cdc2" },
+     { value: 0.113, color: "#629eb0" },
+     { value: 0.1495, color: "#38627a" },
+     { value: 0.186, color: "#0d2644" }
+   ]
+  };
+
+  // normalized stops
+
+//  [
+//      { value: 0, color: "#fffcd4" },
+//      { value: 0.0565, color: "#b1cdc2" },
+//      { value: 0.113, color: "#629eb0" },
+//      { value: 0.1495, color: "#38627a" },
+//      { value: 0.186, color: "#0d2644" }
+//    ]
+
+//  non-normalized stops
+//    [
+//      { value: 3, color: "#fffcd4" },
+//      { value: 1690, color: "#b1cdc2" },
+//      { value: 3376, color: "#629eb0" },
+//      { value: 5063, color: "#38627a" },
+//      { value: 6749, color: "#0d2644" }
+//    ]
+
+  // set the renderer on the layer
+  layer.renderer = {
+    type: "simple",
+    symbol: {
+      type: "simple-fill",
+      style: "solid",
+      color: "blue",
+      outline: {
+        color: [ 255, 255, 255, 0.25 ],
+        width: 0.7
+      }
+    },
+    visualVariables: [ noEducation ]
+  };
+
+  var map = new Map({
+    basemap: "gray",
+    layers: [ layer ]
+  });
+
+  var view = new MapView({
+    container: "viewDiv",
+    center: [ -101.304199, 23.73171 ],
+    zoom: 6,
+    map: map
+  });
+
+  view.ui.add(new Legend({ view: view }), "bottom-left");
+
+});
+</script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

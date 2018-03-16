@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>[Devsummit 2017 Example - Feature Layers - Feature Editing]</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.3/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .editArea-container {
+      background: #fff;
+      font-family: "Avenir Next W00", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.5em;
+      overflow: auto;
+      padding: 12px 15px;
+      width: 300px;
+    }
+
+    .edit-button:hover,
+    .edit-button:focus {
+      background-color: #e4e4e4;
+    }
+
+    .inputInfo {
+      font-size: 12px;
+      height: 32px;
+      margin-bottom: 6px;
+      padding: 0 6px;
+      width: 100%;
+    }
+
+    .list-heading {
+      font-weight: normal;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #323232;
+    }
+
+    .edit-button {
+      font-size: 14px;
+      height: 32px;
+      margin-top: 10px;
+      width: 100%;
+      background-color: transparent;
+      border: 1px solid #0079c1;
+      color: #0079c1;
+    }
+
+    .or-wrap {
+      background-color: #e0e0e0;
+      height: 1px;
+      margin: 2em 0;
+      overflow: visible;
+    }
+
+    .or-text {
+      background: #fff;
+      line-height: 0;
+      padding: 0 1em;
+      position: relative;
+      top: -.75em;
+    }
+
+    input:invalid {
+      border: 1px solid red;
+    }
+
+    input:valid {
+      border: 1px solid green;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/Layer",
+        "esri/Graphic",
+        "esri/widgets/Expand",
+        "esri/widgets/Home",
+        "esri/geometry/Extent",
+        "esri/geometry/Point",
+        "esri/Viewpoint",
+        "esri/symbols/SimpleMarkerSymbol",
+        "esri/core/watchUtils",
+        "dojo/on",
+        "dojo/dom",
+        "dojo/domReady!"
+      ],
+      function(
+        Map, SceneView, Layer, Graphic, Expand,
+        Home, Extent, Point, Viewpoint, SimpleMarkerSymbol, watchUtils,
+        on, dom
+      ) {
+
+        var featureLayer, editExpand;
+
+        // feature edit area domNodes
+        var editArea, attributeEditing, inputDescription,
+          inputUserInfo, updateInstructionDiv;
+
+        var map = new Map({
+          basemap: "topo",
+          ground: "world-elevation"
+        });
+
+        // initial extent of the view and home button
+        var initialExtent = new Extent({
+          xmin: -13045631,
+          xmax: -13042853,
+          ymin: 4034880,
+          ymax: 4034880,
+          spatialReference: 102100
+        });
+
+        view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          extent: initialExtent
+        });
+
+        //add an editable featurelayer from portal
+        Layer.fromPortalItem({
+            portalItem: {
+              id: "511b97fc0d364367b127f8ba5c89ad13"
+            }
+          }).then(addLayer)
+          .otherwise(handleLayerLoadError);
+
+        setupEditing();
+        setupView();
+
+        function addLayer(lyr) {
+          featureLayer = lyr;
+          map.add(lyr);
+        }
+
+        function applyEdits(params) {
+          unselectFeature();
+          var promise = featureLayer.applyEdits(params);
+          editResultsHandler(promise);
+        }
+
+        // *****************************************************
+        // applyEdits promise resolved successfully
+        // query the newly created feature from the featurelayer
+        // set the editFeature object so that it can be used
+        // to update its features.
+        // *****************************************************
+        function editResultsHandler(promise) {
+          promise
+            .then(function(editsResult) {
+              var extractObjectId = function(result) {
+                return result.objectId;
+              };
+
+              // get the objectId of the newly added feature
+              if (editsResult.addFeatureResults.length > 0) {
+                var adds = editsResult.addFeatureResults.map(
+                  extractObjectId);
+                newIncidentId = adds[0];
+
+                selectFeature(newIncidentId);
+              }
+            })
+            .otherwise(function(error) {
+              console.log("===============================================");
+              console.error("[ applyEdits ] FAILURE: ", error.code, error.name,
+                error.message);
+              console.log("error = ", error);
+            });
+        }
+
+        // *****************************************************
+        // listen to click event on the view
+        // 1. select if there is an intersecting feature
+        // 2. set the instance of editFeature
+        // 3. editFeature is the feature to update or delete
+        // *****************************************************
+        view.on("click", function(evt) {
+          unselectFeature();
+          view.hitTest(evt.screenPoint).then(function(response) {
+            if (response.results.length > 0 && response.results[0].graphic) {
+
+              var feature = response.results[0].graphic;
+              selectFeature(feature.attributes[featureLayer.objectIdField]);
+
+              inputDescription.value = feature.attributes[
+                "Incident_Desc"];
+              inputUserInfo.value = feature.attributes[
+                "Incident_Address"];
+              attributeEditing.style.display = "block";
+              updateInstructionDiv.style.display = "none";
+            }
+          });
+        });
+
+        // *****************************************************
+        // select Feature function
+        // 1. Select the newly created feature on the view
+        // 2. or select an existing feature when user click on it
+        // 3. Symbolize the feature with cyan rectangle
+        // *****************************************************
+        function selectFeature(objectId) {
+          // symbol for the selected feature on the view
+          var selectionSymbol = SimpleMarkerSymbol({
+            color: [0, 0, 0, 0],
+            style: "square",
+            size: '40px',
+            outline: {
+              color: [0, 255, 255, 1],
+              width: "3px"
+            }
+          });
+          var query = featureLayer.createQuery();
+          query.where = featureLayer.objectIdField + " = " + objectId;
+
+          featureLayer.queryFeatures(query).then(function(results) {
+            if (results.features.length > 0) {
+              editFeature = results.features[0];
+              editFeature.symbol = selectionSymbol;
+              view.graphics.add(editFeature);
+            }
+          });
+        }
+
+        // *****************************************************
+        // hide attributes update and delete part when necessary
+        // *****************************************************
+        function unselectFeature() {
+          attributeEditing.style.display = "none";
+          updateInstructionDiv.style.display = "block";
+
+          inputDescription.value = null;
+          inputUserInfo.value = null;
+          view.graphics.removeAll();
+        }
+
+        // *****************************************************
+        // add homeButton and expand widgets to UI
+        // *****************************************************
+        function setupView() {
+          // set home buttone view point to initial extent
+          var homeButton = new Home({
+            view: view,
+            viewpoint: new Viewpoint({
+              targetGeometry: initialExtent
+            })
+          });
+          view.ui.add(homeButton, "top-left");
+
+          //expand widget
+          editExpand = new Expand({
+            expandIconClass: "esri-icon-edit",
+            expandTooltip: "Expand Edit",
+            expanded: true,
+            view: view,
+            content: editArea
+          });
+          view.ui.add(editExpand, "top-right");
+        }
+
+        // *****************************************************
+        // set up for editing
+        // *****************************************************
+        function setupEditing() {
+          // input boxes for the attribute editing
+          editArea = dom.byId("editArea");
+          updateInstructionDiv = dom.byId("updateInstructionDiv");
+          attributeEditing = dom.byId("featureUpdateDiv");
+          inputDescription = dom.byId("inputDescription");
+          inputUserInfo = dom.byId("inputUserInfo");
+
+          // *****************************************************
+          // btnUpdate click event
+          // update attributes of selected feature
+          // *****************************************************
+          on(dom.byId("btnUpdate"), "click", function(evt) {
+            if (editFeature) {
+              editFeature.attributes["Incident_Desc"] = inputDescription.value;
+              editFeature.attributes["Incident_Address"] = inputUserInfo.value;
+
+              var edits = {
+                updateFeatures: [editFeature]
+              };
+
+              applyEdits(edits);
+            }
+          });
+
+          // *****************************************************
+          // btnAddFeature click event
+          // create a new feature at the click location
+          // *****************************************************
+          on(dom.byId("btnAddFeature"), "click", function() {
+            unselectFeature();
+            on.once(view, "click", function(event) {
+              event.stopPropagation();
+
+              if (event.mapPoint) {
+                point = event.mapPoint.clone();
+                point.z = undefined;
+                point.hasZ = false;
+
+                newIncident = new Graphic({
+                  geometry: point,
+                  attributes: {}
+                });
+
+                var edits = {
+                  addFeatures: [newIncident]
+                };
+
+                applyEdits(edits);
+
+                // ui changes in response to creating a new feature
+                // display feature update and delete portion of the edit area
+                attributeEditing.style.display = "block";
+                updateInstructionDiv.style.display = "none";
+                dom.byId("viewDiv").style.cursor = "auto";
+              }
+              else {
+                console.error("event.mapPoint is not defined");
+              }
+            });
+
+            // change the view's mouse cursor once user selects
+            // a new incident type to create
+            dom.byId("viewDiv").style.cursor = "crosshair";
+            editArea.style.cursor = "auto";
+          });
+
+          // *****************************************************
+          // delete button click event. ApplyEdits is called
+          // with the selected feature to be deleted
+          // *****************************************************
+          on(dom.byId("btnDelete"), "click", function() {
+            var edits = {
+              deleteFeatures: [editFeature]
+            };
+            applyEdits(edits);
+          });
+        }
+
+        function handleLayerLoadError(err) {
+          console.log("Layer failed to load: ", err);
+        }
+
+        function addFeatureFromCode() {
+          var pt = new Point({
+            latitude: 33.82595255365376,
+            longitude: -116.5380549055525
+          });
+
+          var graphic = new Graphic({
+            geometry: pt,
+            attributes: {
+              "Incident_Desc": "Devsummit!",
+              "Incident_Address": "hello@world.com"
+            }
+          });
+
+          featureLayer.applyEdits({
+            addFeatures: [graphic],
+            updateFeatures: [], // none for now, could be skipped
+            deleteFeatures: []  // same here
+          });
+        }
+
+        // presentation specific
+        view.then(() => {
+          if (window.parent) {
+
+            var button01 = window.parent.document.getElementById("feature-editing-button01")
+            if (button01) {
+              button01.onclick = addFeatureFromCode;
+            }
+
+            var button02 = window.parent.document.getElementById("feature-editing-button02")
+            if (button02) {
+              button02.onclick = () => {
+                var pt = new Point({
+                  latitude: 33.82595255365376,
+                  longitude: -116.5380549055525
+                });
+                view.goTo({ target: pt, scale: 10000 });
+              };
+            }
+
+            window.parent.demo = window;
+          }
+        });
+      });
+  </script>
+</head>
+
+<body>
+  <div id="editArea" class="editArea-container">
+    <div id="addFeatureDiv">
+      <h3 class="list-heading">Report Incidents</h3>
+      <ul style="font-size: 13px; padding-left: 1.5em;">
+        <li>Click Add incident button</li>
+        <li>Click on the map to create the incident</li>
+      </ul>
+      <input type="button" class="edit-button" value="Add incident" id="btnAddFeature">
+    </div>
+
+    <div id="updateInstructionDiv" style="text-align:center">
+      <p class="or-wrap"><span class="or-text">Or</span></p>
+      <p>Select an incident to edit or delete.</p>
+    </div>
+
+    <div id="featureUpdateDiv" style="display:none; margin-top: 1em;">
+      <h3 class="list-heading">Enter the incident information</h3>
+
+      <div id="attributeArea">
+        <label for="inputDescription">Description:</label>
+        <input class="inputInfo" type="text" id="inputDescription" placeHolder="Enter description"><br>
+        <label for="inputUserInfo">Contact:</label>
+        <input class="inputInfo" required type="email" name="email" id="inputUserInfo" pattern="[^ @]*@[^ @]*"
+          placeHolder="Enter email address"><br>
+        <input type="button" class="edit-button" value="Update incident info" id="btnUpdate">
+      </div>
+
+      <div id="deleteArea">
+        <input type="button" class="edit-button" value="Delete incident" id="btnDelete">
+      </div>
+    </div>
+  </div>
+  <div id="viewDiv"></div>
+</body>
+</html>

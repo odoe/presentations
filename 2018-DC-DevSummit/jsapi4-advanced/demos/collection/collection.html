@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+  </style>
+
+
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    var myCollection;
+    require([
+      "esri/core/Collection"
+    ], function (
+      Collection
+    ) {
+
+      myCollection = new Collection();
+
+      //myCollection.push("item 1");
+
+      //myCollection.addMany(["item 2", "item 3", "item 4"]);
+
+      // myCollection.on("change", function (event) {
+      //   console.log(event);
+      // })
+
+      // myCollection.pop();
+
+      // myCollection.find(function(item){
+      //   return item === "item 3";
+      // });
+
+      function displayCollection() {
+        var node = document.getElementById("collection");
+        node.innerHTML = JSON.stringify(myCollection.toArray());
+      }
+
+      myCollection.on("change", function (event) {
+        displayCollection();
+      });
+
+      displayCollection();
+
+    });
+
+  </script>
+
+</head>
+
+<body>
+  <div>
+    <h2>Collection</h2>
+    <pre id="collection"></pre>
+  </div>
+</body>
+
+</html>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+    #position {
+      position: absolute;
+      z-index: 999;
+      top: 20px;
+      left: 50%;
+      width: 100px;
+      margin-left: -50px;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function (
+      Map,
+      MapView
+    ) {
+
+        var map = new Map({
+          basemap: "topo"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 13,
+          center: [-117, 34]
+        });
+
+        view.when(function () {
+
+          function openPopup(point) {
+            view.popup.open({
+              title: "foobar",
+              location: point,
+              content: "A Popup"
+            });
+
+            view.popup.dockEnabled = true;
+
+            view.popup.set("dockOptions", {
+              breakpoint: false,
+              buttonEnabled: false,
+              position: document.getElementById("position").value
+            });
+          }
+
+          view.on("click", function (event) {
+            event.stopPropagation();
+            openPopup(event.mapPoint);
+          });
+
+
+          document.getElementById("position").onchange = function (event) {
+            view.popup.set("dockOptions", {
+              breakpoint: false,
+              buttonEnabled: false,
+              position: event.target.value
+            });
+          };
+
+        });
+
+      });
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <select id="position">
+    <option selected value="auto">auto</option>
+    <option value="top-left">top-left</option>
+    <option value="top-center">top-center</option>
+    <option value="top-right">top-right</option>
+    <option value="bottom-left">bottom-left</option>
+    <option value="bottom-center">bottom-center</option>
+    <option value="bottom-right">bottom-right</option>
+  </select>
+</body>
+
+</html>

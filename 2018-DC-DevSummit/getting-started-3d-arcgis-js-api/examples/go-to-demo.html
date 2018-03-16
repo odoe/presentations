@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <title>goTo</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.7/"></script>
+
+  <script>
+    var view;
+
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/views/MapView",
+      "esri/layers/MapImageLayer",
+      "dojo/domReady!"
+    ], function(Map, SceneView, MapView, MapImageLayer) {
+
+      view = new SceneView({
+        container: "viewDiv",
+
+        map: new Map({
+          basemap: "hybrid",
+          ground: "world-elevation"
+        }),
+
+        camera: {
+          position: {
+            x: 8.062,
+            y: 46.042,
+            z: 14813.5
+          },
+          heading: 0,
+          tilt: 72
+        },
+
+        ui: {
+          components: ["attribution", "compass"]
+        },
+
+        environment: {
+          atmosphere: {
+            quality: "high"
+          }
+        },
+
+        qualityProfile: "high"
+      });
+
+      window.increaseHeading = () => {
+        var h = view.camera.heading;
+
+        var m = 30;
+
+        var heading = Math.floor((h + 1e-3) / m) * m + m;
+
+        view.goTo({
+            heading: heading
+        });
+      };
+
+      window.increaseHeadingSlow = () => {
+        var h = view.camera.heading;
+
+        var m = 120;
+
+        var heading = Math.floor((h + 1e-3) / m) * m + m;
+
+        view.goTo({
+            heading: heading
+        }, { easing: "out-cubic", speedFactor: 0.2 });
+      };
+
+      // presentation specific
+      view.then(() => {
+        if (window.parent) {
+          var button01 = window.parent.document.getElementById("scene-view-go-to-button01")
+
+          if (button01) {
+            button01.onclick = window.increaseHeading;
+          }
+
+          var button02 = window.parent.document.getElementById("scene-view-go-to-button02")
+
+          if (button02) {
+            button02.onclick = window.increaseHeadingSlow;
+          }
+
+          window.parent.demo = window;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>

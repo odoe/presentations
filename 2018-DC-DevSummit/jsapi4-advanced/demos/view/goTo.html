@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/geometry/Point",
+      "dojo/domReady!"
+    ], function (
+      Map,
+      MapView,
+      Point
+    ) {
+
+        var map = new Map({
+          basemap: "topo"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 3
+        });
+
+        view.when(function () {
+
+          setTimeout(function () {
+
+            var location = new Point({
+              latitude: 33.8303,
+              longitude: -116.5453
+            });
+
+            view.goTo(location);
+
+            // view.goTo({
+            //   target: location,
+            //   zoom: 14
+            // });
+
+            // view.goTo({
+            //   target: location,
+            //   zoom: 14
+            // }, {
+            //   animate: true,
+            //   duration: 2000
+            // });
+
+            // view.goTo({
+            //   target: location,
+            //   zoom: 14
+            // }, {
+            //     animate: true,
+            //     duration: 2000,
+            //     easing: function (t) {
+            //       return t*t*t*t*t;
+            //     }
+            //   });
+
+          }, 1000);
+
+        });
+
+      });
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

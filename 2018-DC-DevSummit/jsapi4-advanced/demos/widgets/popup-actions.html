@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/Graphic",
+      "esri/PopupTemplate",
+      "esri/Map",
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function (
+      Graphic,
+      PopupTemplate,
+      Map,
+      MapView
+    ) {
+
+        var map = new Map({
+          basemap: "topo"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 13,
+          center: [-117, 34]
+        });
+
+        view.popup.viewModel.on("trigger-action", function (event) {
+          if (event.action.id === "goToUrl") {
+            var attributes = view.popup.selectedFeature.attributes;
+            window.open(attributes.url + "?" + attributes.query);
+          }
+        });
+
+        view.on("click", function (evt) {
+          evt.stopPropagation();
+
+          var graphic = new Graphic({
+            geometry: evt.mapPoint,
+
+            attributes: {
+              url: "http://www.esri.com/",
+              query: "someQueryString"
+            },
+
+            popupTemplate: new PopupTemplate({
+              title: "Actions Example",
+              content: "Actions Example",
+              actions: [{
+                id: "goToUrl",
+                className: "esri-icon-link-external",
+                title: "Go To Url"
+              }]
+            })
+
+          });
+
+          var features = [graphic];
+
+          view.popup.open({
+            features: features,
+            location: evt.mapPoint
+          });
+
+        });
+      });
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>[Devsummit 2017 Example - Integrated Mesh]</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.3/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/IntegratedMeshLayer",
+        "dojo/domReady!"
+      ],
+      function(
+        Map, SceneView,
+        IntegratedMeshLayer
+      ) {
+
+        /********************
+         * Create IntegratedMeshLayer layer
+         ********************/
+
+        var layer = new IntegratedMeshLayer({
+          url: "http://tiles.arcgis.com/tiles/mDUBwXYmCImffPXw/arcgis/rest/services/Oxford_Scene/SceneServer"
+        });
+
+        /**************************
+         * Add IntegratedMeshLayer to map
+         *************************/
+
+        var map = new Map({
+          basemap: "streets",
+          layers: [layer],
+          ground: "world-elevation"
+        });
+
+        window.view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          camera: {
+            position: [-1.2567, 51.7517, 123.6058],
+            heading: 41.4698,
+            tilt: 75.9609
+          }
+        });
+
+        // presentation specific
+        view.then(() => {
+          if (window.parent) {
+            var button01 = window.parent.document.getElementById("elevation-layers-button01")
+            if (button01) {
+              button01.onclick = window.toggleElevation;
+            }
+
+            window.parent.demo = window;
+          }
+        });
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

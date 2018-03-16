@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Multivariate elections</title>
+<style>
+html,
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#infoDiv {
+  background-color: white;
+  padding: 5px;
+  font-family: "Avenir Next W00", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+</style>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+<script>
+  var dojoConfig = {
+    has: {
+      "esri-featurelayer-webgl": 1
+    }
+  };
+</script>
+
+<script src="https://js.arcgis.com/4.7/"></script>
+
+<script>
+require([
+  "esri/Map",
+  "esri/layers/FeatureLayer",
+  "esri/views/MapView",
+  "esri/renderers/UniqueValueRenderer",
+  "esri/symbols/SimpleFillSymbol",
+  "esri/symbols/SimpleMarkerSymbol",
+  "esri/widgets/Legend",
+  "esri/widgets/LayerList",
+  "dojo/domReady!"
+], function(
+  Map,
+  FeatureLayer,
+  MapView,
+  UniqueValueRenderer,
+  SimpleFillSymbol,
+  SimpleMarkerSymbol,
+  Legend,
+  LayerList
+) {
+
+  function createSymbol(color, isMarker){
+    const options = {
+      color: color,
+      outline: {
+        color: [ 255, 255, 255, 0.3 ],
+        width: 1
+      }
+    };
+
+    return isMarker ? new SimpleMarkerSymbol(options) : new SimpleFillSymbol(options);
+  }
+
+  //////////////////////////////////////
+  /////   RENDERER   ///////////////////
+  //////////////////////////////////////
+
+  const totalVotes = {
+    type: "size",
+    field: "TTL_VT",
+    legendOptions: {
+      title: "Voter turnout"
+    },
+    minDataValue: 100,
+    maxDataValue: 1000000,
+    minSize: "4px",
+    maxSize: "60px"
+  };
+
+  const percentWinner = {
+    type: "opacity",
+    field: "PCT_WNR",
+    legendOptions: {
+      title: "Share of votes won"
+    },
+    stops: [
+      { value: 50, opacity: 0.05, label: "contested" },
+      { value: 75, opacity: 0.95, label: "landslide" }
+    ]
+  };
+
+  const winnerRenderer = new UniqueValueRenderer({
+    field: "WINNER",
+    defaultSymbol: createSymbol("#a7c636", true),
+    defaultLabel: "Other",
+    legendOptions: {
+      title: "Winner"
+    },
+    uniqueValueInfos: [{
+      value: "Obama",
+      symbol: createSymbol("#149ece", true)
+    }, {
+      value: "Romney",
+      symbol: createSymbol("#ed5151", true)
+    }],
+    visualVariables: [ percentWinner, totalVotes ]
+  });
+
+  const layer = new FeatureLayer({
+    url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/us_election_2012_counties/FeatureServer/0",
+    title: "Election results (2012) by county",
+    renderer: winnerRenderer
+  });
+
+  const map = new Map({
+    basemap: "gray",
+    layers: [ layer ]
+  });
+
+  const view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [ -95, 38 ],
+    zoom: 5
+  });
+
+  const legend = new Legend({
+    view: view
+  });
+  view.ui.add(legend, "bottom-left");
+
+});
+</script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Generate continuous color visualization for 3D buildings - 4.4</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/dijit/themes/claro/claro.css">
+  <script src="https://js.arcgis.com/4.7/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #containerDiv {
+      background-color: white;
+      padding: 3px;
+      text-align: center;
+    }
+
+    #title {
+      font-size: 14pt;
+    }
+  </style>
+
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/renderers/smartMapping/creators/color",
+      "esri/renderers/smartMapping/statistics/histogram",
+      "esri/widgets/ColorSlider",
+      "esri/core/lang",
+      "dojo/domReady!"
+    ], function(
+      WebScene, SceneView, SceneLayer, colorRendererCreator,
+      histogram, ColorSlider, lang
+    ) {
+
+      // San Francisco buildings
+
+      const layer = new SceneLayer({
+        portalItem: {
+          id: "f5c497819a374941b0ce8d9b0e979819"
+        },
+        popupTemplate: {
+          content: "{walkTimeToStopsInService} minutes"
+        }
+      });
+
+      // Create a map and add it to a SceneView
+
+      const webscene = new WebScene({
+        portalItem: {
+          id: "e6d95b9eec6f4917adf2c7eb9973e3a8"
+        },
+        layers: [ layer ]
+      });
+
+      const view = new SceneView({
+        container: "viewDiv",
+        map: webscene,
+        popup: {
+          dockEnabled: true,
+          dockOptions: {
+            breakpoint: false,
+            position: "top-right"
+          }
+        }
+      });
+      view.ui.add("containerDiv", "bottom-left");
+
+      var themeSelect;
+      var colorSlider;
+
+      view.when(function(){
+        themeSelect = document.getElementById("theme-options");
+
+        themeSelect.addEventListener("change", function(event){
+          createRenderer({
+            theme: event.target.value
+          });
+        });
+
+        createRenderer();
+      });
+
+      // Generate a continuous color renderer based on the
+      // statistics of the data in the provided layer
+      // and field.
+      //
+      // This resolves to an object containing several helpful
+      // properties, including color scheme, statistics,
+      // the renderer and visual variable
+
+      function createRenderer(params){
+
+        // configure parameters for the color renderer generator
+        // the layer must be specified along with a field name
+        // or arcade expression. The basemap and other properties determine
+        // the appropriate default color scheme.
+
+        var colorParams = {
+          layer: params && params.layer ? params.layer : layer,
+          basemap: params && params.basemap ? params.basemap : webscene.basemap,
+          field: "walkTimeToStopsInService",
+          theme: params && params.theme ? params.theme : themeSelect.value,
+          maxValue: 20
+        };
+
+        return colorRendererCreator.createContinuousRenderer(colorParams)
+          .then(function(response) {
+
+            // set the renderer to the layer and add it to the map
+
+            layer.renderer = response.renderer;
+
+            var histogramParams = {
+              layer: colorParams.layer,
+              field: colorParams.field,
+              numBins: 30
+            };
+            return histogram(histogramParams)
+              .then(function(histogram){
+
+                // add the statistics and color visual variable objects
+                // to the color slider parameters
+
+                var sliderParams = {
+                  numHandles: colorParams.theme === "high-to-low" ? 2 : 3,
+                  syncedHandles: colorParams.theme !== "high-to-low",
+                  statistics: response.statistics,
+                  visualVariable: response.visualVariable,
+                  histogram: histogram,
+                  minValue: response.statistics.min,
+                  maxValue: response.statistics.max
+                };
+
+                if (!colorSlider){
+                  sliderParams.container = "slider";
+                  colorSlider = new ColorSlider(sliderParams);
+                  // when the user slides the handle(s), update the renderer
+                  // with the updated color visual variable object
+
+                  colorSlider.on("data-change", function() {
+                    var renderer = layer.renderer.clone();
+                    renderer.visualVariables = [lang.clone(colorSlider.visualVariable)];
+                    layer.renderer = renderer;
+                  });
+
+                } else {
+                  colorSlider.set(sliderParams);
+                }
+            })
+          })
+          .otherwise(function(err) {
+            console.log("there was an error: ", err);
+          });
+      }
+
+    });
+  </script>
+</head>
+
+<body class="claro">
+  <div id="viewDiv"></div>
+  <div id="containerDiv" class="widget-background">
+    <div id="title">Walk time to metro stops (minutes)</div>
+    Theme: <select id="theme-options" class="esri-widget">
+      <option value="high-to-low" selected>High to low</option>
+      <option value="centered-on">Centered on</option>
+      <option value="extremes">Extremes</option>
+      <option value="above-and-below">Above and below</option>
+    </select><br>
+    <div id="slider"></div>
+  </div>
+</body>
+
+</html>

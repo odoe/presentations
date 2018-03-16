@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Edge rendering for a SceneLayer with continuous color - 4.7</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #controls {
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.7/"></script>
+
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/widgets/Legend",
+      "dojo/domReady!"
+    ], function(WebScene, SceneView, SceneLayer, Legend) {
+
+      // Setting the edges property on the symbol layer will help
+      // understanding the shape of the building
+      var edges = {
+        type: 'solid',
+        color: [0, 0, 0, 0.6],
+        size: 1.5
+      }
+
+      // Create the renderer and configure visual variables
+      var renderer = {
+        type: "simple", // autocasts as new SimpleRenderer()
+        // Create default MeshSymbol3D for symbolizing SceneLayer
+        // a new FillSymbol3DLayer is created by default within the symbol
+        symbol: {
+          type: "mesh-3d",
+          symbolLayers: [{
+            type: "fill",
+            material: {
+              color: "#ffffff",
+              colorMixMode: "replace"
+            },
+            edges: edges
+          }]
+        },
+        visualVariables: [{
+          // specifies a visual variable of continuous color
+          type: "color",
+          // based on a field indicating the walking time to public transport
+          field: "walkTimeToStopsInService",
+          legendOptions: {
+            title: "Walking time to public transport"
+          },
+          // color ramp from white to dark blue
+          // based on the walking time to public transport buildings will be
+          // assigned a color proportional to the min and max colors
+          // specified below
+          stops: [{
+            value: 1,
+            color: "#2887a1",
+            label: "less than 1 minute"
+          },
+          {
+            value: 15,
+            color: "#ffffff",
+            label: "more than 15 minutes"
+          }]
+        }]
+      };
+
+      // Create SceneLayer and add to the map
+      var sceneLayer = new SceneLayer({
+        portalItem: {
+          id: "f5c497819a374941b0ce8d9b0e979819"
+        },
+        title: "San Francisco buildings",
+        renderer: renderer // Set the renderer to sceneLayer
+      });
+
+      // Create WebScene
+      var webscene = new WebScene({
+        portalItem: {
+          id: "12d629fc946845628011f17a963373a9"
+        },
+        layers: [sceneLayer]
+      });
+
+      // Create the SceneView and add the map
+      var view = new SceneView({
+        container: "viewDiv",
+        map: webscene
+      });
+
+      var legend = new Legend({
+        view: view
+      });
+      view.ui.add(legend, "bottom-right");
+
+      // Add a toggle button for the edges
+      document.getElementById('toggleEdges').addEventListener("click",
+        function(evt) {
+          var renderer = sceneLayer.renderer.clone();
+          renderer.symbol.symbolLayers.getItemAt(0).edges = event.target.checked ?
+            edges : null;
+          sceneLayer.renderer = renderer;
+        });
+      view.ui.add(document.getElementById('controls'), "top-right");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <div id="controls">
+    <label for="toggleEdges">Toggle edges</label>
+    <input type="checkbox" id="toggleEdges" checked>
+  </div>
+</body>
+
+</html>

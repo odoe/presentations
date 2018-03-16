@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.7/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/layers/PointCloudLayer",
+      "esri/widgets/LayerList",
+      "esri/layers/GroupLayer",
+      "dojo/domReady!"
+    ], function(Map, SceneView, SceneLayer, PointCloudLayer, LayerList, GroupLayer) {
+
+      var map = new Map({
+        basemap: "dark-gray",
+        ground: "world-elevation"
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {
+          position: [-74.0338, 40.6913, 707],
+          tilt: 81,
+          heading: 50
+        }
+      });
+
+      var pcLayer = new PointCloudLayer({
+        portalItem: {
+          id: "054564b01d7c4dfcac47eb83b7d3577a"
+        }
+      });
+
+      var sceneLayer = new SceneLayer({
+        url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/NYC/SceneServer/layers/0"
+      });
+
+      var groupLayer = new GroupLayer({
+        title: "NY Layers",
+        visibilityMode: "exclusive"
+      });
+
+      groupLayer.addMany([pcLayer, sceneLayer]);
+      map.add(groupLayer);
+
+      view.then(function() {
+        var layerList = new LayerList({
+          view: view
+        });
+
+        // Add widget to the top right corner of the view
+        view.ui.add(layerList, "top-right");
+      });
+    });
+  </script>
+</head>
+
+<body>
+<div id="viewDiv"></div>
+</body>
+</html>

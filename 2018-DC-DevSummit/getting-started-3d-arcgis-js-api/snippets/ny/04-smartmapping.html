@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.7/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/layers/PointCloudLayer",
+      "esri/renderers/SimpleRenderer",
+      "esri/symbols/MeshSymbol3D",
+      "esri/symbols/FillSymbol3DLayer",
+      "esri/core/Collection",
+      "esri/widgets/Legend",
+      "dojo/domReady!"
+    ], function(Map, SceneView, SceneLayer, PointCloudLayer, SimpleRenderer, MeshSymbol3D, FillSymbol3DLayer, Collection, Legend) {
+
+      var map = new Map({
+        basemap: "dark-gray",
+        ground: "world-elevation"
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {
+          position: [-74.0338, 40.6913, 707],
+          tilt: 81,
+          heading: 50
+        }
+      });
+
+      var sceneLayer = new SceneLayer({
+        url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/NYC/SceneServer/layers/0"
+      });
+      map.add(sceneLayer);
+
+
+
+      view.then(function() {
+
+        var colorParams = {
+          layer: sceneLayer,
+          basemap: map.basemap,
+          field: "CNSTRCT_YR",
+          theme: "above-and-below",
+          minValue: 1800
+        };
+
+        sceneLayer.renderer = new SimpleRenderer({
+          symbol: new MeshSymbol3D({
+            symbolLayers: new Collection([new FillSymbol3DLayer()])
+          }),
+          visualVariables: [{
+            type: "color",
+            field: "CNSTRCT_YR",
+            stops: [
+              {
+                color: [58,128,89,1],
+                value: 1912,
+                label: "< 1912"
+              },
+              {
+                color: [155,191,133,1],
+                value: 1925
+              },
+              {
+                color: [218,225,218,1],
+                value: 1938,
+                label: "1938"
+              },
+              {
+                color: [138,143,191,1],
+                value: 1951
+              },
+              {
+                color: [67,78,150,1],
+                label: "> 1964",
+                value: 1964
+              }
+            ]
+          }]
+        });
+
+
+        var legend = new Legend({
+          view: view,
+          layerInfos: [{
+            layer: sceneLayer,
+            title: "New York Buildings"
+          }]
+        });
+
+        // Add widget to the bottom right corner of the view
+        view.ui.add(legend, "bottom-right");
+
+      });
+    });
+  </script>
+</head>
+
+<body>
+<div id="viewDiv"></div>
+</body>
+</html>

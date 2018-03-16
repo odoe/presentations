@@ -1,0 +1,250 @@
+<!-- See https://blogs.esri.com/esri/arcgis/2017/05/23/creating-a-predominance-visualization-with-arcade/ for more information about this app -->
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Educational attainment in Mexico</title>
+
+<style>
+  html,
+  body,
+  #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+
+<script>
+  var dojoConfig = {
+    has: {
+      "esri-featurelayer-webgl": 1
+    }
+  };
+</script>
+
+<script src="https://js.arcgis.com/4.6/"></script>
+
+<!--ARCADE SCRIPTS-->
+
+<!--PREDOMINANCE-->
+
+<!--
+<- Arcade expression that determines the predominant category
+<- in each feature.
+<-
+<- In this case we want to know whether more people in living in
+<- a given county are participating in the labor force.
+-->
+
+<script type="esri/arcade" id="predominance-arcade">
+  var primary = $feature.EDUC04_CY + $feature.EDUC07_CY;
+  var secondary = $feature.EDUC06_CY + $feature.EDUC08_CY;
+  var highSchool = $feature.EDUC09_CY + $feature.EDUC11_CY;
+  var college = $feature.EDUC10_CY + $feature.EDUC12_CY
+                + $feature.EDUC13_CY + $feature.EDUC14_CY
+                + $feature.EDUC15_CY;
+
+  // The fields from which to calculate predominance
+  // The expression will return the alias of the predominant field
+
+  var fields = [
+    { value: $feature.EDUC01_CY, alias: "Didn't attend any school" },
+    { value: $feature.EDUC02_CY, alias: "Preschool" },
+    { value: $feature.EDUC03_CY, alias: "Incomplete elementary school" },
+    { value: primary, alias: "Elementary school" },
+    { value: $feature.EDUC05_CY, alias: "Incomplete middle school" },
+    { value: secondary, alias: "Middle school" },
+    { value: highSchool, alias: "High school" },
+    { value: college, alias: "College" }
+  ];
+
+  // Returns the predominant category as the alias
+  // defined in the fields array. If there is a tie,
+  // then both names are concatenated and used to
+  // indicate the tie
+
+  function getPredominantCategory(fieldsArray){
+    var maxValue = -Infinity;
+    var maxCategory = "";
+    for(var k in fieldsArray){
+      if(fieldsArray[k].value > maxValue){
+        maxValue = fieldsArray[k].value;
+        maxCategory = fieldsArray[k].alias;
+      } else if (fieldsArray[k].value == maxValue){
+        maxCategory = maxCategory + "/" + fieldsArray[k].alias;
+      }
+    }
+    return maxCategory;
+  }
+
+  getPredominantCategory(fields);
+</script>
+
+<!--STRENGTH OF MAJORITY-->
+
+<!--
+<- Arcade expression determining the strength of the predominant count
+<- in each feature based on the proportion of that count to all others.
+<- A simple percentage is calculated and returned for the max value.
+-->
+
+<script type="esri/arcade" id="strength-arcade">
+  // Returns the share of the dominant demographic as a percentage
+  var primary = $feature.EDUC04_CY + $feature.EDUC07_CY;
+  var secondary = $feature.EDUC06_CY + $feature.EDUC08_CY;
+  var highSchool = $feature.EDUC09_CY + $feature.EDUC11_CY;
+  var college = $feature.EDUC10_CY + $feature.EDUC12_CY+$feature.EDUC13_CY
+                +$feature.EDUC14_CY+$feature.EDUC15_CY;
+
+  var fields = [ $feature.EDUC01_CY, $feature.EDUC02_CY,
+                 $feature.EDUC03_CY, $feature.EDUC05_CY,
+                  primary, secondary, highSchool, college ];
+  var winner = Max(fields);
+  var total = Sum(fields);
+  return (winner/total)*100;
+</script>
+
+<script>
+require([
+  "esri/Map",
+  "esri/layers/FeatureLayer",
+  "esri/views/MapView",
+  "esri/renderers/UniqueValueRenderer",
+  "esri/symbols/SimpleFillSymbol",
+  "esri/widgets/Legend",
+  "dojo/domReady!"
+], function(
+  Map,
+  FeatureLayer,
+  MapView,
+  UniqueValueRenderer,
+  SimpleFillSymbol,
+  Legend
+) {
+
+  function createSymbol (color){
+    return new SimpleFillSymbol({
+      color: color,
+      outline: {
+        width: 0.5,
+        color: [ 255, 255, 255, 0.5 ]
+      }
+    });
+  }
+
+  // The expressionInfos reference Arcade expressions and
+  // assign each of them a title and name. The name is used
+  // to reference it in the PopupTemplate and the title is
+  // used to describe the value in the popup and legend.
+
+  var arcadeExpressionInfos = [
+    // Get Arcade expression returning the predominant demographic in the feature:
+    // Highest education level attained
+    {
+      name: "predominance-arcade",
+      title: "Predominant educational attainment",
+      expression: document.getElementById("predominance-arcade").text
+    },
+    // Get Arcade expression returning the share of the total comprised
+    // by the predominant category
+    {
+      name: "strength-arcade",
+      title: "% of population belonging to predominant category",
+      expression: document.getElementById("strength-arcade").text
+    }
+  ];
+
+  var url = "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Mexico_demographics/FeatureServer/0";
+
+  var template = {
+    expressionInfos: arcadeExpressionInfos,
+    title: "{NAME}",
+    content: "The predominant educational attainment in "
+      + "{NAME} municipality is <b>{expression/predominance-arcade}</b>. That "
+      + "comprises {expression/strength-arcade}% of the population 12+.",
+    fieldInfos: [{
+      fieldName: "expression/strength-arcade",
+      format: {
+        places: 1,
+        digitSeperator: true
+      }
+    }]
+  };
+
+  var renderer = new UniqueValueRenderer({
+    valueExpression: arcadeExpressionInfos[0].expression,
+    valueExpressionTitle: arcadeExpressionInfos[0].title,
+    defaultSymbol: createSymbol("#ffde3e"),
+    defaultLabel: "Tie",
+    uniqueValueInfos: [
+      {
+        value: "Didn't attend any school",
+        symbol: createSymbol("#9e559c")
+      }, {
+        value: "Incomplete elementary school",
+        symbol: createSymbol("#149ece")
+      }, {
+        value: "Elementary school",
+        symbol: createSymbol("#ed5151")
+      }, {
+        value: "Middle school",
+        symbol: createSymbol("#a7c636")
+      }, {
+        value: "High school",
+        symbol: createSymbol("#b7814a")
+      }, {
+        value: "College",
+        symbol: createSymbol("#fc921f")
+      }
+    ],
+    visualVariables: [{
+      type: "opacity",
+      valueExpression: arcadeExpressionInfos[1].expression,
+      valueExpressionTitle: arcadeExpressionInfos[1].title,
+      legendOptions: {
+        showLegend: false
+      },
+      stops: [
+        { value: 22.4, opacity: 0.25 },
+        { value: 31.8, opacity: 1.0}
+      ]
+    }]
+  });
+
+  var layer = new FeatureLayer({
+    url: url,
+    outFields: [ "NAME" ],
+    title: "Mexican municipalities",
+    popupTemplate: template,
+    renderer: renderer
+  });
+
+  var map = new Map({
+    basemap: "gray",
+    layers: [ layer ]
+  });
+
+  var view = new MapView({
+    container: "viewDiv",
+    center: [ -101.304199, 23.73171 ],
+    zoom: 6,
+    map: map
+  });
+  view.ui.add(new Legend({ view: view }), "bottom-left");
+
+});
+</script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

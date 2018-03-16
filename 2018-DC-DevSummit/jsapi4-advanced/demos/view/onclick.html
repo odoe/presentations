@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function (
+      Webmap,
+      MapView
+    ) {
+
+      var map = new Webmap({
+        portalItem: {
+          id: "2364a7046a62417d8a92eec4494d5a45"
+        }
+      });
+
+      var view = new MapView({
+        container: "viewDiv",
+        map: map
+      });
+
+      view.on("click", function (event) {
+        console.log(event);
+
+        //event.stopPropagation();
+
+        // var point = event.mapPoint;
+        // view.popup.open({
+        //   location: point,
+        //   title: "Hello DevSummit!",
+        //   content: "I clicked here: " + point.latitude.toFixed(4) + ", " + point.longitude.toFixed(4)
+        // });
+
+      });
+
+    });
+
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
+

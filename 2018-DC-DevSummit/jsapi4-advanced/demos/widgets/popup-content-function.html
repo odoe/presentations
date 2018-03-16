@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+
+    #position {
+      position: absolute;
+      z-index: 999;
+      top: 20px;
+      left: 50%;
+      width: 100px;
+      margin-left: -50px;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+  <script src="https://js.arcgis.com/4.7"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/Graphic",
+      "esri/PopupTemplate",
+      "dojo/domReady!"
+    ], function (
+      Map,
+      MapView,
+      Graphic,
+      PopupTemplate
+    ) {
+
+        var map = new Map({
+          basemap: "topo"
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 13,
+          center: [-117, 34]
+        });
+
+        function getChart(event) {
+
+          // http://www.chartjs.org/docs/latest/
+          
+          console.log(event);
+          var graphic = event.graphic;
+          var canvas = document.createElement("canvas");
+          canvas.width = 200;
+          canvas.height = 200;
+          var ctx = canvas.getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: [graphic.attributes.label],
+              datasets: [{
+                label: 'Coolness',
+                data: [graphic.attributes.value],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                  'rgba(255,99,132,1)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+
+          return canvas;
+        }
+
+        view.on("click", function (event) {
+
+          event.stopPropagation();
+
+          var features = [new Graphic({
+            geometry: event.mapPoint,
+            attributes: {
+              title: "Coolness Chart",
+              label: "Coolness",
+              value: 10
+            },
+            popupTemplate: new PopupTemplate({
+              content: getChart,
+              title: function (event) {
+                var graphic = event.graphic;
+                return graphic.attributes.title;
+              },
+            })
+          })];
+
+          view.popup.open({
+            features: features,
+            location: event.mapPoint
+          });
+
+        });
+
+      });
+  </script>
+
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
