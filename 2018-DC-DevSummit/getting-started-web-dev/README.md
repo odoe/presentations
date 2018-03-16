@@ -1,3 +1,3 @@
-Presentation - http://hgonzago.github.io/DevSummit-presentations/Dev-Summit-2018/Getting-started-web-dev/
+Presentation - http://odoe.github.io/presentations/2018-DC-DevSummit/getting-started-web-dev
 
-Demos - http://hgonzago.github.io/DevSummit-presentations/Dev-Summit-2018/Getting-started-web-dev/Demos
+Demos - http://odoe.github.io/presentations/2018-DC-DevSummit/getting-started-web-dev/Demos
