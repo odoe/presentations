@@ -32,7 +32,7 @@ Andy Gup & René Rubalcava
 ### **Where do I begin?**
 
 <a href="https://developers.arcgis.com/javascript/" target="_blank">
-<img src="Images/landingPage_3.png" alt="JavaScript landing page" width="1200" height="656">
+<img src="images/landingPage_3.png" alt="JavaScript landing page" width="1200" height="656">
 </a>
 
 ---
@@ -40,7 +40,7 @@ Andy Gup & René Rubalcava
 ### **Which version of the API is best?**
 
 <a href="https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html" target="_blank">
-<img src="Images/Choose_Your_Own_Version.png" alt="API functionality matrix" width="1000" height="633">
+<img src="images/Choose_Your_Own_Version.png" alt="API functionality matrix" width="1000" height="633">
 </a>
 
 ---
@@ -48,7 +48,7 @@ Andy Gup & René Rubalcava
 ### **Developer Setup**
 
 <a href="https://www.slant.co/topics/1686/~javascript-ides-or-editors" target="_blank">
-<img src="Images/ides.png" alt="IDEs" width="806" height="443">
+<img src="images/ides.png" alt="IDEs" width="806" height="443">
 </a>
 
 ---
@@ -56,7 +56,7 @@ Andy Gup & René Rubalcava
 ### **JSAPI Resources**
 
 <a href="https://github.com/Esri/jsapi-resources" target="_blank">
-<img style="float: right;" alt="JSAPI resources" src="Images/jsapiResources_2.png" width="790" height="577">
+<img style="float: right;" alt="JSAPI resources" src="images/jsapiResources_2.png" width="790" height="577">
 </a>
  - Includes
    - JSHint file
@@ -104,14 +104,14 @@ Andy Gup & René Rubalcava
 - Separate files or one combined file?
 
 
-<img style="float: center;" src="Images/Step1_Combined.png">
+<img style="float: center;" src="images/Step1_Combined.png">
 
 ---
 
 ### **Demo: Make a map**
 
 <a href="Demos/Step1_Map/" target="_blank">
-  <img style="float: center;" src="Images/Step1_Demo.png">
+  <img style="float: center;" src="images/Step1_Demo.png">
 </a>
 
 ---
@@ -153,14 +153,14 @@ var view = new SceneView({
 ### **Common Gotchas**
 
 - Module order makes a difference 
-- Missing module <img style="float:right;" src="Images/requireNotDefined.png">
-- Missing CSS <img style="float:right;" src="Images/missingCSS.png">
+- Missing module <img style="float:right;" src="images/requireNotDefined.png">
+- Missing CSS <img style="float:right;" src="images/missingCSS.png">
 
 ---
 
 ### **Add layers**
 
-<img style="float:right;" src="Images/add-layers.png">
+<img style="float:right;" src="images/add-layers.png">
  - <a href="https://developers.arcgis.com/javascript/latest/api-reference/index.html#modules-in-esri-layers" target="_blank">Various layer types</a>
 1. Load module 
 2. Create layers 
@@ -217,7 +217,7 @@ layer.watch("loadStatus", function(status) {// do something});
 ### **Demo: Add layer to sample app**
 
 <a href="Demos/Step2_Layer/" target="_blank">
-  <img style="float: center;" src="Images/Step2_Demo.png">
+  <img style="float: center;" src="images/Step2_Demo.png">
 </a>
 
 ---
@@ -263,7 +263,7 @@ var renderer = new UniqueValueRenderer({
 
 - No need to <b>Require()</b> the module
 
-- Look for the <img style="float: center;" src="Images/autocast-label.png"> label in SDK's API Reference
+- Look for the <img style="float: center;" src="images/autocast-label.png"> label in SDK's API Reference
 
 - <a href="https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=layers-portal" target="_blank">Create a layer from portal item sample </a> shows autocasting in action
 
@@ -274,14 +274,14 @@ var renderer = new UniqueValueRenderer({
 ### **Demo: Update a feature layer's renderer**
 
 <a href="Demos/Step3_LayerRenderer/" target="_blank">
-  <img style="float: center;" src="Images/Step3_Demo.png">
+  <img style="float: center;" src="images/Step3_Demo.png">
 </a>
 
 ---
 
 ### **Map interaction using popups**
 
-<img style="float: right;" src="Images/popupcombined.png">
+<img style="float: right;" src="images/popupcombined.png">
 
 - Responds to mouse clicks
 
@@ -320,7 +320,7 @@ var featurelayer = new FeatureLayer({
 ### **Demo: Add a popup to the map**
 
 <a href="Demos/Step4_Popup/" target="_blank">
-  <img style="float: center;" src="Images/Step4_Demo.png">
+  <img style="float: center;" src="images/Step4_Demo.png">
 </a>
 
 ---
@@ -352,7 +352,7 @@ on(select, "change", function(e) {
 ### **Demo: Filter features within a layer**
 
 <a href="Demos/Step5_LayerFilter/" target="_blank">
-  <img style="float: center;" src="Images/Step5_Demo.png">
+  <img style="float: center;" src="images/Step5_Demo.png">
 </a>
 
 
@@ -377,7 +377,7 @@ var map = new WebMap({
 ### **Demo: Add a web map to an application**
 
 <a href="Demos/Step6_Webmap/" target="_blank">
-  <img style="float: center;" src="Images/Step6_Demo.png">
+  <img style="float: center;" src="images/Step6_Demo.png">
 </a>
 
 ---
@@ -424,7 +424,7 @@ view.ui.add(searchWidget, "top-right");
 ### **Demo: Add widgets to the application**
 
 <a href="Demos/Step7_Widgets/" target="_blank">
-  <img style="float: center;" src="Images/Step7_Demo.png">
+  <img style="float: center;" src="images/Step7_Demo.png">
 </a>
 
 ---
@@ -437,7 +437,7 @@ view.ui.add(searchWidget, "top-right");
 - User forums, e.g. GeoNet, StackExchange, Spatial Community in Slack, etc.
 
 <a href="https://developers.arcgis.com/javascript/latest/guide/community/index.html" target="_blank">
-<img style="float:bottom;" src="Images/Community.png" alt="Community" width="900" height="395">
+<img style="float:bottom;" src="images/Community.png" alt="Community" width="900" height="395">
 
 ---
 
