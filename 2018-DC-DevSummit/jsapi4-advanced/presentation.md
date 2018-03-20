@@ -166,7 +166,7 @@ const map = new Map({
 - `basemap` can also be set by item id.
 - should probably be used in production
 
-<iframe height='500' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -225,7 +225,7 @@ const layer = map.allLayers.find(layer => {
 
 ```js
 const transportationLyr = new TileLayer({
-  url: "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer",
+  url: tileUrl,
   id: "streets",
   visible: false
 });
@@ -330,7 +330,7 @@ graphicsLayer.add(graphic);
 ```javascript
 // Create via URL
 const featureLayer = new FeatureLayer({
-  url: "http://services6.arcgis.com/m3L8QUZ93HeaQzKv/arcgis/rest/services/BeerAndBurgerJoints/FeatureServer/0"
+  url: serviceUrl
 });
 
 // Create via a Portal item
@@ -367,8 +367,39 @@ const featureLayer = new FeatureLayer({
 
 ---
 
-<iframe height='500' scrolling='no' title='FL - WebGL' src='//codepen.io/odoe/embed/preview/PJByNy/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/PJByNy/'>FL - WebGL</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='FL - WebGL' src='//codepen.io/odoe/embed/preview/PJByNy/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/PJByNy/'>FL - WebGL</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+
+---
+
+## FeatureLayer - WebGL
+
+Details
+
+- Queries made in a tiled fashion
+- So queries are same in all browsers for same map
+  - Why is this important?
+
+---
+
+## FeatureLayer - WebGL
+
+Caching
+
+- Queries cached in the browser
+- Cached via CDN for public content
+- Cached server-side for private content
+- _Maps will scale as maps are used_
+- _Cache is invalidated as soon as content in database is changed_
+
+---
+
+## FeatureLayer - WebGL
+
+Resources:
+
+- [Scalable hosted feature layers in ArcGIS Online: Tile queries and response caching](https://blogs.esri.com/esri/arcgis/2017/12/12/scalable-hosted-feature-layers-in-arcgis-online-tile-queries-and-response-caching/)
+- [FeatureLayer rendering: taking advantage of WebGL in 2D](https://blogs.esri.com/esri/arcgis/2017/09/29/featurelayer-taking-advantage-of-webgl-2d/)
 
 ---
 
@@ -411,14 +442,14 @@ const layer = new MapImageLayer({
 
 ## MapImageLayer
 
-<iframe height='500' scrolling='no' title='MapImageLayer' src='//codepen.io/odoe/embed/preview/QQPwGw/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/QQPwGw/'>MapImageLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='MapImageLayer' src='//codepen.io/odoe/embed/preview/QQPwGw/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/QQPwGw/'>MapImageLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## SceneLayer
 
-<iframe height='500' scrolling='no' title='3D Visualizations' src='//codepen.io/odoe/embed/preview/GQLgxL/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/GQLgxL/'>3D Visualizations</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='3D Visualizations' src='//codepen.io/odoe/embed/preview/GQLgxL/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/GQLgxL/'>3D Visualizations</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -453,7 +484,7 @@ const layer = new MapImageLayer({
 
 ## LayerViews
 
-<iframe height='500' scrolling='no' title='LayerView' src='//codepen.io/odoe/embed/preview/NymGbB/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/NymGbB/'>LayerView</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='LayerView' src='//codepen.io/odoe/embed/preview/NymGbB/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/NymGbB/'>LayerView</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---

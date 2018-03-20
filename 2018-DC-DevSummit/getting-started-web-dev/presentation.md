@@ -25,7 +25,7 @@ Andy Gup & René Rubalcava
   
   - Concepts remain similar between versions 3.x and 4.x
   
-  - <a href="https://github.com/hgonzago/DevSummit-presentations" target="_blank">https://github.com/hgonzago/DevSummit-presentations</a>
+  - <a href="https://github.com/odoe/presentations/tree/master/2018-DC-DevSummit/getting-started-web-dev" target="_blank">https://github.com/odoe/presentations/tree/master/2018-DC-DevSummit/getting-started-web-dev</a>
 
 ---
 
