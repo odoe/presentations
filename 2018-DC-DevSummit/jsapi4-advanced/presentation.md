@@ -497,6 +497,10 @@ const layer = new MapImageLayer({
 
 ---
 
+## LayerViews - Highlight
+
+---
+
 <!-- End Presenter: Rene -->
 <!-- Start Presenter: Matt -->
 
