@@ -48,6 +48,50 @@ scale 1-10
 # ArcGIS Platform
 
 ---
+## Location Intelligence Everywhere
+- SaaS mapping and location platform
+- Comprehensive GIS
+---
+## ArcGIS Online
+- 2D and 3D
+- Create and visualize web maps and web scenes
+- Your data, fully hosted
+- Suite of rich basemaps
+- Imagery and demographics data
+- Geocoding, routing, geoenrichment
+- JavaScript API
+---
+## Story Maps and Dashboard Apps
+![Story Maps and Dashboard Apps](images/StoryMapAndDashboard.png)
+---
+## Field Apps
+![Field Apps](images/FieldApps.png)
+---
+## Insights
+![Insights](images/Insights.png)
+---
+## App Builders
+![App Builders](images/Builders.png)
+---
+## ArcGIS Enterprise
+- System of record and engagement
+- GIS in your own infrastructure
+- Data management, mapping, analysis
+- Utility networks
+- Geostatistics, spatial statistics and pattern mining
+- Image analysis
+- Big data spatial analytics
+- Real time analytics
+---
+## ArcGIS Pro
+![ArcGIS Pro](images/Pro.png)
+---
+## GeoEvent Server
+![GeoEvent Server](images/GeoEvent.png)
+---
+## ArcGIS Hub
+![ArcGIS Hub](images/Hub.png)
+---
 
 ## ArcGIS Dev Process
 
@@ -59,7 +103,8 @@ scale 1-10
 2. Explore some projects on esri.github.io
 3. Explore ArcGIS.com
 
-Voucher Code: 
+Voucher Code: *PDXJUN2018*
+
 
 ---
 
