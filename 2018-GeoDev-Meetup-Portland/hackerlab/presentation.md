@@ -63,6 +63,7 @@ scale 1-10
 </div>
 
 ---
+
 <!-- .slide: class="section" -->
 
 ## ArcGIS Online
@@ -73,6 +74,7 @@ scale 1-10
 - Imagery and demographics data
 - Geocoding, routing, geoenrichment
 - JavaScript API
+
 ---
 
 <!-- .slide: class="section" -->
@@ -179,7 +181,15 @@ Voucher Code: *PDXJUN2018*
 
 ---
 
+## [Style a Vector Basemap](https://developers.arcgis.com/labs/arcgisonline/style-a-vector-basemap/)
+
+---
+
 ## [Configure Popups](https://developers.arcgis.com/labs/arcgisonline/configure-pop-ups/)
+
+---
+
+## [Style feature layers with smart mapping](https://developers.arcgis.com/labs/arcgisonline/style-feature-layers-with-smart-mapping/)
 
 ---
 
