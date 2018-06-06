@@ -28,8 +28,6 @@ How familiar are you with:
 1. ArcGIS Online (maps, data, services, analysis)
 2. ArcGIS API for JavaScript
 
-scale 1-10
-
 ---
 
 <!-- .slide: class="agenda" -->
@@ -47,16 +45,18 @@ scale 1-10
 
 # ArcGIS Platform
 
+---
+
 <div style="width: 100%; display: table;">
     <div style="display: table-row">
-    <div style="width: 30%; float: left; position:absolute; top:80%;"> 
-   <h2> Location Intelligence Everywhere </h2>
+    <div style="width: 60%; float: left;"> 
+   <h3> Location Intelligence Everywhere </h3>
    <ul>
   <li>SaaS mapping and location platform</li>
   <li>Comprehensive GIS</li>
 </ul>
      </div>
-    <div style="width: 70%; float: right;"> 
+    <div style="width: 40%; float: right;"> 
         <img src="images/Platform.png" alt="Platform" >
     </div>
     
