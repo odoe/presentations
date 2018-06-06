@@ -153,6 +153,8 @@ Voucher Code: *PDXJUN2018*
 
 # Data
 
+[http://esriurl.com/hackpdx](http://esriurl.com/hackpdx)
+
 ---
 
 ## [Import Data](https://developers.arcgis.com/labs/arcgisonline/import-data/)
