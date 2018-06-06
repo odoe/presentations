@@ -203,6 +203,34 @@ Voucher Code: *PDXJUN2018*
 
 ---
 
+## [Display a styled vector basemap](https://developers.arcgis.com/labs/javascript/display-a-styled-vector-basemap/)
+
+---
+
+## [Create a 2D map with a layer](https://developers.arcgis.com/labs/javascript/create-a-2d-map-with-a-layer/)
+
+---
+
+## [Create a 3D scene with a layer](https://developers.arcgis.com/labs/javascript/create-a-3d-scene-with-a-layer/)
+
+---
+
+## [Style a feature layer](https://developers.arcgis.com/labs/javascript/style-a-feature-layer/)
+
+---
+
+## [Configure a pop-up](https://developers.arcgis.com/labs/javascript/configure-a-popup/)
+
+---
+
+## [Query a feature layer](https://developers.arcgis.com/labs/javascript/query-a-feature-layer/)
+
+---
+
+## [Create graphics](https://developers.arcgis.com/labs/javascript/create-graphics/)
+
+---
+
 ## [Track your location](https://developers.arcgis.com/labs/javascript/track-your-location/)
 
 ---
