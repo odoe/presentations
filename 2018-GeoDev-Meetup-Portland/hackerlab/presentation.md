@@ -49,14 +49,14 @@ How familiar are you with:
 
 <div style="width: 100%; display: table;">
     <div style="display: table-row">
-    <div style="width: 40%; float: left;"> 
-   <h3> Location Intelligence Everywhere </h2>
+    <div style="width: 60%; float: left;"> 
+   <h3> Location Intelligence Everywhere </h3>
    <ul>
   <li>SaaS mapping and location platform</li>
   <li>Comprehensive GIS</li>
 </ul>
      </div>
-    <div style="width: 60%; float: right;"> 
+    <div style="width: 40%; float: right;"> 
         <img src="images/Platform.png" alt="Platform" >
     </div>
     
