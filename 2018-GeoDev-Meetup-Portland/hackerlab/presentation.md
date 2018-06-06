@@ -47,11 +47,24 @@ scale 1-10
 
 # ArcGIS Platform
 
+<div style="width: 100%; display: table;">
+    <div style="display: table-row">
+    <div style="width: 30%; float: left; position:absolute; top:80%;"> 
+   <h2> Location Intelligence Everywhere </h2>
+   <ul>
+  <li>SaaS mapping and location platform</li>
+  <li>Comprehensive GIS</li>
+</ul>
+     </div>
+    <div style="width: 70%; float: right;"> 
+        <img src="images/Platform.png" alt="Platform" >
+    </div>
+    
+</div>
+
 ---
-## Location Intelligence Everywhere
-- SaaS mapping and location platform
-- Comprehensive GIS
----
+<!-- .slide: class="section" -->
+
 ## ArcGIS Online
 - 2D and 3D
 - Create and visualize web maps and web scenes
@@ -61,18 +74,34 @@ scale 1-10
 - Geocoding, routing, geoenrichment
 - JavaScript API
 ---
+
+<!-- .slide: class="section" -->
+
 ## Story Maps and Dashboard Apps
 ![Story Maps and Dashboard Apps](images/StoryMapAndDashboard.png)
+
 ---
+
+<!-- .slide: class="section" -->
+
 ## Field Apps
 ![Field Apps](images/FieldApps.png)
+
 ---
+
+<!-- .slide: class="section" -->
 ## Insights
 ![Insights](images/Insights.png)
+
 ---
+
+<!-- .slide: class="section" -->
 ## App Builders
 ![App Builders](images/Builders.png)
+
 ---
+
+<!-- .slide: class="section" -->
 ## ArcGIS Enterprise
 - System of record and engagement
 - GIS in your own infrastructure
@@ -82,15 +111,25 @@ scale 1-10
 - Image analysis
 - Big data spatial analytics
 - Real time analytics
+
 ---
+
+<!-- .slide: class="section" -->
 ## ArcGIS Pro
 ![ArcGIS Pro](images/Pro.png)
+
 ---
+
+<!-- .slide: class="section" -->
 ## GeoEvent Server
 ![GeoEvent Server](images/GeoEvent.png)
+
 ---
+
+<!-- .slide: class="section" -->
 ## ArcGIS Hub
 ![ArcGIS Hub](images/Hub.png)
+
 ---
 
 ## ArcGIS Dev Process
