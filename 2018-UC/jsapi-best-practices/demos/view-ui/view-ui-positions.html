@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #viewDiv {
+      width: 100%;
+      height: 100%;
+    }
+    /*.esri-legend {
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      overflow: auto;
+      margin: -150px 0 0 -150px;
+    }*/
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.4"></script>
+
+  <script>
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/Legend",
+      "dojo/domReady!"
+    ], function (
+      WebMap,
+      MapView,
+      Legend
+    ) {
+
+        var webmap = new WebMap({
+          portalItem: {
+            id: "9502b9d66ba348e5bed7d3947b5bdf1e"
+          }
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: webmap
+        });
+
+        var legend = new Legend({
+          view: view
+        });
+
+        // view ui component positions
+        // top-left | top-right | bottom-left | bottom-right | manual
+
+        view.ui.add(legend, "top-left");
+        //view.ui.add(legend, "top-right");
+        //view.ui.add(legend, "bottom-left");
+        //view.ui.add(legend, "bottom-right");
+        //view.ui.add(legend, "manual");
+
+        // move component
+        // view.ui.add(legend, "top-left");
+        // var positions = ["top-left", "top-right", "bottom-right", "bottom-left"];
+        // var index = 0;
+        // view.then(function () {
+        //   setInterval(function () {
+        //     if (index === positions.length) {
+        //       index = 0;
+        //     }
+        //     view.ui.move(legend, positions[index]);
+        //     index++;
+        //   }, 750);
+        // });
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

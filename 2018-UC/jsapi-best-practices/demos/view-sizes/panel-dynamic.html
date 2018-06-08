@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #viewDiv {
+      width: 100%;
+      height: 100%;
+    }
+
+    .aboutPanel {
+      box-sizing: border-box;
+      padding: 20px;
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 12px;
+      overflow: auto;
+      display: none;
+    }
+
+    .esri-view-width-greater-than-xsmall .aboutPanel {
+      display: block;
+      top: 0;
+      width: 300px;
+      height: 100%;
+    }
+
+    .esri-view-width-xsmall .aboutPanel {
+      display: block;
+      width: 100%;
+      height: 150px;
+      bottom: 0;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.4"></script>
+
+  <script>
+    var view;
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/core/watchUtils",
+      "dojo/domReady!"
+    ], function (
+      WebMap,
+      MapView,
+      watchUtils
+    ) {
+
+        var webmap = new WebMap({
+          portalItem: {
+            id: "fad5f36c6a074519b7ea01067919f6a0"
+          }
+        });
+
+        view = new MapView({
+          container: "viewDiv",
+          padding: {
+            left: 300
+          },
+          map: webmap
+        });
+
+        function setViewPadding(widthBreakpoint) {
+          if (widthBreakpoint === "xsmall") {
+            view.padding = {
+              top: 0,
+              bottom: 150,
+              left: 0,
+              right: 0
+            };
+            return;
+          }
+          view.padding = {
+            top: 0,
+            bottom: 0,
+            left: 300,
+            right: 0
+          };
+        }
+
+        // set view padding when width breakpoint changes
+        
+        // view.then(function () {
+        //   setViewPadding(view.widthBreakpoint);
+        //   view.watch("widthBreakpoint", function (widthBreakpoint) {
+        //     setViewPadding(widthBreakpoint);
+        //   });
+        // });
+
+        webmap.then(function (response) {
+          var portalItem = response.portalItem;
+          var title = portalItem.title;
+          var description = portalItem.description;
+          document.getElementById("title").innerHTML = title;
+          document.getElementById("description").innerHTML = description;
+        });
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv">
+    <div class="aboutPanel">
+      <h1 id="title"></h1>
+      <div id="description"></div>
+    </div>
+  </div>
+</body>
+
+</html>

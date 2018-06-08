@@ -1,0 +1,14 @@
+{
+  "name": "uc-2017-4x-patterns-practices",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "highlightjs": "^9.10.0",
+    "reveal.js": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/arcgis-js-api": "^4.4.0",
+    "dojo-typings": "^1.11.6",
+    "typescript": "^2.4.1"
+  }
+}

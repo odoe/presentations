@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #viewDiv {
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+
+  <script src="https://js.arcgis.com/4.4"></script>
+
+  <script type="text/javascript">
+    require([
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/Expand",
+      "esri/widgets/Search",
+      "esri/widgets/LayerList",
+      "esri/widgets/Legend",
+      "esri/widgets/Print",
+      "dojo/domReady!"
+    ], function (
+      WebMap,
+      MapView,
+      Expand,
+      Search,
+      LayerList,
+      Legend,
+      Print
+    ) {
+
+        var map = new WebMap({
+          portalItem: {
+            id: "e668b74772da413d8ac68b90cc70b287"
+          }
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map
+        });
+
+        var search = new Search({
+          container: document.createElement("div"),
+          view: view
+        });
+
+        var searchExpand = new Expand({
+          expandIconClass: "esri-icon-search",
+          expandTooltip: "Expand Search",
+          collapseTooltip: "Collapse Search",
+          expanded: true,
+          view: view,
+          content: search.domNode
+        });
+
+        searchExpand.watch("expanded", function (value) {
+          if (value) {
+            setTimeout(() => search.focus(), 0);
+          }
+        });
+        view.ui.add(searchExpand, "top-left");
+
+        var layerList = new LayerList({
+          container: document.createElement("div"),
+          view: view
+        });
+
+        var layerListExpand = new Expand({
+          expandIconClass: "esri-icon-layer-list",
+          expandTooltip: "Expand LayerList",
+          view: view,
+          content: layerList.domNode
+        });
+        view.ui.add(layerListExpand, "top-right");
+
+        var legend = new Legend({
+          container: document.createElement("div"),
+          view: view
+        });
+
+        var legendExpand = new Expand({
+          expandIconClass: "esri-icon-map-pin",
+          iconNumber: 2,
+          expandTooltip: "Expand Legend",
+          view: view,
+          content: legend.domNode
+        });
+        view.ui.add(legendExpand, "bottom-right");
+
+        var print = new Print({
+          container: document.createElement("div"),
+          view: view
+        });
+
+        var printExpand = new Expand({
+          expandIconClass: "esri-icon-printer",
+          expandTooltip: "Expand Print",
+          view: view,
+          content: print.domNode
+        });
+        view.ui.add(printExpand, "bottom-left");
+
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
