@@ -1,16 +1,15 @@
 <!-- .slide: data-background="./images/title.png" -->
 
-<!-- Presenter: Matt -->
-# ArcGIS API 4.0 for JavaScript: Patterns and Best Practices
+UC 2018
 
-## Short URL: esriurl.com/4xpatterns2017
+# ArcGIS API for JavaScript: Best Practices for Building Apps
 
 ---
 
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # Presenters
 
-### Matt Driscoll – [@driskull](https://twitter.com/driskull)
+### Kelly Hutchins – [@kellyhutchins](https://twitter.com/kellyhutchins)
 ### René Rubalcava – [@odoenet](https://twitter.com/odoenet)
 
 ---
@@ -26,8 +25,7 @@
 
 ---
 
-<!-- Presenter: Rene -->
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 
 # What do I get with the 4x JSAPI?
 
@@ -37,7 +35,7 @@
 
 ---
 
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # What are my options?
 
 - Needs?
@@ -84,8 +82,7 @@
 
 ---
 
-<!-- Presenter: Matt -->
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # Widgets!
 
 - ~20 Widgets out of the box <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -123,7 +120,7 @@
 
 ---
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="images/demo.png" -->
 # Demo
 
 - [Popup Demo](../demos/popup-docking/popup-docking.html)
@@ -142,14 +139,14 @@
 
 - [Expand Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-expand)
 
-```
-var htmlString = "<div style='background:red'>Hello World</div>";
+```js
+const htmlString = "<div style='background:red'>Hello World</div>";
 
-var node = document.createElement("div");
+const node = document.createElement("div");
 node.innerHTML = "Hello World 2";
 node.style.backgroundColor = "blue";
 
-var bgExpand = new Expand({
+const bgExpand = new Expand({
   view: view,
   //content: htmlString,
   //content: node,
@@ -175,7 +172,7 @@ Useful [view properties](https://developers.arcgis.com/javascript/latest/api-ref
 
 ---
 
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # View UI
 
 - View has `ui` property
@@ -192,7 +189,7 @@ Useful [view properties](https://developers.arcgis.com/javascript/latest/api-ref
 
 ---
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="images/demo.png" -->
 # Demo
 
 - [Components Demo](../demos/view-ui/view-ui-expand.html)
@@ -208,7 +205,7 @@ Useful [view properties](https://developers.arcgis.com/javascript/latest/api-ref
 
 ---
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="images/demo.png" -->
 # Demo
 
 - [View Padding Demo](../demos/view-padding/panel-view-padding.html)
@@ -254,14 +251,14 @@ Useful view sizing properties
 
 ---
 
-<!-- .slide: data-background="images/demo-background.png" -->
+<!-- .slide: data-background="images/demo.png" -->
 # Demo
 
 - [View UI Sizes](../demos/view-sizes/panel-dynamic.html)
 
 ---
 
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # Apps
 
 - Lots of existing apps
@@ -290,52 +287,16 @@ Useful view sizing properties
 
 ---
 
-# Apps: Calcite Maps
-
-Bootstrap theme made with ArcGIS Maps in mind
-
-- [Calcite Maps GitHub](https://github.com/Esri/calcite-maps)
-- [Live Examples](https://esri.github.io/calcite-maps/samples/index.html)
-
----
-
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # Web AppBuilder
 
 ---
 
-<!-- Presenter: Rene -->
 # Apps: Web AppBuilder
 
 - Two Options
   - Online
   - Developer Edition
-
----
-
-## Web AppBuilder - Online
-
-- Easy to set up
-- Hosted on ArcGIS.com
-- Share settings
-- Custom widgets in Portal
-  - [blog post](https://blogs.esri.com/esri/arcgis/2017/06/30/web-appbuilder-for-arcgis-now-supports-custom-widgets-in-arcgis-enterprise-10-5-1/)
-
----
-
-## Web AppBuilder - Developer Edition
-
-- Deploy on your own site
-- Use custom widgets
-- [Download the SDK](https://developers.arcgis.com/web-appbuilder/)
-
----
-
-## Web AppBuilder - Developer Edition
-
-- Custom Widgets
-  - [Solutions Widgets](https://github.com/Esri/solutions-webappbuilder-widgets)
-  - [Widget Generator](https://github.com/Esri/generator-esri-appbuilder-js)
 
 ---
 
@@ -394,7 +355,6 @@ src/                  <-- application code
 typings/
   extensions.d.ts     <-- any custom typings you need
 package.json          <-- package file
-postcss.config.js     <-- Optional PostCSS configurations
 tsconfig.json         <-- TypeScript compilation configuration
 tslint.json           <-- Linting for your TypeScript code
 ```
@@ -403,9 +363,6 @@ tslint.json           <-- Linting for your TypeScript code
 
 ### TypeScript Best Practices
 - Use `interface` over `type`
-- For JSAPI modules, `import WebMap = require("esri/WebMap")`
-  - We don't use default exports (need to support vanilla JS users)
-  - Or JS users would need to do `var webmap = new WebMap.default()`
 - Use provided decorators (Accessor and Widget)
 
 ---
@@ -477,20 +434,18 @@ self.addEventListener("install", function(e) {
 ---
 
 ### Take advantage of some modern tooling
-- [PostCSS](http://postcss.org/) - plugin based CSS processing
 - [Prettier](https://github.com/prettier/prettier) - automatically beautify code
-- Use Grunt, Gulp, or even just npm scripts
+- [webpack](https://webpack.js.org/)
 
 ---
 
 ### Review an app
 
-<iframe height='600' scrolling='no' title='ArcGIS JS API - Demo Appp' src='https://esridemo-5fda1.firebaseapp.com/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 337px;background:white;'>
+<iframe height='600' scrolling='no' title='ArcGIS JS API - Demo Appp' src='https://arcgis-template-app.surge.sh/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 337px;background:white;'>
 </iframe>
 
 ---
 
-<!-- Presenter: Rene + Matt -->
 # Lets Recap
 
 - What you get in 4x <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -506,7 +461,7 @@ self.addEventListener("install", function(e) {
 
 ---
 
-<!-- .slide: data-background="./images/section-background.png" -->
+<!-- .slide: data-background="./images/section.png" -->
 # Additional Resources
 
 <!-- - Geonet/support/rene/github/sass (Rene) -->
@@ -518,7 +473,8 @@ self.addEventListener("install", function(e) {
 
 # JSAPI Resources
 - TypeScript definition files
-- Bower
+- npm demo
+- webpack demo
 - JSHint
 
 [esriurl.com/resources](http://esriurl.com/resources)
@@ -537,24 +493,13 @@ self.addEventListener("install", function(e) {
 
 ---
 
-# Get The Code
-
-## [esriurl.com/4xpatterns2017](http://esriurl.com/4xpatterns2017)
-
----
-
 # Related Sessions
 
-- [ArcGIS API for JavaScript: What’s New](https://userconference2017.schedule.esri.com/schedule/1342175613)
-- [Getting Started with ArcGIS API for JavaScript](https://userconference2017.schedule.esri.com/schedule/1303988006)
-- [Building 3D GIS Applications with JavaScript](https://userconference2017.schedule.esri.com/schedule/216191407)
-- [Optimizing Your JavaScript App for Performance](https://userconference2017.schedule.esri.com/schedule/187809795)
-- [ArcGIS API for JavaScript: Customizing Widgets](https://userconference2017.schedule.esri.com/schedule/245657592)
-- [Strategies for Building Mobile Apps Using ArcGIS API for JavaScript](https://userconference2017.schedule.esri.com/schedule/400241268)
+TBD
 
 ---
 
-<!-- .slide: data-background="images/survey-background.png" -->
+<!-- .slide: data-background="images/survey.png" -->
 
 ---
 
@@ -568,4 +513,4 @@ self.addEventListener("install", function(e) {
 
 ---
 
-<!-- .slide: data-background="images/end-background.png" -->
+<!-- .slide: data-background="images/end.png" -->
