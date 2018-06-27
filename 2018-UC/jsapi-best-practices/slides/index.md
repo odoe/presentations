@@ -303,6 +303,88 @@ Useful view sizing properties
 # Apps: Scaffolding app
 
 ---
+<!-- .slide: data-background="./images/section.png" -->
+
+# Things you should maybe do
+
+## It's up to you
+
+---
+
+## Basemaps
+
+```js
+const map = new Map({
+  basemap: "topo-vector"
+});
+```
+
+- Convenience Strings
+- Could be more explicit in production apps
+
+---
+<!-- .slide: data-background="./images/demo.png" -->
+
+## Basemaps
+
+<iframe height='600' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Zoom is not Scale
+
+```js
+const view = new MapView({
+  container: "viewDiv",
+  map: map,
+  center: [-116.5, 33.80],
+  zoom: 14 // what does that really mean?
+});
+```
+
+- Zoom = LOD (Level of Details)
+- Not all LODs are created equal
+
+---
+
+## Zoom is not Scale
+
+```js
+const view = new MapView({
+  container: "viewDiv",
+  map: map,
+  center: [-116.5, 33.80],
+  scale: 50000 // I know what that means!
+});
+```
+
+- Scale is portable
+- Scale has meaning
+- We still snap to closest LOD/zoom
+
+---
+
+## WebMap is still a Map
+
+```js
+const map = new WebMap({
+  basemap: { ... },
+  layers: [ ... ]
+});
+```
+
+- Still acts like a regular `Map`
+- Has some advantages
+
+---
+
+## WebMap is still a Map
+
+<iframe height='600' scrolling='no' title='Local bookmarks' src='//codepen.io/odoe/embed/preview/QxrEVX/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/QxrEVX/'>Local bookmarks</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
 
 ## Architect your app
 
