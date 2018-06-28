@@ -320,7 +320,7 @@ const map = new Map({
 ```
 
 - Convenience Strings
-- Could be more explicit in production apps
+- Be more explicit in production apps
 
 ---
 <!-- .slide: data-background="./images/demo.png" -->
@@ -332,7 +332,7 @@ const map = new Map({
 
 ---
 
-## Zoom is not Scale
+## Zoom or Scale
 
 ```js
 const view = new MapView({
@@ -383,6 +383,77 @@ const map = new WebMap({
 
 <iframe height='600' scrolling='no' title='Local bookmarks' src='//codepen.io/odoe/embed/preview/QxrEVX/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/QxrEVX/'>Local bookmarks</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+
+---
+
+## Sublayer to FeatureLayer
+
+- You can extract a FeatureLayer from MapImageLayer Sublayer
+- `sublayer.createFeatureLayer()`
+- Can use capabilities not normally available with Sublayer
+
+---
+
+## Sublayer to FeatureLayer
+
+<iframe height='600' scrolling='no' title='createFeatureLayer' src='//codepen.io/odoe/embed/preview/PaxeyO/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/PaxeyO/'>createFeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## createQuery
+
+- When you can do `layer.createQuery()`
+  - `query` object will already have the layers filters and layer definitions
+  - more consistent
+- Use `new Query()` when you don't want predefined filters to be applied
+
+---
+
+## createQuery
+
+<iframe height='600' scrolling='no' title='createQuery' src='//codepen.io/odoe/embed/preview/rKQqQW/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rKQqQW/'>createQuery</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## MapImageLayer
+
+- If you want to modify Sublayers, do it after you load the layer
+- Defining them upfront overrides the defaults
+  - May not be what you want
+
+---
+
+## MapImageLayer
+
+<iframe height='600' scrolling='no' title='MapImageLayer - Load Sublayers' src='//codepen.io/odoe/embed/preview/WyYBwL/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/WyYBwL/'>MapImageLayer - Load Sublayers</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## LayerViews
+
+- Renders the Layer
+- When is it done though?
+  - _hotly debated topic!_
+  - When can you actually use it!!
+  - Behavior different with optimized FeatureLayer
+
+---
+
+## LayerViews
+
+<iframe height='600' scrolling='no' title='LayerView - Ready' src='//codepen.io/odoe/embed/preview/YvRJgj/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YvRJgj/'>LayerView - Ready</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## You can query SceneLayer too
+
+---
+
+## Elevation, query it, go ahead
 
 ---
 
