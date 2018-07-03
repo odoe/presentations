@@ -481,12 +481,11 @@ const map = new WebMap({
 ```json
 src/
   app/
-    interfaces/ <-- TypeScript Interfaces used in app
-    sources/    <-- external APIs
     stores/     <-- manage application state
     styles/     <-- css files
     widgets/    <-- custom widget code
-    main.ts     <-- entry point for application
+    index.ts    <-- entry point for application
+    index.html  <-- Mian HTML page
   tests/        <-- unit and functional tests
 ```
 
@@ -495,21 +494,15 @@ src/
 ### Take it further
 
 ```json
-dist/                 <-- compiled and runnable application
-public/               <-- non-code resources
-  assets/             <-- images, fonts, icons
-  favicon.ico         <-- page icon
-  index.html          <-- HTML for application
-  manifest.appcache   <-- application cache (fallback)
-  manifest.json       <-- installable app
-  oauth-callback.html <-- authentication
-  service-worker.js   <-- any service worker caching you want to do
-src/                  <-- application code
+dist/                   <-- compiled and runnable application
+src/                    <-- application code
 typings/
-  extensions.d.ts     <-- any custom typings you need
-package.json          <-- package file
-tsconfig.json         <-- TypeScript compilation configuration
-tslint.json           <-- Linting for your TypeScript code
+  extensions.d.ts       <-- any custom typings you need
+package.json            <-- package file
+tsconfig.json           <-- TypeScript compilation configuration
+tslint.json             <-- Linting for your TypeScript code
+webpack.config.js       <-- Webpack config for builds
+webpack.tests.config.js <-- Webpack config for tests
 ```
 
 ---
@@ -529,66 +522,25 @@ tslint.json           <-- Linting for your TypeScript code
 
 ---
 
-### Sample `manifest.appcache`
+### Cache
 
-```
-CACHE MANIFEST
-# v0.1
-index.html
-oauth-callback.html
-app/main.js
-assets/icons/icon-256x256.png
-
-http://js.arcgis.com/4.4/dojo/nls/dojo_en-us.js
-http://js.arcgis.com/4.4/esri/views/MapView.js
-http://js.arcgis.com/4.4/esri/WebMap.js
-
-app/styles/main.css
-https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.0-rc.3/css/calcite-web.min.css
-
-https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.0-rc.3/fonts/calcite-ui.woff",
-https://js.arcgis.com/4.4/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?erniwi
-https://js.arcgis.com/4.4/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_400.woff2
-https://js.arcgis.com/4.4/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_600.woff2
-
-NETWORK:
-*
-```
-
----
-
-### Sample Service Worker
-
-```js
-var filesToCache = [
-  "./",
-  "./index.html",
-  "./oauth-callback.html",
-  "./app/main.js",
-  "http://js.arcgis.com/4.4/dojo/nls/dojo_en-us.js",
-  "http://js.arcgis.com/4.4/esri/views/MapView.js",
-  "http://js.arcgis.com/4.4/esri/WebMap.js",
-  "./app/styles/main.css",
-  "./assets/icons/icon-256x256.png",
-  "https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.0-rc.3/fonts/calcite-ui.woff",
-  "https://js.arcgis.com/4.4/esri/themes/base/icons/fonts/CalciteWebCoreIcons.ttf?erniwi",
-  "https://js.arcgis.com/4.4/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_400.woff2",
-  "https://js.arcgis.com/4.4/esri/themes/base/fonts/avenir-next/Avenir_Next_W00_600.woff2"
-];
-self.addEventListener("install", function(e) {
-  e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      return cache.addAll(filesToCache);
-    })
-  );
-});
-```
+- Service Workers
+- AppCache (Internet Explorer)
 
 ---
 
 ### Take advantage of some modern tooling
-- [Prettier](https://github.com/prettier/prettier) - automatically beautify code
 - [webpack](https://webpack.js.org/)
+- [TypeScript](http://www.typescriptlang.org/)
+
+---
+
+### We can help you
+
+- [`@arcgis/webpack-plugin`](https://github.com/esri/arcgis-webpack-plugin)
+  - A webpack plugin that can compile the ArcGIS API for JavaScript into applictions
+- [`@arcgis/cli`](https://github.com/Esri/arcgis-js-cli)
+  - A useful tool to quickly scaffold applications using the ArcGIS API for JavaScript
 
 ---
 
@@ -606,11 +558,6 @@ self.addEventListener("install", function(e) {
 - Widgets you can use <!-- .element: class="fragment" data-fragment-index="3" -->
 - View properties, components, responsiveness <!-- .element: class="fragment" data-fragment-index="4" -->
 - Existing apps available to customize <!-- .element: class="fragment" data-fragment-index="5" -->
-  - Configurable
-  - Boilerplates
-  - Calcite Maps
-  - WebAppBuilder
-  - etc
 
 ---
 
