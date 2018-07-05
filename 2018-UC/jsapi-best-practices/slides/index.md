@@ -287,19 +287,6 @@ Useful view sizing properties
 
 ---
 
-<!-- .slide: data-background="./images/section.png" -->
-# Web AppBuilder
-
----
-
-# Apps: Web AppBuilder
-
-- Two Options
-  - Online
-  - Developer Edition
-
----
-
 # Apps: Scaffolding app
 
 ---
