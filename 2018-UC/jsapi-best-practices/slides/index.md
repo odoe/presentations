@@ -127,6 +127,17 @@ UC 2018
 
 ---
 
+
+# Widgets: Search
+
+- Search using locator or map features 
+- Default Esri World Locator
+- Portal locators 
+- [Search Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-search-3d)
+
+---
+
+
 # Widgets: Expand
 
 - Collapsable button/panel <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -137,7 +148,9 @@ UC 2018
 
 # Widgets: Expand Sample
 
-- [Expand Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-expand)
+- [Expand Sample]
+- expandIconClass 
+(https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-expand)
 
 ```js
 const htmlString = "<div style='background:red'>Hello World</div>";
