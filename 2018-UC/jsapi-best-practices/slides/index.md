@@ -449,14 +449,6 @@ const map = new WebMap({
 
 ---
 
-## You can query SceneLayer too
-
----
-
-## Elevation, query it, go ahead
-
----
-
 ## Architect your app
 
 - TypeScript (widgets)
