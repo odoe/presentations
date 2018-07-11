@@ -543,6 +543,18 @@ webpack.tests.config.js <-- Webpack config for tests
 
 ---
 
+### Demo App
+
+- [arcgis-pwa](https://github.com/odoe/arcgis-pwa)
+
+---
+
+### Example App
+
+- [Maps-App-JavaScript](https://github.com/Esri/maps-app-javascript)
+
+---
+
 # Lets Recap
 
 - What you get in 4x <!-- .element: class="fragment" data-fragment-index="1" -->
