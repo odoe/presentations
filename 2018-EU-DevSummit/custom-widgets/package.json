@@ -1,0 +1,39 @@
+{
+  "name": "eu-2018-building-your-own-widget",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "tsc"
+  },
+  "dependencies": {
+    "highlightjs": "^9.10.0",
+    "reveal.js": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/arcgis-js-api": "~4.8.0",
+    "dojo-typings": "^1.11.7",
+    "grunt": "^1.0.3",
+    "grunt-sass": "^2.0.0",
+    "prettier": "~1.13.7",
+    "typescript": "^2.9.2"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "printWidth": 120,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "trailingComma": "none",
+    "useTabs": false,
+    "overrides": [
+      {
+        "files": "*.tsx",
+        "options": {
+          "printWidth": 100
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Building Your Own Widget with ArcGIS API for JavaScript</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+  <link rel="stylesheet" href="./app/css/main.css">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+  <script type="text/javascript">
+    var href = location.href;
+    var demoLocation = href.slice(0, href.lastIndexOf("/"));
+    var dojoConfig = {
+      // configure loader to load demo modules (non-CDN) from the correct location.
+      packages: [{
+        name: "demo",
+        location: demoLocation + '/app'
+      }]
+    };
+  </script>
+  <script src="https://js.arcgis.com/4.8"></script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <script>require(["demo"])</script>
+</body>
+
+</html>
