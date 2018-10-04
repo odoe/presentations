@@ -1,6 +1,6 @@
-# ArcGIS API 4.x for JavaScript: Programming Patterns and API Fundamentals
+# ArcGIS API for JavaScript: Creating Custom Layers and Layer Views
 
-In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, including the fundamentals of watching for property changes, autocasting, working with Collections, and lazy-loading data in your applications! You'll learn more details about maps, webmaps, layers, 2D and 3D views, UI, and widgets! This is a key session for developers new to the 4.x version of the API.
+Learn how you can extend the API with custom layers and display them in 2D's MapView and 3D's SceneView.
 
 
-Slides: http://odoe.github.io/presentations/2018-PS-DevSummit/jsapi4-patterns-fundamentals/
+Slides: http://odoe.github.io/presentations/2018-EU-DevSummit/custom-layers
