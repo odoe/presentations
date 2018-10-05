@@ -10,14 +10,14 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  /* http://colorzilla.com/gradient-editor/#0192ff+15,0192ff+15,6beac7+100 */
-  background: #0192ff;
+  /* http://colorzilla.com/gradient-editor/#00805a+15,0192ff+15,6beac7+100 */
+  background: #00805a;
   /* Old browsers */
-  background: -moz-linear-gradient(-45deg, #0192ff 15%, #0192ff 15%, #6beac7 100%);
+  background: -moz-linear-gradient(-45deg, #00805a 15%, #00805a 15%, #6beac7 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, #0192ff 15%, #0192ff 15%, #6beac7 100%);
+  background: -webkit-linear-gradient(-45deg, #00805a 15%, #00805a 15%, #6beac7 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, #0192ff 15%, #0192ff 15%, #6beac7 100%);
+  background: linear-gradient(135deg, #00805a 15%, #00805a 15%, #6beac7 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   background-color: #fff;
 }
