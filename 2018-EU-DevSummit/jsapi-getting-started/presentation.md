@@ -11,7 +11,7 @@
 
 ## Agenda
 
-- Introduction to the ArcGIS API 4.x for JavaScript
+- Introduction to the ArcGIS API 4 for JavaScript
 - Fundamentals and Patterns
 - Platform Integration
 - Visualizations (2D and 3D)
@@ -21,7 +21,7 @@
 
 ---
 
-## Introduction to the ArcGIS API 4.x for JavaScript
+## Introduction to the ArcGIS API 4 for JavaScript
 
 - Simplified and consistent API
 - Write apps in ES6 or TypeScript
@@ -40,8 +40,8 @@
 <br>
 
 ```
-<link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
-<script src="https://js.arcgis.com/4.4/"></script>
+<link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+<script src="https://js.arcgis.com/4.9/"></script>
 ```
 
 ---
@@ -172,19 +172,6 @@ const map = new Map({
 
 ## Layers and LayerViews
 
-|            |          |
-| ------------- | -------------:|
-| FeatureLayer | TileLayer |
-| GraphicsLayer | Grouplayer |
-| MapImageLayer | VectorTileLayer |
-| ImageryLayer | CSVLayer |
-| GeoRSSLayer | KMLLayer |
-| ElevationLayer | OpenStreetMapLayer |
-| SceneLayer (3D) | PointCloudsLayer (3D) |
-| IntegratedMeshLayer (3D) | StreamLayer |
-| WebTileLayer | WMSLayer |
-| WMTSLayer |  |
-
 ---
 
 ## Layers
@@ -269,7 +256,7 @@ const map = new Map({
 
 ## LayerViews
 
-<iframe height='600' scrolling='no' title='FeatureLayer' src='//codepen.io/odoe/embed/preview/vJdVpQ/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/vJdVpQ/'>FeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='BerlinDS - FL and GeomEngine - France' src='//codepen.io/odoe/embed/preview/MPOEaw/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/MPOEaw/'>BerlinDS - FL and GeomEngine - France</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -306,14 +293,14 @@ const view = new MapView({
 
 - Property watching
 
-<iframe height='600' scrolling='no' title='Property Changes' src='//codepen.io/odoe/embed/preview/LjKaxj/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/LjKaxj/'>Property Changes</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Property Changes' src='//codepen.io/odoe/embed/preview/LjKaxj/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/LjKaxj/'>Property Changes</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
 
 ## Widgets!
 
-- ~20 Widgets out of the box <!-- .element: class="fragment" data-fragment-index="1" -->
+- Widgets out of the box <!-- .element: class="fragment" data-fragment-index="1" -->
 - Widgets help make great apps <!-- .element: class="fragment" data-fragment-index="1" -->
 - Less code for you to write <!-- .element: class="fragment" data-fragment-index="1" -->
 - Designed with responsive apps in mind <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -342,7 +329,20 @@ const view = new MapView({
 
 ---
 
-<iframe height='600' scrolling='no' title='Popup Docking' src='//codepen.io/odoe/embed/preview/qXwoRy/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/qXwoRy/'>Popup Docking</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Popup Docking' src='//codepen.io/odoe/embed/preview/qXwoRy/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/qXwoRy/'>Popup Docking</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Widgets: Feature
+
+- Popup content
+- Use alone or in your own widgets
+- Flexible
+
+---
+
+<iframe height='600' scrolling='no' title='Feature Widget Fun' src='//codepen.io/odoe/embed/preview/yxzPbJ/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/yxzPbJ/'>Feature Widget Fun</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -357,7 +357,7 @@ const view = new MapView({
 
 ## Widgets: Expand Sample
 
-<iframe height='600' scrolling='no' title='Expand Widget' src='//codepen.io/odoe/embed/preview/MvNYKm/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/MvNYKm/'>Expand Widget</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Expand Widget' src='//codepen.io/odoe/embed/preview/MvNYKm/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/MvNYKm/'>Expand Widget</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -390,7 +390,7 @@ Useful [view properties](https://developers.arcgis.com/javascript/latest/api-ref
 
 ## View UI
 
-<iframe height='600' scrolling='no' title='Positions' src='//codepen.io/odoe/embed/preview/mMYqGZ/?height=300&theme-id=31222&default-tab=js,result&embed-version=2&editable=true' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/mMYqGZ/'>Positions</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Positions' src='//codepen.io/odoe/embed/preview/mMYqGZ/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/mMYqGZ/'>Positions</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -413,7 +413,7 @@ const view = new SceneView({
 
 ## Components Demo
 
-<iframe height='600' scrolling='no' title='Components' src='//codepen.io/odoe/embed/preview/MvdOXm/?height=600&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/MvdOXm/'>Components</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Components' src='//codepen.io/odoe/embed/preview/MvdOXm/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/MvdOXm/'>Components</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -431,7 +431,7 @@ const view = new SceneView({
 
 ## Platform Demo
 
-<iframe height='600' scrolling='no' title='Platform' src='//codepen.io/andygup/embed/preview/vJoOEL/?height=300&theme-id=theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/andygup/pen/vJoOEL/'>vJoOEL</a> by Andy (<a href='https://codepen.io/andygup'>@andygup</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Platform' src='//codepen.io/odoe/embed/preview/LgemPK/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/LgemPK/'>Platform</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -500,21 +500,13 @@ const view = new SceneView({
 
 ## WebGL FeatureLayer
 
-- Beta feature in 4.5 release
-
-```js
-var dojoConfig = {
-  has: {
-    "esri-featurelayer-webgl": 1
-  }
-};
-```
+- Default for _ALL_ Feature Services
 
 ---
 
 ## WebGL FeatureLayer
 
-<iframe height='600' scrolling='no' title='WebGL FeatureLayer' src='//codepen.io/odoe/embed/preview/zEOZKz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOZKz/'>WebGL FeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Berlin Buildings - Smart Mapping' src='//codepen.io/odoe/embed/preview/Bqjobx/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/Bqjobx/'>Berlin Buildings - Smart Mapping</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -547,7 +539,7 @@ sketch.create("polyline"); // point, polyline, polygon
 
 ## SketchViewModel
 
-<iframe height='600' scrolling='no' title='YrKVBW' src='//codepen.io/odoe/embed/preview/YrKVBW/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YrKVBW/'>YrKVBW</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='SketchViewModel' src='//codepen.io/odoe/embed/preview/YrKVBW/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YrKVBW/'>SketchViewModel</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -569,7 +561,7 @@ action.on("draw-complete", (event) => ...);
 
 ## Draw API
 
-<iframe height='600' scrolling='no' title='Draw API' src='//codepen.io/odoe/embed/preview/zEOdBz/?height=300&theme-id=31222&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOdBz/'>Draw API</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+<iframe height='600' scrolling='no' title='Draw API' src='//codepen.io/odoe/embed/preview/zEOdBz/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/zEOdBz/'>Draw API</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
 
 ---
@@ -601,8 +593,6 @@ action.on("draw-complete", (event) => ...);
 
 - npm
   - `npm install --save arcgis-js-api`
-- bower
-  - `bower install arcgis-js-api@4.4.0`
 
 ---
 
@@ -650,26 +640,18 @@ var profile = {
 
 ## Webpack Builds
 
-- `webpack.config.js`
-- ignore the `esri` and `dojo` modules
+- [`@arcgis/webpack-plugin`](https://github.com/esri/arcgis-webpack-plugin)
 
 ```js
+// webpack.config.js
+const ArcGISPlugin = require("@arcgis/webpack-plugin");
+
+// add it to config
 module.exports = {
   ...
-  externals: [
-    function(context, request, callback) {
-      if (
-        /^dojo/.test(request) ||
-        /^dojox/.test(request) ||
-        /^dijit/.test(request) ||
-        /^esri/.test(request)
-      ) {
-        return callback(null, "amd " + request);
-      }
-      callback();
-    }
-  ]
-};
+  plugins: [new ArcGISPlugin()]
+  ...
+}
 ```
 
 ---
