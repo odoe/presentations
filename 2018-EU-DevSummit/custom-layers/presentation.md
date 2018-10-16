@@ -70,7 +70,8 @@ Raluca Nicola & René Rubalcava
 
 ## Custom Dynamic Layer - Consume WMS Service
 
-- Demo
+<iframe height='600' scrolling='no' title='Custom DynamicLayer' src='//codepen.io/odoe/embed/preview/bmYLBy/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/bmYLBy/'>Custom DynamicLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -107,13 +108,8 @@ Raluca Nicola & René Rubalcava
 
 ## Custom Tile Layer - getTileUrl
 
-- Demo
-
----
-
-## Custom Tile Layer - fetchTile
-
-- Demo
+<iframe height='600' scrolling='no' title='Custom TileLayer' src='//codepen.io/odoe/embed/preview/BqmYZE/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/BqmYZE/'>Custom TileLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -138,13 +134,15 @@ Raluca Nicola & René Rubalcava
 
 ## Loading and Integration: BlendLayer - service mashup
 
-- Demo
+<iframe height='600' scrolling='no' title='Custom BlendLayer' src='//codepen.io/odoe/embed/preview/XxzZZR/?height=600&theme-id=31222&default-tab=js,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/XxzZZR/'>Custom BlendLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
 ## Loading and Integration: Brick Layers
 
-- Demo
+<iframe height='600' scrolling='no' title='BrickLayer' src='https://odoe.github.io/brick-layer/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+</iframe>
 
 ---
 
@@ -163,7 +161,8 @@ Raluca Nicola & René Rubalcava
 
 ## Custom LayerViews
 
-- Demo
+<iframe height='600' scrolling='no' title='Canvas-Flowmap-Layer' src='https://sarahbellum.github.io/Canvas-Flowmap-Layer/demos-jsapi-4/main/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+</iframe>
 
 ---
 
