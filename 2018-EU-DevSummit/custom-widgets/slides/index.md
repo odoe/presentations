@@ -9,6 +9,10 @@
 
 ---
 
+<!-- .slide: data-background="img/sponsor.png" data-background-size="cover" -->
+
+---
+
 # Agenda
 
 - Set up dev environment

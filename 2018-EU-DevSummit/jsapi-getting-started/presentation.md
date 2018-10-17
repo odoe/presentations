@@ -7,6 +7,10 @@
 
 ---
 
+<!-- .slide: class="sponsor" -->
+
+---
+
 <!-- .slide: class="section" -->
 
 ## Agenda

@@ -36,7 +36,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
   background-image: url(end.png);
 }
 
-
+.reveal .slide-background.sponsor {
+  background-image: url(sponsor.png);
+}
 
 body {
   background: rgb(27, 27, 27);
