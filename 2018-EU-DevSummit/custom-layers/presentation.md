@@ -97,8 +97,8 @@ Raluca Nicola & René Rubalcava
 
 - BaseTileLayer.getTileUrl
   - Easiest method that creates a url for a tile id: level / row / col
-- BaseTileLayer.fetchImage
-  - Method that do the actual image fetching
+- BaseTileLayer.fetchTile
+  - Method that do the actual tile fetching
   - To extend if you need to transform data.
   - Default implementation fetch the image at the URL returned by getTileUrl
 
@@ -156,6 +156,42 @@ Raluca Nicola & René Rubalcava
 
 - LayerViews are responsible to call the layers’ APIs to get data and redraw
 - Provide a Canvas2D API to draw anything you want.
+
+---
+
+## BaseLayerView2D
+
+```js
+var TileBorderLayerView2D = BaseLayerView2D.createSubclass({
+   render(renderParameters) {
+     var state = renderParameters.state;
+     var context = renderParameters.context;
+     var stationary = renderParamers.stationary;
+
+     context.save();
+
+     // apply rotation
+     if (!state.rotation !== 0) {
+       // calculate rotation
+     }
+
+     for (const tile of this.tiles) {
+       // do something
+     }
+
+     context.restore();
+   }
+ });
+```
+
+---
+
+## Methods to implement
+
+- `render()` - need to define how and what the layer view is going to draw
+- `attach()` - typically define any watchers here
+- `hitTest()` - define what is returned in a hitTest
+    - useful for interaction
 
 ---
 
