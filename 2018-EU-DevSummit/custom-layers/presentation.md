@@ -63,9 +63,9 @@ Raluca Nicola & René Rubalcava
 
 ## Dynamic Layer: Extensibility hooks
 
-- BaseDynamicLayer.getImageUrl
+- `BaseDynamicLayer.getImageUrl`
   - Easiest method that creates a url for a extent and size
-- BaseDynamicLayer.fetchImage
+- `BaseDynamicLayer.fetchImage`
   - Method that do the actual image fetching
   - To extend if you need to transform data.
   - Default implementation fetch the image at the URL returned by getImageUrl
@@ -99,9 +99,9 @@ Raluca Nicola & René Rubalcava
 
 ## TileLayer: Extensibility Hooks
 
-- BaseTileLayer.getTileUrl
+- `BaseTileLayer.getTileUrl`
   - Easiest method that creates a url for a tile id: level / row / col
-- BaseTileLayer.fetchTile
+- `BaseTileLayer.fetchTile`
   - Method that do the actual tile fetching
   - To extend if you need to transform data.
   - Default implementation fetch the image at the URL returned by getTileUrl
