@@ -7,6 +7,10 @@ Raluca Nicola & René Rubalcava
 
 ---
 
+<!-- .slide: class="sponsor" -->
+
+---
+
 <!-- .slide: class="agenda" -->
 
 ## Agenda

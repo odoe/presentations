@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+  <title>Cedar with Secure Services</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.5/esri/css/main.css">
+  <script>
+    window.dojoConfig = {
+      async: true,
+      /*has: {
+          "esri-featurelayer-webgl": 1
+      },*/
+      packages: [
+        {
+          name: 'd3',
+          location: 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6',
+          main: 'd3.min'
+        }, {
+          name: 'vega',
+          location: 'https://cdnjs.cloudflare.com/ajax/libs/vega/2.6.1',
+          main: 'vega.min'
+        }, {
+          name: 'cedar',
+          location: 'https://unpkg.com/arcgis-cedar/dist/',
+          main: 'cedar.min'
+        }
+      ]
+    };
+  </script>
+  <script src="https://js.arcgis.com/4.5/"></script>
+  <style>
+    html,
+    body {
+      font-family: Avenir, Lucida Sans, Lucida Grande, Arial !important;
+      font-size: 14px;
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #viewDiv,
+    #chart {
+      padding: 0;
+      margin: 0;
+      height: 50%;
+      width: 100%;
+    }
+
+    .action {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    require([
+      "esri/portal/Portal",
+      "esri/identity/OAuthInfo",
+      "esri/identity/IdentityManager",
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer",
+
+      "cedar",
+
+      "dojo/dom-style",
+      "dojo/dom-attr",
+      "dojo/on",
+      "dojo/dom",
+      "dojo/domReady!"
+    ], function (
+      Portal, OAuthInfo, esriId, Map, MapView, FeatureLayer,
+      Cedar,
+      domStyle, domAttr, on, dom) {
+        // ArcGIS Enterprise Portals are also supported
+        var portalUrl = "http://jsapi.maps.arcgis.com/sharing";
+
+        // subsitute your own client_id to identify who spawned the login and check for a matching redirect URI
+        var info = new OAuthInfo({
+          appId: "UYi0AqKPKbDn26bo",
+          popup: false // inline redirects don't require any additional app configuration
+        });
+        esriId.registerOAuthInfos([info]);
+
+        function displayMap() {
+          var portal = new Portal();
+
+          // Once the portal has loaded, the user is signed in
+          portal.load().then(function () {
+            dom.byId('viewDiv').style.display = 'block';
+            dom.byId('chart').style.display = 'block';
+            dom.byId('anonymousPanel').style.display = 'none';
+
+            var map = new Map({
+              basemap: "topo"
+            });
+
+            var view = new MapView({
+              container: "viewDiv",
+              map: map,
+              zoom: 14,
+              center: [-118.24, 34.05]
+            });
+
+            var layer = new FeatureLayer({
+              portalItem: {
+                id: "543b08d981f84beb861b2fc80620e7d2"
+              }
+            })
+            map.add(layer);
+            layer.load().then(() => {
+              view.extent = layer.fullExtent;
+              const chart = new Cedar({ "type": "bar" });
+              //create the dataset w/ mappings
+
+              const dataset = {
+                "url": `${layer.url.replace("http://", "https://")}/0`,
+                "query": {
+                  "token": layer.credential.token,
+                  "groupByFieldsForStatistics": "Country",
+                  "outStatistics": [{
+                    "statisticType": "sum",
+                    "onStatisticField": "NetChange",
+                    "outStatisticFieldName": "TOTAL_CHANGE"
+                  }]
+                },
+                "mappings": {
+                  "sort": "TOTAL_CHANGE",
+                  "x": { "field": "Country", "label": "Country" },
+                  "y": { "field": "TOTAL_CHANGE", "label": "Total Net Change" }
+                }
+              };
+
+              //assign to the chart
+              chart.dataset = dataset;
+
+              //show the chart
+              chart.show({
+                elementId: "#chart"
+              });
+
+
+              chart.on("mouseover", (event, data) => {
+                if (data) {
+                  highlightFeatures(data["Country"]);
+                }
+              });
+
+              const query = layer.createQuery();
+              function highlightFeatures(country) {
+                query.returnGeometry = true;
+                query.where = `Country = '${country}'`;
+                layer.queryFeatures(query).then((result) => {
+                  view.graphics.removeAll();
+                  const graphics = result.features.map(x => {
+                    const g = x.clone();
+                    g.symbol = {
+                      type: "simple-marker",
+                      outline: {
+                        width: 1,
+                        color: [255, 255, 255, 1]
+                      },
+                      size: 14,
+                      color: [0, 255, 255, 0.75]
+                    };
+                    return g;
+                  });
+                  view.graphics.addMany(graphics);
+                })
+                  .catch(error => console.warn(error))
+              }
+            });
+          });
+        }
+
+        // send users to arcgis.com to login
+        on(dom.byId("sign-in"), "click", function () {
+          esriId.getCredential(portalUrl);
+        });
+
+        // persist logins when the page is refreshed
+        esriId.checkSignInStatus(portalUrl).then(
+          function () {
+            // display the map once the user is logged in
+            displayMap();
+          }
+        );
+
+      }
+    );
+  </script>
+</head>
+
+<body>
+  <div id="anonymousPanel" style="display: block; padding: 5px; text-align: center;">
+    <span id="sign-in" class="action">Sign In</span> to see live traffic.
+  </div>
+
+  <div id="personalizedPanel" style="display: none; padding: 5px; text-align: center;">
+    Welcome
+    <span id="userId" style="font-weight: bold;"></span> &nbsp;-&nbsp;
+    <span id="sign-out" class="action">Sign Out</span>
+  </div>
+  <!-- for the map -->
+  <div id="viewDiv" style="display: none;"></div>
+  <div id="chart" style="display: none;"></div>
+</body>
+
+</html>
