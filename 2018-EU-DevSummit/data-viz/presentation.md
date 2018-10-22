@@ -108,11 +108,14 @@ David Martinez & René Rubalcava
 ---
 
 
-### Where's the Map?
+### Maps and Charts
 
 <!-- .slide: class="section" -->
 
-[Chart with Map](demos/secure-services.html)
+---
+
+<iframe height='600' scrolling='no' title='Query statistics client-side by distance - 4.9' src='//codepen.io/odoe/embed/preview/mzGPyg/?height=600&theme-id=31222&default-tab=html,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/mzGPyg/'>Query statistics client-side by distance - 4.9</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -205,21 +208,127 @@ David Martinez & René Rubalcava
 
 ---
 
+<!-- .slide: class="section" -->
+
+# SmartMapping
+
+---
+
+## Exploring Age
+
+- _Age_: Time elapsed between two dates
+- Need at least one date field
+
+---
+
+## createAgeRenderer
+
+```js
+const ageParams = {
+  layer: layer,
+  view: view,
+  basemap: map.basemap,
+  startTime: "INSPECTION_DATE",
+  endTime: Date.now(),
+  theme: "above-and-below"
+};
+
+// smart mapping will determine age units to use
+const rendererResponse =
+    await colorRendererCreator.createAgeRenderer(ageParams);
+layer.renderer = rendererResponse.renderer;
+```
+
+---
+
+## createAgeRenderer
+
+- Will generate the age for you using [`DateDiff`](https://developers.arcgis.com/arcade/function-reference/date_functions/#datediff)
+
+```js
+DateDiff(endDate, startDate, 'years');
+```
+
+---
+
+<iframe height='600' scrolling='no' title='createAgeRenderer' src='https://ekenes.github.io/esri-ts-samples/visualization/smart-mapping/age/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+</iframe>
+
+---
+
+## createContinuousRenderer
+
+- You construct the Arcade expression yourself
+- Color or size
+
+```js
+const ageParams = {
+  layer: layer,
+  view: view,
+  basemap: map.basemap,
+  // subtracts the current year from the construction year
+  valueExpression: "Year(Date()) - $feature.CNSTRCT_YR",
+  theme: "above-and-below"
+};
+
+const rendererResponse =
+    await colorRendererCreator.createContinuousRenderer(ageParams);
+layer.renderer = rendererResponse.renderer;
+```
+
+---
+
+<iframe height='600' scrolling='no' title='createContinuousRenderer' src='https://ekenes.github.io/esri-ts-samples/visualization/smart-mapping/age-buildings/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+</iframe>
+
+---
+
+## Relationship
+
+- Visualize the relationship between values
+- A bivariate renderer
+
+---
+
+## Relationship
+
+```js
+const params = {
+  layer: layer,
+  view: view,
+  basemap: map.basemap,
+  field1: {
+    field: "StarScore"
+  },
+  field2: {
+    field: "ElectricUse"
+  },
+  // HIGH field 1 value & HIGH field 2 value
+  // corner of legend is on top
+  focus: "HH",
+  numClasses: 2
+};
+
+const response = await relationshipRendererCreator.createRenderer(params);
+layer.renderer = response.renderer;
+```
+
+---
+
+<iframe height='600' scrolling='no' title='Relationship' src='https://developers.arcgis.com/javascript/latest/sample-code/visualization-sm-relationship/live/index.html' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+</iframe>
+
+---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
 
 **Help us to improve** filling out the survey
 
-<p align="center">
-<img src="images/survey-slide.png" alt="alt text"  width="1000" height="600">
-</p>
-
 David Martinez ([@DavidJmart](https://twitter.com/DavidJmart))
 
 Rene Rubalcava ([@odoenet](https://twitter.com/odoenet))
-
-Slides: [github.com/odoe/presentations/2017-European-DevSummit/charts-viz/](github.com/odoe/presentations/2017-European-DevSummit/charts-viz)
 
 ---
 
