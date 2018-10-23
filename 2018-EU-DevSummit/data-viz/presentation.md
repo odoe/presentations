@@ -130,54 +130,6 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
-### Recent Improvements
-
-- 2016 focused on flexibility & reliability of data queries:
-  - Better support for and examples of SQL expressions
-  - Ability to transform data returned from server
-  - Query callback for error handling
-  - Timeouts for slow loading Data
-- 2017 focussing on cedar v1...
-
----
-
-<!-- .slide: class="section" -->
-
-## Where Are We Headed?
-
-<p align="center">
-<img src="images/astronautransparent.png" alt="alt text"  width="550" height="550">
-</p>
-
----
-
-<!-- .slide: class="section" -->
-
-### Cedar v1
-
-[Released in alpha last week!](https://github.com/Esri/cedar/releases/tag/v1.0.0-alpha)
-
-- Better support for [multi-series charts](https://esri.github.io/ember-cli-cedar/#/charts/line)
-- Support for [joining multiple datasets](https://esri.github.io/ember-cli-cedar/#/charts/bar-grouped)
-- New chart types ([area](https://esri.github.io/ember-cli-cedar/#/charts/area), [radar](https://esri.github.io/ember-cli-cedar/#/charts/radar))
-- improved default styling for charts based on [Calcite](https://esri.github.io/calcite-bootstrap/colors.html)
-
----
-
-<!-- .slide: class="section" -->
-
-### v1 uses amCharts
-
-- Basing cedar on   [amCharts](https://www.amcharts.com/javascript-charts/) will make it easier to:
-    - Create and customize new chart types
-    - Customize or extend existing built-in chart types
-    - Style and theme charts
-
----
-
-
-<!-- .slide: class="section" -->
-
 ### Examples
 
 1. [Bar](https://esri.github.io/ember-cli-cedar/#/charts/bar)
@@ -196,15 +148,6 @@ David Martinez & René Rubalcava
 - Async functions use promises instead of callbacks
 - fluent, chainable setters and methods
 - streamlined, reduced footprint
-
----
-
-<!-- .slide: class="section" -->
-
-### v1 Roadmap
-- [open issues](https://github.com/Esri/cedar/issues?q=is%3Aissue+is%3Aopen+label%3Av1x)
-- TLDR: `TODO: documentation!`
-- we welcome your [ideas](https://github.com/Esri/cedar/issues), and of course, [contributions](https://github.com/esri/contributing)
 
 ---
 
@@ -316,6 +259,53 @@ layer.renderer = response.renderer;
 ---
 
 <iframe height='600' scrolling='no' title='Relationship' src='https://developers.arcgis.com/javascript/latest/sample-code/visualization-sm-relationship/live/index.html' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
+</iframe>
+
+---
+
+## Predominance
+
+- Visualize data based on attributes based on which one wins
+- Election results, survey results, demographic majorities
+
+---
+
+## Predominance
+
+```js
+// Gets all the predominance schemes available in the JS API
+const schemes = predominanceSchemes.getSchemes({
+  basemap: map.basemap,
+  geometryType: "polygon",
+  numColors: 10
+});
+const params = {
+  view,
+  layer,
+  fields,
+  predominanceScheme: schemes.secondarySchemes[6],
+  sortBy: "value",
+  basemap: view.map.basemap,
+  includeSizeVariable: includeSizeCheckbox.checked,
+  includeOpacityVariable: includeOpacityCheckbox.checked,
+  legendOptions: {
+    title: "Most common decade in which homes were built"
+  }
+};
+
+const predominanceResponse = predominanceRendererCreator.createRenderer(params);
+layer.renderer = predominanceResponse.renderer;
+```
+
+---
+
+![Predominance Arcade](images/predominance-arcade-2.png)
+
+---
+
+## Predominance
+
+<iframe height='600' scrolling='no' title='Relationship' src='https://ekenes.github.io/esri-ts-samples/visualization/smart-mapping/predominance/boise-housing/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
 </iframe>
 
 ---
