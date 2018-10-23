@@ -125,4 +125,4 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
   }
 }
 
-export = WebMapShowcaseViewModel;
+export default WebMapShowcaseViewModel;

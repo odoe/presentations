@@ -35,6 +35,8 @@ tsc --init
 {
   "compilerOptions": {
     "module": "amd",
+    "esModuleInterop": true,
+    "lib": ["dom", "es2015.promise", "es5"],
     "noImplicitAny": true,
     "sourceMap": true,
     "jsx": "react",

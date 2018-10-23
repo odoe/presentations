@@ -12,7 +12,7 @@ import { declared, subclass } from "esri/core/accessorSupport/decorators";
 @subclass("esri.demo.CustomWidget")
 class CustomWidget extends declared(Widget) {}
 
-export = CustomWidget;
+export default CustomWidget;
 ```
 
 ## 2. Add Lifecycle Section

@@ -64,4 +64,4 @@ class CustomWidget extends declared(Widget) {
   }
 }
 
-export = CustomWidget;
+export default CustomWidget;

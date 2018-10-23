@@ -27,4 +27,4 @@ class WebMapShowcase extends declared(Widget) {
   }
 }
 
-export = WebMapShowcase;
+export default WebMapShowcase;

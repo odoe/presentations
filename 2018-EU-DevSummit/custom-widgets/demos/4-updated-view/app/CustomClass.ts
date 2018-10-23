@@ -124,4 +124,4 @@ class CustomClass extends declared(Accessor) {
   }
 }
 
-export = CustomClass;
+export default CustomClass;

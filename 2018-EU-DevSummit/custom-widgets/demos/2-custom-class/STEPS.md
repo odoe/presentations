@@ -12,7 +12,7 @@ class CustomClass extends declared(Accessor) {
 
 }
 
-export = CustomClass;
+export default CustomClass;
 ```
 
 This is the minimum required to create a class in 4x. All we're doing here is creating a class that extends `esri/core/Accessor`, which is the base of all 4x classes.
