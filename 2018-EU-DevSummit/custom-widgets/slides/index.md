@@ -93,7 +93,7 @@ const shorthand = { person };
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Dev Environment](../demos/1-setup/STEPS.md)
+# Demo: [Dev Environment](../demos/1-setup/)
 
 - Install TypeScript + JS API
 
@@ -133,7 +133,7 @@ me.watch("age", singHappyBirthday);
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Custom Class](../demos/2-custom-class/STEPS.md)
+# Demo: [Custom Class](../demos/2-custom-class/)
 
 ```ts
 // fetches webmaps from a portal and provides APIs to work with them
@@ -218,7 +218,7 @@ interface CustomClass {
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Simple View](../demos/3-simple-view/STEPS.md)
+# Demo: [Simple View](../demos/3-simple-view/)
 
 Write simple widget
 
@@ -281,7 +281,7 @@ Write simple widget
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Updated View](../demos/4-updated-view/STEPS.md)
+# Demo: [Updated View](../demos/4-updated-view/)
 
 - Create `WebMapShowCase` to use `CustomClass` as VM
 - Render details from the `active` portal item
@@ -317,7 +317,7 @@ Write simple widget
 
 <!-- .slide: data-background="img/bg-5.png" data-background-size="cover" -->
 
-# Demo: [Going Further (UX)](../demos/5-final-view/STEPS.md)
+# Demo: [Going Further (UX)](../demos/5-final-view/)
 
 - Auto-cycle through webmaps
 - Show timer in UI
