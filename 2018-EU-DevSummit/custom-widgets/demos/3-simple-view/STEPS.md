@@ -58,7 +58,7 @@ Open `main.ts` and setup the widget initialization.
 First require the widget
 
 ```ts
-import CustomWidget = require("./CustomWidget");
+import CustomWidget from "./CustomWidget";
 ```
 
 Then initialize the widget.

@@ -16,13 +16,13 @@ class WebMapShowcaseViewModel extends declared(Accessor) {
 Remove import to CustomClass
 
 ```ts
-import CustomClass = require("./CustomClass");
+import CustomClass from "./CustomClass";
 ```
 
 Add import WebMapShowcaseViewModel
 
 ```ts
-import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
+import WebMapShowcaseViewModel from "./WebMapShowcaseViewModel";
 ```
 
 Remove references to `CustomClass` in `main.ts`. The following should be removed
@@ -67,7 +67,7 @@ constructor(props: WebMapShowcaseProperties) {
 Lets get the ViewModel to use it as the logic for our widget.
 
 ```ts
-import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
+import WebMapShowcaseViewModel from "./WebMapShowcaseViewModel";
 ```
 
 Add Widget Properties
@@ -103,7 +103,7 @@ import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport
 Import MapView
 
 ```ts
-import MapView = require("esri/views/MapView");
+import MapView from "esri/views/MapView";
 ```
 
 ## Modify Widget Rendering

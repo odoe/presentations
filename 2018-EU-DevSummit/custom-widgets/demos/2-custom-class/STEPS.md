@@ -64,10 +64,10 @@ TypeScript will complain about references to classes and utilities we haven't im
 ```tsx
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
-import Accessor = require("esri/core/Accessor");
-import Portal = require("esri/portal/Portal");
-import PortalItem = require("esri/portal/PortalItem");
-import MapView = require("esri/views/MapView");
+import Accessor from "esri/core/Accessor";
+import Portal from "esri/portal/Portal";
+import PortalItem from "esri/portal/PortalItem";
+import MapView from "esri/views/MapView";
 ```
 
 We can leverage TypeScript and type the constructor argument to ensure our class is created with the correct properties. We'll define an interface for these properties
@@ -153,7 +153,7 @@ private _setActive(portalItem: PortalItem): void {
 Let's bring in the missing imports
 
 ```tsx
-import WebMap = require("esri/WebMap");
+import WebMap from "esri/WebMap";
 ```
 
 1.  Next up, is `next`. 🙃 This method will change the `active` property with the next available one from `webMaps`
@@ -183,11 +183,11 @@ We have now implemented our class and we can test it in our demo page.
 1.  We can now update the application from the previous demo and bring in our `CustomClass`.
 
 ```ts
-import Map = require("esri/Map");
-import MapView = require("esri/views/MapView");
+import Map from "esri/Map";
+import MapView from "esri/views/MapView";
 
 // import our new class
-import CustomClass = require("./CustomClass");
+import CustomClass from "./CustomClass";
 
 //----------------
 //  map setup

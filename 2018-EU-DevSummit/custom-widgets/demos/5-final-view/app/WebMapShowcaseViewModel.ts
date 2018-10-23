@@ -6,7 +6,7 @@ import PortalItem from "esri/portal/PortalItem";
 
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 
-import Accessor = require("esri/core/Accessor");
+import Accessor from "esri/core/Accessor";
 
 interface WebMapShowcaseViewModelProperties {
   view: MapView;
