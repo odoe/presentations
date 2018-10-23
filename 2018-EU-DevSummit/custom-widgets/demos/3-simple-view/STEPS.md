@@ -5,10 +5,7 @@
 Open `CustomWidget.tsx` and add the following basic class to the empty file.
 
 ```tsx
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
-
-import Widget = require("esri/widgets/Widget");
+import Widget from "esri/widgets/Widget";
 
 import { declared, subclass } from "esri/core/accessorSupport/decorators";
 

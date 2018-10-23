@@ -1,7 +1,7 @@
-import Map = require("esri/Map");
-import MapView = require("esri/views/MapView");
+import Map  from "esri/Map";
+import MapView from "esri/views/MapView";
 
-import CustomClass = require("./CustomClass");
+import CustomClass from "./CustomClass";
 
 //----------------
 //  map setup

@@ -1,6 +1,6 @@
-import MapView = require("esri/views/MapView");
+import MapView from "esri/views/MapView";
 
-import WebMapShowcase = require("./WebMapShowcase");
+import WebMapShowcase from "./WebMapShowcase";
 
 //----------------
 //  map setup

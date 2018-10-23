@@ -1,11 +1,8 @@
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
+import MapView from "esri/views/MapView";
+import WebMap from "esri/WebMap";
 
-import MapView = require("esri/views/MapView");
-import WebMap = require("esri/WebMap");
-
-import Portal = require("esri/portal/Portal");
-import PortalItem = require("esri/portal/PortalItem");
+import Portal from "esri/portal/Portal";
+import PortalItem from "esri/portal/PortalItem";
 
 import { declared, property, subclass } from "esri/core/accessorSupport/decorators";
 

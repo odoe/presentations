@@ -3,12 +3,9 @@
 1.  Let's start off by adding some boilerplate for creating a module or class.
 
 ```
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
-
 import { declared, subclass } from "esri/core/accessorSupport/decorators";
 
-import Accessor = require("esri/core/Accessor");
+import Accessor from "esri/core/Accessor";
 
 @subclass("esri.demo.CustomClass")
 class CustomClass extends declared(Accessor) {

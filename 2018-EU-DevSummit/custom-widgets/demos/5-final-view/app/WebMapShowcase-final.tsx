@@ -1,10 +1,7 @@
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-/// <amd-dependency path="esri/core/tsSupport/decorateHelper" name="__decorate" />
+import MapView from "esri/views/MapView";
+import Widget from "esri/widgets/Widget";
 
-import MapView = require("esri/views/MapView");
-import Widget = require("esri/widgets/Widget");
-
-import WebMapShowcaseViewModel = require("./WebMapShowcaseViewModel");
+import WebMapShowcaseViewModel from "./WebMapShowcaseViewModel";
 
 import { aliasOf, declared, property, subclass } from "esri/core/accessorSupport/decorators";
 import { accessibleHandler, renderable, tsx } from "esri/widgets/support/widget";
