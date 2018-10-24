@@ -20,6 +20,8 @@ Raluca Nicola & René Rubalcava
 - Building a custom tile layer
 - Layer loading and attribution
 - Custom LayerViews
+- Custom tile layer based on elevation data
+- Custom elevation layer
 
 ---
 
@@ -206,13 +208,97 @@ var TileBorderLayerView2D = BaseLayerView2D.createSubclass({
 
 ---
 
+## _2D &amp; 3D Viewing_
+
+<div class="twos">
+  <div class="snippet">
+  <pre><code class="lang-js hljs javascript">
+var map = new Map({
+  basemap: "streets",
+
+  layers: [new FeatureLayer(
+    "...Germany/FeatureServer/0"
+  )]
+});
+
+viewLeft = new MapView({
+  container: "viewDivLeft",
+
+  map: map
+});
+
+viewRight = new SceneView({
+  container: "viewDivRight",
+
+  map: map
+});
+
+</code></pre>
+
+  </div>
+  <div class="snippet-preview">
+    <iframe id="frame-2d-3d-parallel" data-src="./snippets/setup-2d-3d-parallel.html"></iframe>
+  </div>
+</div>
+
+---
+
+## Tiled Layers - Tiling Schemes for 3D
+
+<div class="twos">
+  <div class="snippet">
+    <div>
+      <br>
+      <ul>
+        <li>Span full globe with with different levels of detail</li>
+        <li>Quadratic tiles of sizes 256x256 or 512x512 pixels</li>
+        <li>Scale levels must increase or decrease by power of 2</li>
+        <li>All tiled layers must have the same tiling scheme and spatial reference</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+---
+
+## LERC Encoding
+### Limited Error Raster Compression
+
+- LERC is an open-source image or raster format
+- User defined  maximum compression error per pixel while encoding
+- Elevation data published by Esri is LERC encoded
+- JavaScript implementation available publicly
+  - https://github.com/Esri/lerc/
+
+---
+
+## Custom Tile Layer
+
+Let's create a custom avalanche layer that calculates slope angles on the fly.
+
+- Use existing elevation service for sampling
+- Classify slope angles according to incline:
+  - Low danger: < 30 &deg;
+  - Moderate danger: 30 - 35 &deg;
+  - High danger: 35 - 40 &deg;
+  - Very high danger: 40 - 45 &deg;
+  - Always avoid: \> 45 &deg;
+- Display resulting image on top of terrain
+
+---
+
+<!-- .slide: class="section" -->
+## Live demo
+
+---
+
 <!-- .slide: class="questions" -->
 
 ## Questions?
 
 ![Survey](images/survey-slide.png)
 
-Raluca Nicola(mdriscoll@esri.com) ([@nicolaraluk](https://twitter.com/nicolaraluk))
+Raluca Nicola(rnicola@esri.com) ([@nicolaraluk](https://twitter.com/nicolaraluk))
 
 Rene Rubalcava (rrubalcava@esri.com ) ([@odoenet](https://twitter.com/odoenet))
 

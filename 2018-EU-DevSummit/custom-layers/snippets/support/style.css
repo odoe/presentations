@@ -1,0 +1,61 @@
+html, body, #viewDiv {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#viewLog {
+  position: absolute;
+  bottom: 1.6em;
+  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  left: 0;
+  padding: 6px 6px 6px 6px;
+  color: white;
+  font-family: menlo, monospace;
+  font-size: 1em;
+  text-overflow: ellipsis;
+}
+
+#viewLog::before {
+  content: "> ";
+}
+
+#overviewDiv {
+  width: 150px;
+  height: 100px;
+
+  position: absolute;
+
+  top: 6px;
+  right: 6px;
+
+  border: 1px solid #aaa;
+
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+#viewDivLeft, #viewDivRight {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#viewDivLeft {
+  right: 50%;
+  left: 0;
+  padding-right: 12px;
+}
+
+#viewDivRight {
+  left: 50%;
+  right: 0;
+  padding-left: 12px;
+}
+
+
+.esri-attribution {
+  visibility: hidden;
+}

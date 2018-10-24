@@ -1,0 +1,78 @@
+<script>
+function snippet(containers, interlinks) {
+  require([
+    "dojo/promise/all",
+    "esri/Map",
+    "esri/layers/FeatureLayer",
+    "esri/views/SceneView",
+    "esri/views/MapView"
+  ], function(
+    all,
+    Map,
+    FeatureLayer,
+    SceneView,
+    MapView
+  ) {
+    var map = new Map({
+      basemap: "streets",
+      layers: [ new FeatureLayer("http://services1.arcgis.com/EYwUC8SxXDiz08ND/arcgis/rest/services/Germany%20income%20per%20person/FeatureServer/0") ]
+    });
+
+    var extent = {
+      xmax: 2202046,
+      xmin: 227590,
+      ymax: 7864113,
+      ymin: 5731967,
+
+      spatialReference: 102100
+    };
+
+    document.body.appendChild(create("div", {
+      id: "viewDivLeft"
+    }));
+
+    viewLeft = new MapView({
+      container: "viewDivLeft",
+
+      map: map,
+      extent: extent
+    });
+
+    document.body.appendChild(create("div", {
+      id: "viewDivRight"
+    }));
+
+    viewRight = new SceneView({
+      container: "viewDivRight",
+
+      map: map,
+      extent: extent
+    });
+
+    all([viewLeft, viewRight]).then(function() {
+      viewLeft.watch("viewpoint", function(viewpoint) {
+        if (viewLeft.interacting || viewLeft.animation) {
+          viewRight.viewpoint = viewpoint;
+          viewRight.extent = viewLeft.extent;
+        }
+      });
+
+      viewRight.watch("viewpoint", function(viewpoint) {
+        if (viewRight.interacting || viewRight.animation) {
+          viewLeft.viewpoint = viewpoint;
+          viewLeft.extent = viewRight.extent;
+        }
+      });
+    });
+  });
+}
+
+settings = {
+  disableOverviewMap: true,
+  disableLog: true,
+  disableViewDiv: true
+};
+
+</script>
+
+<script src="./support/snippet.js"></script>
