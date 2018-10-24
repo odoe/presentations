@@ -250,7 +250,7 @@ viewRight = new SceneView({
     <div>
       <br>
       <ul>
-        <li>Span full globe with with different levels of detail</li>
+        <li>Span full globe with different levels of detail</li>
         <li>Quadratic tiles of sizes 256x256 or 512x512 pixels</li>
         <li>Scale levels must increase or decrease by power of 2</li>
         <li>All tiled layers must have the same tiling scheme and spatial reference</li>
