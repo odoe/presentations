@@ -1,7 +1,8 @@
 <!-- .slide: data-background="img/bg-1.png" data-background-size="cover" -->
 <!-- Presenter: Matt -->
 
-# Building Your Own Widget with the ArcGIS API for JavaScript
+# Building Your Own Widget
+# with the ArcGIS API for JavaScript
 
 ## Julian Kissling – [@JulianKissling](https://twitter.com/JulianKissling)
 
