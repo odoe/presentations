@@ -87,13 +87,13 @@ Raluca Nicola & René Rubalcava
 
 ## Tile Layer
 
-- Displays adjacent images stitched together to covers the view.
+- Displays adjacent images stitched together to cover the view.
 - New tiles are requested as the user interacts with the view
 - Pros:
   - Efficient as tiles are cacheable resources on the server and web browser
   - Tiles appears as you pan and zoom
 - Con:
-  - a tile resource has to be less dynamic to have an efficient layer
+  - a tile resource has to be less dynamic to be efficient
 
 ---
 
@@ -144,6 +144,35 @@ Raluca Nicola & René Rubalcava
 ---
 
 ## Loading and Integration: Brick Layers
+
+- [repo](https://github.com/odoe/brick-layer)
+
+```js
+load: function() {
+  this.addResolvingPromise(this.layer.load());
+
+  var brickPath = brickStylePaths[this.brickStyle] && require.toUrl(brickStylePaths[this.brickStyle]) || this.brickStyle;
+
+  if (brickPath) {
+    this.addResolvingPromise(
+      esriRequest(brickPath, {
+        responseType: "image",
+        allowImageDataAccess: true
+      })
+      .then(function(response) {
+        this._brickTop = response.data;
+      }.bind(this))
+      .otherwise(function() {
+        this._brickTop = null;
+      }.bind(this))
+    );
+  }
+}
+```
+
+---
+
+## Loading and Integration: [Brick Layers](https://odoe.github.io/brick-layer/)
 
 <iframe height='600' scrolling='no' title='BrickLayer' src='https://odoe.github.io/brick-layer/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
 </iframe>
@@ -199,7 +228,15 @@ var TileBorderLayerView2D = BaseLayerView2D.createSubclass({
 
 ---
 
-## Custom LayerViews
+## Custom LayerViews: Canvas Flowmap Layer
+
+- Draw the flow of objects from an origin point to a destination point by using a Bezier curve
+- Display a one-to-many or many-to-one or one-to-one relationship
+- [repo](https://github.com/sarahbellum/Canvas-Flowmap-Layer)
+
+---
+
+## [Custom LayerViews](https://sarahbellum.github.io/Canvas-Flowmap-Layer/demos-jsapi-4/main/)
 
 <iframe height='600' scrolling='no' title='Canvas-Flowmap-Layer' src='https://sarahbellum.github.io/Canvas-Flowmap-Layer/demos-jsapi-4/main/' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>
 </iframe>
