@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Distance to public transport in San Francisco</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/layers/SceneLayer",
+      "esri/views/SceneView",
+      "esri/widgets/Legend",
+      "dojo/domReady!"
+    ], function (
+      WebScene,
+      SceneLayer,
+      SceneView,
+      Legend
+    ) {
+
+        const webscene = new WebScene({
+          portalItem: {
+            id: "03054c6a97f2423f93ff3679008658bb"
+          }
+        });
+
+        const view = new SceneView({
+          map: webscene,
+          container: "viewDiv",
+          qualityProfile: "high",
+          environment: {
+            lighting: {
+              directShadowsEnabled: true,
+              ambientOcclusionEnabled: true
+            },
+            atmosphereEnabled: true,
+            atmosphere: {
+              quality: "high"
+            }
+          }
+        });
+
+        window.view = view;
+
+        const buildingsLayer = new SceneLayer({
+          portalItem: {
+            id: "f5c497819a374941b0ce8d9b0e979819"
+          },
+          title: "San Francisco buildings",
+          renderer: {
+            type: "simple",
+            symbol: {
+              type: "mesh-3d",
+              symbolLayers: [{
+                type: "fill",
+                material: {
+                  color: [239, 224, 184],
+                  colorMixMode: "replace"
+                }
+              }]
+            },
+            visualVariables: [{
+              type: "color",
+              field: "walkTimeToStopsInService",
+              legendOptions: {
+                title: "Walking time to public transport"
+              },
+              stops: [
+                {
+                  value: 1,
+                  label: "less than 1 minute",
+                  color: [96, 109, 148, 1]
+                },
+                {
+                  value: 15,
+                  label: "more than 15 minutes",
+                  color: [215, 109, 119, 1]
+                }
+              ]
+            }]
+          }
+        });
+
+        webscene.add(buildingsLayer);
+
+        const legend = new Legend({
+          view: view
+        });
+        view.ui.add(legend, "bottom-right");
+
+        window.setEdges = () => {
+          const renderer = buildingsLayer.renderer.clone();
+          const symbolLayer = renderer.symbol.symbolLayers.getItemAt(0);
+          symbolLayer.edges = {
+            type: "solid",
+            color: [255, 255, 255, 0.4],
+            size: 1
+          }
+          buildingsLayer.renderer = renderer;
+        }
+
+        view.when(() => {
+          if (window.parent) {
+            window.parent.demo = window;
+            window.parent.view = view;
+
+            var button = window.parent.document.getElementById("edge-rendering-button")
+            if (button) {
+              button.onclick = window.setEdges;
+            }
+
+          }
+      });
+      });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

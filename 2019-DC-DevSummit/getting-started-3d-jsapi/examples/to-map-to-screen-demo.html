@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <title>toMap, toScreen and hitTest</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #logDiv {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 6px;
+      border: 1px solid white;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.8);
+      width: 200px;
+      font-size: 2em;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    var view;
+
+    require([
+      "esri/Map",
+      "esri/Graphic",
+      "esri/views/SceneView",
+      "esri/symbols/PointSymbol3D",
+      "esri/symbols/ObjectSymbol3DLayer",
+      "dojo/domReady!"
+    ], function(Map, Graphic, SceneView, PointSymbol3D, ObjectSymbol3DLayer) {
+
+      view = new SceneView({
+        container: "viewDiv",
+
+        map: new Map({
+          basemap: "hybrid",
+          ground: "world-elevation"
+        }),
+
+        camera: {
+          position: {
+            x: 11.023,
+            y: 41.58,
+            z: 257943.27
+          },
+          heading: 356.08,
+          tilt: 63.99
+        },
+
+        environment: {
+          atmosphere: {
+            quality: "high"
+          }
+        },
+
+        qualityProfile: "high",
+
+        ui: {
+          components: ["attribution", "compass"]
+        }
+      });
+
+      var logDiv = document.getElementById("logDiv");
+
+      view.on("pointer-move", function(event) {
+        view.hitTest({ x: event.x, y: event.y })
+            .then(function(result) {
+              var graphic = result.results[0] && result.results[0].graphic;
+
+              if (graphic) {
+                logDiv.textContent = `${graphic.attributes.x}/${graphic.attributes.y}`;
+              }
+              else {
+                logDiv.innerHTML = "&nbsp;";
+              }
+            });
+      });
+
+      window.addPoints = function() {
+        for (var x = 1; x <= 2; x++) {
+          for (var y = 1; y <= 2; y++) {
+            var px = x * (view.width / 3);
+            var py = view.height - y * (view.height / 3);
+
+            var pt = view.toMap(px, py);
+
+            view.graphics.add(new Graphic({
+              geometry: pt.clone(),
+              attributes: { x: x, y: y},
+              symbol: new PointSymbol3D(new ObjectSymbol3DLayer({
+                resource: {
+                  primitive: "sphere"
+                },
+
+                material: {
+                  color: "#e50d72"
+                },
+
+                width: 30000
+              }))
+            }));
+          }
+        }
+      };
+
+      // presentation specific
+      view.when(function() {
+        if (window.parent) {
+          var button01 = window.parent.document.getElementById("scene-view-to-map-to-screen-button01")
+
+          if (button01) {
+            button01.onclick = window.addPoints;
+          }
+
+          window.parent.demo = window;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <div id="logDiv">&nbsp;</div>
+</body>
+</html>

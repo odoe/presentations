@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Underground navigation in global mode - 4.9</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #menu {
+      padding: 1em;
+      text-align: center;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      margin-top: 1em;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/Ground",
+      "esri/layers/ElevationLayer",
+      "esri/config"
+    ], function(WebScene, SceneView, Ground, ElevationLayer, esriConfig) {
+
+      // load webscene from ArcGIS Online
+      const map = new WebScene({
+        portalItem: {
+          id: "0359bb9202614d7ca2bd0acc278422d6"
+        }
+      });
+
+      const view = new SceneView({
+        container: "viewDiv",
+        map: map
+      });
+
+      view.when(function() {
+        map.ground = new Ground({
+          // set elevation layers
+          layers: [
+            new ElevationLayer({
+              url: "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer"
+            })
+          ],
+
+          // allow navigation above and below the ground
+          navigationConstraint: {
+            type: "none"
+          },
+
+          // set a color instead of basemap
+          surfaceColor: "#ffffff",
+
+          // fully opaque ground
+          opacity: 1
+        });
+      });
+
+      document.getElementById("undergroundBtn").addEventListener("click", function() {
+        // slide 1 of the webscene presentation has a viewpoint that is underground
+        view.goTo(map.presentation.slides.getItemAt(1).viewpoint, {duration: 1000});
+      });
+
+      document.getElementById("opacityInput").addEventListener("change", function(event) {
+          map.ground.opacity = event.target.checked ? 0.4 : 1;
+      });
+
+      view.ui.add("menu", "top-right");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <div id="menu" class="esri-widget">
+    <input type="checkbox" id="opacityInput">
+    <label for="opacityInput">See through ground</label>
+    <button id="undergroundBtn">Go underground</button>
+  </div>
+
+</body>
+</html>

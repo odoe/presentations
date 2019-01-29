@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <title>Elevation Layers</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/views/SceneView",
+      "esri/Graphic",
+      "esri/geometry/Point",
+      "esri/layers/ElevationLayer",
+      "dojo/domReady!"
+    ], function(Map, MapView, SceneView, Graphic, Point, ElevationLayer) {
+
+      map = new Map({
+        basemap: "satellite",
+        ground: "world-elevation"
+      });
+
+      elevationLayer = new ElevationLayer({
+        url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/OsoLandslide/OsoLandslide_After_3DTerrain/ImageServer",
+        visible: false
+      });
+
+      map.ground.layers.add(elevationLayer);
+
+      view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {
+          position: [-121.8537, 48.2686, 463.0251],
+          heading: 14.3616,
+          tilt: 79.9923
+        },
+      });
+
+      window.toggleElevation = () => {
+        elevationLayer.visible = !elevationLayer.visible
+      }
+
+      // query elevation at the clicked map point
+      view.on("click", function(event) {
+        var position = event.mapPoint;
+        var query = elevationLayer.queryElevation(position);
+        query.then((result) => {
+          console.log(result.geometry.z);
+
+          var out = window.parent.document.getElementById("elevation-layer-output01");
+          out.innerHTML = ">> " + result.geometry.z.toString();
+        });
+      });
+
+      // presentation specific
+      view.when(() => {
+        if (window.parent) {
+          var button01 = window.parent.document.getElementById("elevation-layers-button01")
+          if (button01) {
+            button01.onclick = window.toggleElevation;
+          }
+
+          window.parent.demo = window;
+        }
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>

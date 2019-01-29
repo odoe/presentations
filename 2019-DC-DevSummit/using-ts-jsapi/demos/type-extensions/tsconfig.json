@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "outDir": "dist",
+      "module": "amd",
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true,
+      "sourceMap": true,
+      "target": "es5",
+      "experimentalDecorators": true,
+      "preserveConstEnums": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "lib": ["es2015", "dom"]
+    },
+    "include": [
+      "./app/*.ts",
+      "./typings/*.ts"
+    ]
+  }

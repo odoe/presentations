@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <title>MapView, SceneView</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <!--<link rel="stylesheet" href="../../../arcgis-js-api-4/esri/css/main.css">-->
+  <!--<script src="../../../arcgis-js-api-4/dojo/dojo.js"></script>-->
+
+  <script>
+    var view;
+
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/views/MapView",
+      "esri/layers/TileLayer",
+      "dojo/domReady!"
+    ], function(Map, SceneView, MapView, TileLayer) {
+
+      view = new MapView({
+        container: "viewDiv",
+
+        map: new Map({
+          layers: [ new TileLayer("https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Earth_at_Night_2016/MapServer") ]
+        }),
+
+        extent: {
+          xmin: -9103466.67363873,
+          ymin: -1255353.3331972854,
+          xmax: 10934041.669150176,
+          ymax: 13082328.77818717,
+
+          spatialReference: 102100
+        },
+
+        ui: {
+          components: ["attribution"]
+        },
+
+        environment: {
+          atmosphere: {
+            quality: "high"
+          }
+        },
+
+        qualityProfile: "high"
+      });
+
+      window.toggleSceneView = () => {
+        var map = view.map;
+        var extent = view.extent.clone();
+
+        // view.destroy();
+
+        view = new SceneView({
+          map: map,
+
+          extent: {
+            xmin: -9103466.67363873,
+            ymin: -1255353.3331972854,
+            xmax: 10934041.669150176,
+            ymax: 13082328.77818717,
+
+            spatialReference: 102100
+          },
+
+          ui: {
+            components: ["attribution", "compass"]
+          },
+
+          container: "viewDiv"
+        });
+      };
+
+      // presentation specific
+      view.when(() => {
+        if (window.parent) {
+          var button01 = window.parent.document.getElementById("scene-view-map-view-button01")
+
+          if (button01) {
+            button01.onclick = window.toggleSceneView;
+          }
+
+          window.parent.demo = window;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>

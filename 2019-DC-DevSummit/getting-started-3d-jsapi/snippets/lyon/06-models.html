@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .toggle {
+      background-color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+    }
+
+    .toggle label {
+      padding-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/layers/FeatureLayer",
+      "esri/layers/ElevationLayer",
+      "esri/renderers/UniqueValueRenderer",
+      "esri/symbols/PointSymbol3D",
+      "esri/symbols/IconSymbol3DLayer",
+      "esri/symbols/callouts/LineCallout3D",
+      "esri/symbols/WebStyleSymbol",
+      "esri/tasks/support/Query",
+      "dojo/domReady!"
+    ], function(WebScene, SceneView, SceneLayer, FeatureLayer, ElevationLayer, UniqueValueRenderer, PointSymbol3D, IconSymbol3DLayer, LineCallout3D, WebStyleSymbol, Query) {
+
+      var map = new WebScene({
+        basemap: "satellite",
+        ground: "world-elevation"
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {"position":
+          {
+            "x":537547.9785,
+            "y":5740152.2364,
+            "z":286.2437,
+            "spatialReference":{"latestWkid":3857,"wkid":102100}},
+          "heading":96.074,
+          "tilt":62.665}
+      });
+
+      var verticalOffset = {
+        screenLength: 30,
+        maxWorldLength: 200
+      };
+
+      var renderer = new UniqueValueRenderer({
+        field: "Type",
+        uniqueValueInfos: [{
+          value: "Museum",
+          symbol: createSymbol("Museum.png", "#D13470")
+        }, {
+          value: "Restaurant",
+          symbol: createSymbol("Restaurant.png", "#F97C5A")
+        }, {
+          value: "Church",
+          symbol: createSymbol("Church.png", "#884614")
+        }, {
+          value: "Hotel",
+          symbol: createSymbol("Hotel.png", "#56B2D6")
+        }, {
+          value: "Park",
+          symbol: createSymbol("Park.png", "#40C2B4")
+        }]
+      });
+
+      var featLayer = new FeatureLayer({
+        portalItem: {
+          id: "5acdabddfb1f4852932d43f51fca57eb"
+        },
+        renderer: renderer,
+        elevationInfo: {
+          mode: "relative-to-scene"
+        },
+        featureReduction: {
+          type: "selection"
+        },
+        screenSizePerspectiveEnabled: true,
+        labelsVisible: false
+      });
+      map.add(featLayer);
+
+      var sceneLayer = new SceneLayer({
+        portalItem: {
+          id: "2342ab7928834076a1240fb93c60e978"
+        }
+      });
+      map.add(sceneLayer);
+
+
+
+      var streetFurnitureRenderer = new UniqueValueRenderer({
+        field: "TYPE",
+        uniqueValueInfos: [{
+          value: "Car 6",
+          symbol: getTransportationSymbol("Ford_Fiesta")
+        }, {
+          value: "Car 1",
+          symbol: getTransportationSymbol("Audi_A6")
+        }, {
+          value: "Car 3",
+          symbol: getTransportationSymbol("Porsche_Boxter")
+        }, {
+          value: "Car 4",
+          symbol: getTransportationSymbol("Ford_Expedition")
+        }, {
+          value: "Car 7",
+          symbol: getTransportationSymbol("Bus")
+        }, {
+          value: "Car 5",
+          symbol: getTransportationSymbol("Volkswagen_Jetta_Wagon")
+        }, {
+          value: "Car 2",
+          symbol: getTransportationSymbol("Taxi")
+        }, {
+          value: "Tram",
+          symbol: getTransportationSymbol("Tram")
+        }, {
+          value: "Boat",
+          symbol: getTransportationSymbol("Motorboat")
+        }],
+        visualVariables: [{
+          type: "rotation",
+          field: "ROTATION"
+        }, {
+          type: "size",
+          field: "SIZE",
+          axis: "height"
+        }]
+      });
+
+      var featLayerTransportation = new FeatureLayer({
+        url: "http://services2.arcgis.com/cFEFS0EWrhfDeVw9/arcgis/rest/services/FP__Transportation__Lyon/FeatureServer/0",
+        renderer: streetFurnitureRenderer,
+        elevationInfo: {
+          mode: "relative-to-scene"
+        }
+      });
+
+      map.add(featLayerTransportation);
+
+      var sceneLayerBridges = new SceneLayer({
+        url: "http://services2.arcgis.com/cFEFS0EWrhfDeVw9/arcgis/rest/services/STM____FR_Lyon__Textured_bridges/SceneServer"
+      });
+
+      map.add(sceneLayerBridges);
+
+      var elevation = new ElevationLayer({
+        portalItem: {
+          id: "01ad631702944eed97c6e194ed47fbb9"
+        }
+      });
+      map.ground.layers.add(elevation);
+
+
+      function getTransportationSymbol(name) {
+        return new WebStyleSymbol({
+          name: name,
+          styleName: "EsriRealisticTransportationStyle"
+        });
+      }
+
+
+      function createSymbol(name, color) {
+        // The point symbol is visualized with an icon symbol. To clearly see the location of the point
+        // we displace the icon vertically and add a callout line. The line connects the offseted symbol with the location
+        // of the point feature.
+        return new PointSymbol3D({
+          symbolLayers: [
+            new IconSymbol3DLayer({
+              resource: {
+                href: name
+              },
+              size: 20,
+              outline: {
+                color: "white",
+                size: 2
+              }
+            })
+          ],
+
+          verticalOffset: verticalOffset,
+
+          callout: new LineCallout3D({
+            color: "white",
+            size: 2,
+            border: {
+              color: color
+            }
+          })
+        });
+      }
+
+    });
+  </script>
+</head>
+
+<body>
+<div id="viewDiv"></div>
+</body>
+</html>

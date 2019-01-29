@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/layers/FeatureLayer",
+      "esri/renderers/UniqueValueRenderer",
+      "esri/symbols/PointSymbol3D",
+      "esri/symbols/IconSymbol3DLayer",
+      "dojo/domReady!"
+    ], function(WebScene, SceneView, SceneLayer, FeatureLayer, UniqueValueRenderer, PointSymbol3D, IconSymbol3DLayer) {
+
+      var map = new WebScene({
+        basemap: "satellite",
+        ground: "world-elevation"
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {position:{
+          "x":537806.825636,
+          "y":5741119.43545,
+          "z":337.930934477,
+          "spatialReference":{"latestWkid":3857,"wkid":102100}},
+          "heading":347.7079,
+          "tilt":79.1280
+        }
+      });
+
+      var featLayer = new FeatureLayer({
+        portalItem: {
+          id: "5acdabddfb1f4852932d43f51fca57eb"
+        },
+        renderer: new UniqueValueRenderer({
+          field: "Type",
+          uniqueValueInfos: [{
+            value: "Museum",
+            symbol: createSymbol("Museum.png", "#D13470")
+          }, {
+            value: "Restaurant",
+            symbol: createSymbol("Restaurant.png", "#F97C5A")
+          }, {
+            value: "Church",
+            symbol: createSymbol("Church.png", "#884614")
+          }, {
+            value: "Hotel",
+            symbol: createSymbol("Hotel.png", "#56B2D6")
+          }, {
+            value: "Park",
+            symbol: createSymbol("Park.png", "#40C2B4")
+          }]
+        }),
+        labelsVisible: false,
+        screenSizePerspectiveEnabled: false
+      });
+      map.add(featLayer);
+
+      var sceneLayer = new SceneLayer({
+        portalItem: {
+          id: "2342ab7928834076a1240fb93c60e978"
+        }
+      });
+      map.add(sceneLayer);
+
+      function createSymbol(name, color) {
+        // The point symbol is visualized with an icon symbol. To clearly see the location of the point
+        // we displace the icon vertically and add a callout line. The line connects the offseted symbol with the location
+        // of the point feature.
+        return new PointSymbol3D({
+          symbolLayers: [
+            new IconSymbol3DLayer({
+              resource: {
+                href: name
+              },
+              size: 20,
+              outline: {
+                color: "white",
+                size: 2
+              }
+            })
+          ]
+        });
+      }
+    });
+  </script>
+</head>
+
+<body>
+<div id="viewDiv"></div>
+</body>
+</html>

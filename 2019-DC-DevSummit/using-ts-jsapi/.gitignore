@@ -1,0 +1,6 @@
+demos/setup/node_modules
+demos/setup/**/*.js
+demos/ts-with-dojo/node_modules
+demos/ts-with-dojo/**/*.js
+demos/ts-with-react/node_modules
+demos/ts-with-react/**/*.js

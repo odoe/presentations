@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Point Cloud Layer - Size and Density</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    #paneDiv {
+      width: 270px;
+      padding: 12px;
+      background-color: white;
+    }
+
+    input {
+      vertical-align: middle;
+    }
+
+    .title {
+      margin: 3px 0;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+
+      "esri/layers/PointCloudLayer",
+      "esri/renderers/PointCloudRGBRenderer",
+
+      "dojo/on",
+      "dojo/dom",
+      "dojo/domReady!"
+    ], function(
+      Map, SceneView, PointCloudLayer,
+      PointCloudRGBRenderer,
+      on, dom
+    ) {
+
+      // create map and view
+      var map = new Map({
+        basemap: "gray-vector",
+        ground: "world-elevation"
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {
+          heading: 210,
+          tilt: 78,
+          position: {
+            x: -8249335,
+            y: 4832005,
+            z: 50.7,
+            spatialReference: {
+              wkid: 3857
+            }
+          }
+        }
+      });
+
+      // create Point Cloud Layer
+      var pcLayer = new PointCloudLayer({
+        url: "http://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/BARNEGAT_BAY_LiDAR_UTM/SceneServer"
+      });
+
+      //initial values for pointsPerInch and pointSize
+      var pointsPerInch = 5;
+      var pointSize = 5;
+
+      // updateRenderer will create a new point cloud renderer with the new values for point size and point density
+      function updateRenderer() {
+        pcLayer.renderer = new PointCloudRGBRenderer({
+          field: "RGB",
+          pointSizeAlgorithm: {
+            type: "fixed-size",
+            useRealWorldSymbolSizes: false,
+            size: pointSize
+          },
+          pointsPerInch: pointsPerInch
+        })
+      }
+
+      // apply the renderer to the layer
+      updateRenderer();
+
+      // add layer to the map
+      map.add(pcLayer);
+
+      // watch for changes on the sliders and update the renderer according to the new values
+      on(dom.byId("point-size-slider"), "input", function(evt) {
+        dom.byId("point-size").innerHTML = evt.target.value;
+        pointSize = evt.target.value;
+        updateRenderer();
+      })
+
+      on(dom.byId("points-per-inch-slider"), "input", function(evt) {
+        dom.byId("points-per-inch").innerHTML = evt.target.value;
+        pointsPerInch = evt.target.value;
+        updateRenderer();
+      });
+
+      view.ui.add(dom.byId("paneDiv"), "bottom-left");
+
+      // presentation specific
+      view.when(() => {
+        if (window.parent) {
+          window.parent.demo = window;
+        }
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+  <div id="paneDiv">
+    <p class="title">Customize point cloud layer: </p>
+    <p> Point size: <span id="point-size">5</span> </p><input type="range" min=1 max=15
+      value=5 step="0.5" id="point-size-slider">
+    <p> Points per inch: <span id="points-per-inch">5</span></p><input type="range" min=1
+      max=40 value=5 id="points-per-inch-slider">
+  </div>
+</body>
+</html>

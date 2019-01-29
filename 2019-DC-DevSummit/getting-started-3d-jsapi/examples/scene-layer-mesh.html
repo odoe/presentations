@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Mesh Scene Layer</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/renderers/SimpleRenderer",
+      "esri/symbols/MeshSymbol3D",
+      "dojo/domReady!"
+    ], function(Map, SceneView, SceneLayer,
+      SimpleRenderer, MeshSymbol3D
+    ) {
+      // Create Map
+      var map = new Map({
+        basemap: "dark-gray",
+        ground: "world-elevation",
+      });
+
+      // Create the SceneView and add the map
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map,
+        camera: {
+          position: [-74.02786591, 40.69730839, 895.53418],
+          heading: 49.43,
+          tilt: 63.83
+        },
+        environment: {
+          lighting: {
+            ambientOcclusionEnabled: true,
+            directShadowsEnabled: true
+          }
+        }
+      });
+
+      // Create SceneLayer and add to the map
+      var sceneLayer = new SceneLayer({
+        url: "https://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/NYCatt/SceneServer",
+        renderer: {
+          type: "simple",
+          symbol: {
+            type: "mesh-3d",
+            symbolLayers: [{
+              type: "fill",
+              material: {
+                color: "#fff1d8"
+              },
+              edges: {
+                type: "solid",
+                color: [183, 171, 148],
+                size: 1
+              }
+            }]
+          }
+        }
+      });
+
+      map.add(sceneLayer);
+
+
+      window.hideNewBuildings = () => {
+        sceneLayer.definitionExpression = "CNSTRCT_YR < 1900 AND CNSTRCT_YR > 0";
+      }
+
+      window.hideTallBuildings = () => {
+        sceneLayer.definitionExpression = "HEIGHTROOF < 100 AND HEIGHTROOF > 0";
+      }
+
+      window.resetFilter = () => {
+        console.log('reset')
+        sceneLayer.definitionExpression = "";
+      }
+
+      // presentation specific
+      view.when(() => {
+        if (window.parent) {
+          window.parent.demo = window;
+          window.parent.view = view;
+
+          var button01 = window.parent.document.getElementById("mesh-filtering-button01")
+          if (button01) {
+            button01.onclick = window.hideNewBuildings;
+          }
+
+          var button02 = window.parent.document.getElementById("mesh-filtering-button02")
+          if (button02) {
+            button02.onclick = window.hideTallBuildings;
+          }
+
+          var button03 = window.parent.document.getElementById("mesh-filtering-button03")
+          if (button03) {
+            button03.onclick = window.resetFilter;
+          }
+
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

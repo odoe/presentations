@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Elevation modes</title>
+
+<style>
+  html, body, #viewDiv {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  }
+</style>
+
+<script>
+  var dojoConfig = {
+    async: true,
+    isDebug: true
+  };
+</script>
+
+<link rel="stylesheet" href="https://jsdev.arcgis.com/4.9/esri/css/main.css">
+<script src="https://jsdev.arcgis.com/4.9"></script>
+
+<script>
+  var map, view;
+
+  require([
+    "esri/Map",
+    "esri/Graphic",
+    "esri/views/SceneView",
+    "esri/geometry/Polygon",
+    "esri/layers/FeatureLayer",
+    "dojo/domReady!"
+  ], function (Map, Graphic, SceneView, Polygon, FeatureLayer) {
+
+    map = new Map({
+      basemap: "satellite",
+      ground: "world-elevation"
+    });
+
+    view = new SceneView({
+      container: "viewDiv",
+      map: map,
+      camera: {
+        position: [6.94529510, 45.73304029, 7526.57946],
+        heading: 19.66,
+        tilt: 51.17
+      },
+      ui: {
+        components: ["attribution"]
+      }
+    });
+
+    const polygon = new Polygon({
+      rings: [
+        [
+          [ 775841.6931948453, 5749368.129128952 ],
+          [ 777051.2361084304, 5747796.861467294 ],
+          [ 777837.4139027187, 5745575.745802982 ],
+          [ 774121.6812946617, 5742936.074124001 ],
+          [ 775386.322060092, 5746185.309974982 ],
+          [ 775841.6931948453, 5749368.129128952 ]
+        ]
+      ],
+      spatialReference: 102100
+    });
+
+    function createColoredFillSymbol(color) {
+      return {
+        type: "polygon-3d",
+        symbolLayers: [{
+          type: "fill",
+          material: {
+            color: color
+          },
+          outline: {
+            color: "black",
+            size: "1px"
+          }
+        }]
+      };
+    }
+
+    const layer1 = new FeatureLayer({
+      geometryType: "polygon",
+      source: [new Graphic(polygon)],
+      objectIdField: "OBJECTID",
+      fields: [],
+      renderer: {
+        type: "simple",
+        symbol: createColoredFillSymbol([255, 0, 0, 0.5])
+      },
+      elevationInfo: {
+        mode: "on-the-ground"
+      },
+      labelingInfo: [{
+        labelExpression: "on-the-ground",
+        symbol: {
+          type: "label-3d",
+          symbolLayers: [{
+            type: "text",
+            material: {
+              color: "black"
+            },
+            halo: {
+              color: "white",
+              size: "3px"
+            },
+            size: "24px"
+          }]
+        }
+      }],
+      labelsVisible: true
+    });
+
+    view.map.add(layer1);
+
+    const layer2 = new FeatureLayer({
+      geometryType: "polygon",
+      source: [new Graphic(polygon)],
+      objectIdField: "OBJECTID",
+      fields: [],
+      renderer: {
+        type: "simple",
+        symbol: createColoredFillSymbol([0, 255, 0, 0.5])
+      },
+      elevationInfo: {
+        mode: "relative-to-ground",
+        offset: 3000
+      },
+      labelingInfo: [{
+        labelExpression: "relative-to-ground",
+        symbol: {
+          type: "label-3d",
+          symbolLayers: [{
+            type: "text",
+            material: {
+              color: "black"
+            },
+            halo: {
+              color: "white",
+              size: "3px"
+            },
+            size: "24px"
+          }]
+        }
+      }],
+      labelsVisible: true
+    });
+
+    view.map.add(layer2);
+
+    const layer3 = new FeatureLayer({
+      geometryType: "polygon",
+      source: [new Graphic(polygon)],
+      objectIdField: "OBJECTID",
+      fields: [],
+      renderer: {
+        type: "simple",
+        symbol: createColoredFillSymbol([0, 0, 255, 0.5])
+      },
+      elevationInfo: {
+        mode: "absolute-height",
+        offset: 3000
+      },
+      labelingInfo: [{
+        labelExpression: "absolute-height",
+        symbol: {
+          type: "label-3d",
+          symbolLayers: [{
+            type: "text",
+            material: {
+              color: "black"
+            },
+            halo: {
+              color: "white",
+              size: "3px"
+            },
+            size: "24px"
+          }]
+        }
+      }],
+      labelsVisible: true
+    });
+
+    view.map.add(layer3);
+  });
+</script>
+</head>
+<body>
+  <div id="viewDiv">
+  </div>
+</body>
+</html>

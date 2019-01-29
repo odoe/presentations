@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+  <title>Camera</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    var view;
+
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/layers/WebTileLayer",
+      "esri/Basemap",
+      "dojo/domReady!"
+    ], function(Map, SceneView, WebTileLayer, Basemap) {
+      var baseLayer = new WebTileLayer({
+        urlTemplate: "https://stamen-tiles-{subDomain}.a.ssl.fastly.net/terrain/{level}/{col}/{row}.png",
+        subDomains: ["a", "b", "c", "d"],
+        copyright: "Map tiles by <a href=\"http://stamen.com/\">Stamen Design</a>, " +
+          "under <a href=\"http://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a>. " +
+          "Data by <a href=\"http://openstreetmap.org/\">OpenStreetMap</a>, " +
+          "under <a href=\"http://creativecommons.org/licenses/by-sa/3.0\">CC BY SA</a>."
+      });
+
+      view = new SceneView({
+        container: "viewDiv",
+
+        map: new Map({
+          basemap: new Basemap({
+            baseLayers: [baseLayer]
+          }),
+          ground: "world-elevation"
+        }),
+
+        camera: {
+          position: {
+            x: 8.062,
+            y: 46.042,
+            z: 14813.5
+          },
+          heading: 0,
+          tilt: 72
+        },
+
+        ui: {
+          components: ["attribution", "compass"]
+        },
+
+        environment: {
+          atmosphere: {
+            quality: "high"
+          }
+        },
+
+        qualityProfile: "high"
+      });
+
+      window.increaseHeading = () => {
+        var camera = view.camera.clone();
+        camera.heading += 5
+        view.camera = camera;
+      };
+
+      // presentation specific
+      view.when(() => {
+        if (window.parent) {
+          var button01 = window.parent.document.getElementById("scene-view-camera-button01")
+
+          if (button01) {
+            button01.onclick = window.increaseHeading;
+          }
+
+          window.parent.demo = window;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>

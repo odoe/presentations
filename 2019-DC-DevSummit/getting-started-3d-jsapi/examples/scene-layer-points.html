@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Point Scene Layer</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/layers/SceneLayer",
+      "esri/renderers/SimpleRenderer",
+      "esri/symbols/MeshSymbol3D",
+      "esri/symbols/WebStyleSymbol",
+      "dojo/domReady!"
+    ], function(Map, SceneView, SceneLayer,
+      SimpleRenderer, MeshSymbol3D, WebStyleSymbol
+    ) {
+      // Create Map
+      var map = new Map({
+        basemap: "dark-gray",
+        ground: "world-elevation",
+      });
+
+      // Create the SceneView and add the map
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map
+      });
+
+      // airport symbol
+      var webStyleSymbol = new WebStyleSymbol({
+        name: "Airport",
+        portal: {
+          url: "https://www.arcgis.com"
+        },
+        styleName: "EsriIconsStyle"
+      });
+
+
+      // setup the renderer with size and color visual variables
+      var renderer = new SimpleRenderer({
+        symbol: webStyleSymbol,
+        visualVariables: [{
+          // size each icon based on the airport's elevation
+          type: "size",
+          field: "elevation_ft",
+          stops: [
+          {
+            value: 0,
+            size: 2
+          },
+          {
+            value: 15000,
+            size: 35
+          }]
+        }, {
+          // shade each airport a different color based on its type
+          type: "color",
+          field: "type_airport",
+          stops: [{
+            value: 1,
+            color: [252, 12, 245]
+          },
+          {
+            value: 3,
+            color: [83, 0, 244]
+          },
+          {
+            value: 7,
+            color: [4, 245, 248]
+          }]
+        }]
+      });
+
+      // Create SceneLayer and add to the map
+      var sceneLayer = new SceneLayer({
+        url: "http://tiles.arcgis.com/tiles/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Airports_PointSceneLayer/SceneServer/layers/0",
+        renderer,
+        featureReduction: {
+          type: "selection"
+        }
+      });
+
+      map.add(sceneLayer);
+
+      // presentation specific
+      view.when(() => {
+        if (window.parent) {
+          window.parent.demo = window;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>

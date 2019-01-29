@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    .toggle {
+      background-color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+    }
+
+    .toggle label {
+      padding-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+
+  <script>
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/PopupTemplate",
+      "esri/portal/Portal",
+      "dojo/domReady!"
+    ], function(WebScene, SceneView, PopupTemplate, Portal) {
+
+      var map = new WebScene({
+        portalItem: {
+          id: "8b464fd68d87480486d36e8cbbc52ab9"
+        }
+      });
+
+      var view = new SceneView({
+        container: "viewDiv",
+        map: map
+      });
+
+      view.when(function(){
+        var featLayer = map.layers.getItemAt(0);
+
+        featLayer.popupTemplate = new PopupTemplate({
+          title: "{NAME}",
+          content:
+          "{ADDRESS}<br/>" +
+          "Telephone: {TELEPHONE}<br/>" +
+          "Website: {WEBSITE}<br/>"
+        });
+      });
+    });
+
+
+
+  </script>
+</head>
+
+<body>
+<div id="viewDiv"></div>
+</body>
+</html>
