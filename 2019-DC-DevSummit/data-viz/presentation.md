@@ -56,7 +56,7 @@ David Martinez & René Rubalcava
 
 
 <p align="center">
-<img src="https://esri.github.io/cedar/img/cedar-logo-tree.png" alt="alt text"  width="550" height="550">
+<img src="images/cedar-logo-tree.png" alt="alt text"  width="550" height="550">
 </p>
 
 ---
@@ -253,7 +253,7 @@ cedarChart.show()
 
 <!-- .slide: class="section" -->
 
-<h3><img src="../template/images/icons8-usa_map.png" class="transparent inline"> Working with maps</h3>
+<h3><img src="images/icons8-usa_map.png" class="transparent inline"> Working with maps</h3>
 
 ---
 
@@ -261,7 +261,7 @@ cedarChart.show()
 
 ## Charting features
 
-<a href="https://codepen.io/davidjmart/pen/daOYgB"><img src="../template/images/map-with-feature-chart.png" height="500" class="transparent" /></a>
+<a href="https://codepen.io/davidjmart/pen/daOYgB"><img src="images/map-with-feature-chart.png" height="500" class="transparent" /></a>
 
 ---
 
