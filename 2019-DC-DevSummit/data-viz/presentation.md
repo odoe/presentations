@@ -6,22 +6,11 @@ David Martinez & René Rubalcava
 
 @DavidJmart / @odoenet
 
-
 ---
 
 <!-- .slide: class="section" -->
 
-##  Visualization
-
-<p align="center">
-<img src="images/cedarcharts.png" alt="alt text"  width="650" height="600">
-</p>
-
----
-
-<!-- .slide: class="section" -->
-
-### Visualizations are any medium to present data, visually, to a visual consumer.
+## Visualizations are any medium to present data, visually, to a visual consumer.
 - Cartography
 - Charts
 - Infographics
@@ -31,7 +20,7 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
-### Why Do We Visualize Data?
+## Why Do We Visualize Data?
 
 - Cognitive understanding is faster when visually consumed
 - To understand the data
@@ -41,15 +30,7 @@ David Martinez & René Rubalcava
 
 <!-- .slide: class="section" -->
 
-## "We should never forget that a **picture of data is not the goal;** it's only the means. Information visualization is all about **gaining the understanding so we can make good decisions."**
-
-#### Stephen Fews
-
----
-
-<!-- .slide: class="section" -->
-
-### Understanding Data
+## Understanding Data
 
 - Compare
 - Sort
@@ -60,90 +41,379 @@ David Martinez & René Rubalcava
 
 ---
 
+## Examples of Data Visualization
+
+- [3D](https://andygup.github.io/dc-plenary-2019/rotating-globe.html)
+- [Python](images/visualization-with-python-ecosystem-matplotlib-seaborn.html)
+
+---
+
 <!-- .slide: class="section" -->
 
-## Cedar
+# Cedar
 
-### JavaScript Library for Creating Charts
+## JavaScript Charts for ArcGIS
 
 
 <p align="center">
-<img src="https://esri.github.io/cedar/img/cedar-logo-tree.png" alt="alt text"  width="550" height="550">
+<img src="images/cedar-logo-tree.png" alt="alt text"  width="550" height="550">
 </p>
 
 ---
 
 <!-- .slide: class="section" -->
 
-###  Philosophy
-- State of art Visualizations
-- Re-usable, sharable
-- Integrated with ArcGIS API
-- Overridable
+<h3><img src="images/globe.png" height="100" class="inline transparent">
+Integrated with ArcGIS</h3>
+
+<small class="fragment">Use `url` / `query` or `featureSet`</small>
 
 ---
 
 <!-- .slide: class="section" -->
 
-### Working with Cedar
+<h3><img src="images/icons8-development_skill_filled.png" class="inline transparent">
+ Smart Defaults</h3>
 
-- A Cedar chart needs four things
-    - Chart Type
-    - Data
-    - Mappings
-    - DOM Element
+<small class="fragment">(with overrides)</small>
 
----
-
-<!-- .slide: class="section" -->
-
-### Your First Cedar App
-
-[Population](https://jsfiddle.net/dmartine/ndz81ha2/1/)
-
----
-
-
-### Maps and Charts
-
-<!-- .slide: class="section" -->
-
----
-
-<iframe height='600' scrolling='no' title='Query statistics client-side by distance - 4.9' src='//codepen.io/odoe/embed/preview/mzGPyg/?height=600&theme-id=31222&default-tab=html,result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/mzGPyg/'>Query statistics client-side by distance - 4.9</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
+Note:
+More and more means aligning w/ Pro's defaults
 
 ---
 
 <!-- .slide: class="section" -->
 
-### Cedar in Hub & Open Data
+<h3><img src="images/icons8-recycle_sign_filled.png" class="inline transparent">
+Extend, re-use, share</h3>
 
-- [Hub](https://hub.arcgis.com/) & [Open Data](https://hub.arcgis.com/pages/open-data) requirements drive Cedar development
-- Add-on for Ember apps [ember-cli-cedar](https://github.com/Esri/ember-cli-cedar)
-
----
-
-<!-- .slide: class="section" -->
-
-### Examples
-
-1. [Bar](https://esri.github.io/ember-cli-cedar/#/charts/bar)
-2. [Area](https://esri.github.io/ember-cli-cedar/#/charts/area)
-3. [Pie](https://esri.github.io/ember-cli-cedar/#/charts/pie)
-4. [Radar](https://esri.github.io/ember-cli-cedar/#/charts/radar)
-5. [Line](https://esri.github.io/ember-cli-cedar/#/charts/line)
-6. [Scatterplot](https://esri.github.io/ember-cli-cedar/#/charts/scatter)
-7. [Secure Services](demos/secure-services.html)
+Note:
+find yourself making same overrides again and again, create own chart type
 
 ---
 
 <!-- .slide: class="section" -->
 
-### More Intuitive JavaScript API
-- Async functions use promises instead of callbacks
-- fluent, chainable setters and methods
-- streamlined, reduced footprint
+## Process
+
+<div class="center-align">
+  <div class="stack fragment">
+    <img style="margin-left: 50px; margin-bottom: 0;" src="images/icons8-thinking_bubble.png" class="transparent">
+    <img style="margin-top: 0" src="images/icons8-under_computer_filled.png" class="transparent">
+  </div>
+  <div class="stack fragment">
+    <img src="images/icons8-cloud_storage.png" class="transparent">
+    <img src="images/icons8-usa_map.png" class="transparent">
+  </div>
+  <div class="stack fragment">
+    <code style="font-size: 2em">{}</code>
+    <br><code style="font-size: .6em">definition</code>
+  </div>
+  <div class="fragment">
+    <img src="images/cedar-logo-tree.png" class="transparent" height="200"/>
+  </div>
+  <div class="fragment">
+    <img src="images/icons8-combo_chart_filled.png" class="transparent">
+  </div>
+</div>
+
+---
+
+<!-- .slide: class="section" -->
+
+<h3><img src="images/icons8-rocket_filled.png" class="inline transparent">
+Getting started</h3>
+
+---
+
+<!-- .slide: class="section" -->
+
+<a href="https://codepen.io/davidjmart/pen/WPoQBE"><img src="images/simple-bar-chart.png" height="500" class="transparent" /></a>
+
+Let's build [this chart](https://codepen.io/davidjmart/pen/WPoQBE)
+
+---
+
+<!-- .slide: class="section" -->
+
+## Install with package manager
+<div><code>npm install --save @esri/cedar</code></div>
+<div class="fragment">or <code>yarn add @esri/cedar</code></div>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Or from CDN
+
+```html
+<!-- load the amCharts base library -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<!-- for bar, line, and area charts -->
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<!-- optionally load calcite theme -->
+<script src="https://unpkg.com/@esri/cedar/dist/umd/themes/amCharts/calcite.js"></script>
+<!-- load cedar -->
+<script src="https://unpkg.com/@esri/cedar"></script>
+```
+
+---
+
+<!-- .slide: class="section" -->
+
+## Build definition
+
+```js
+var definition = {};
+```
+<ul>
+  <li class="fragment">Just a POJO</li>
+  <li class="fragment">Minimum: `type`, `datasets`, `series`</li>
+<ul>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Definition `type`
+
+```js
+definition.type = 'bar';
+```
+<ul>
+  <li class="fragment">Predefined: `'bar'`, `'line'`, `'scatter'`, `'pie'`</li>
+  <li class="fragment">Or provide your own: `specification: {...}`</li>
+<ul>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Definition `datasets`
+
+```js
+definition.datatsets = [{
+  url: "https://server.arcgisonline.com/arcgis/rest/services/Demographis/USA_Population_Density/MapServer/4",
+  query: { orderByFields: "TotPop DESC" }
+}]
+```
+
+---
+
+<!-- .slide: class="section" -->
+
+## Definition `series`
+
+```js
+definition.series = [
+  {
+    category: {field:"NAME",label:"US State"},
+    value: {field:"TOTPOP_CY",label:"Population"}
+  }
+]
+```
+
+---
+
+<!-- .slide: class="section" -->
+
+```js
+import { Chart } from '@esri/cedar';
+
+// create a new cedar chart at a specified element
+const myChart = new Chart('elementId', definition)
+```
+
+---
+
+<!-- .slide: class="section" -->
+
+## Create chart instance (UMD)
+
+
+```js
+// create a new cedar chart at a specified element
+var myChart = new cedar.Chart('elementId', definition)
+```
+
+&nbsp;
+
+---
+
+<!-- .slide: class="section" -->
+
+## Show the chart
+
+```js
+// execute query and render chart
+cedarChart.show()
+```
+
+---
+
+<!-- .slide: class="section" -->
+
+<h3><img src="images/icons8-usa_map.png" class="transparent inline"> Working with maps</h3>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Charting features
+
+<a href="https://codepen.io/davidjmart/pen/daOYgB"><img src="images/map-with-feature-chart.png" height="500" class="transparent" /></a>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Dataset `data`
+
+```js
+definition.datatsets = [{
+  data: { features: graphics }
+}]
+```
+
+Expects a [FeatureSet](https://esri.github.io/arcgis-rest-js/api/common-types/IFeatureSet/)
+
+Note:
+- _instead_ of `url` and `query`
+
+---
+
+<!-- .slide: class="section" -->
+
+## Use JavaScript to filter/sort
+
+```js
+graphics.sort(function(a, b) {
+  return b.attributes.Grand_Tota -a.attributes.Grand_Tota;
+});
+```
+
+---
+
+<!-- .slide: class="section" -->
+
+## Client-side Queries
+
+<a href="https://jsbin.com/juqafec/edit?html,output"><img src="images/map-with-aggregate-chart.png" height="500" class="transparent" /></a>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Dataset `data` with aggregate `query`
+
+```js
+definition.datasets: [{
+  url: "https://services.arcgis.com/bkrWlSKcjUDFDtgw/arcgis/rest/services/It's_a_Tornado_Map/FeatureServer/0",
+  query: {
+    groupByFieldsForStatistics: "state",
+    outStatistics: [{
+      statisticType: "sum",
+      onStatisticField: "injuries",
+      outStatisticFieldName: "injuries_SUM"
+    }]
+  }
+}]
+```
+
+Accepts any [valid query parameters](https://esri.github.io/arcgis-rest-js/api/feature-service/IQueryFeaturesParams/)
+
+---
+
+<!-- .slide: class="section" -->
+
+## Chart [types](http://cedar-v1.surge.sh/)
+
+<a href="http://cedar-v1.surge.sh/?type=bar"><img src="images/icons8-bar_chart.png" class="transparent"></a>
+<a href="http://cedar-v1.surge.sh/?type=line"><img src="images/icons8-line_chart.png" class="transparent"></a>
+<a href="http://cedar-v1.surge.sh/?type=area"><img src="images/icons8-area_chart.png" class="transparent"></a>
+<a href="http://cedar-v1.surge.sh/?type=scatter"><img src="images/icons8-scatter_plot.png" class="transparent"></a>
+<a href="http://cedar-v1.surge.sh/?type=pie"><img src="images/icons8-rebalance_portfolio.png" class="transparent"></a>
+<a href="http://cedar-v1.surge.sh/?type=bar-grouped"><img src="images/icons8-futures.png" class="transparent"></a>
+
+---
+
+<!-- .slide: class="section" -->
+
+## Overriding chart defaults
+
+```js
+definition.overrides = {
+  categoryAxis: {
+    labelRotation: -45
+  },
+  legend: {
+    enabled: true
+  }
+}
+```
+
+Accepts any [amCharts config parameters](https://docs.amcharts.com/3/javascriptcharts/AmChart)
+
+---
+
+<!-- .slide: class="section" -->
+
+## Better to use cedar API
+
+```js
+definition.overrides = {
+  categoryAxis: {
+    labelRotation: -45
+  }
+}
+
+definition.legend = {
+  visible: true
+}
+```
+
+Note:
+- we're expanding API
+- aligning w/ shared chart spec
+
+---
+
+<!-- .slide: class="section" -->
+
+## Create your own chart specification
+
+```js
+definition.specification = {
+  type: 'serial',
+  categoryField: 'category',
+  categoryAxis: {
+    gridPosition: 'start'
+  },
+  graphs: [
+    {
+      title: 'Graph title',
+      valueField: 'column-1'
+    }
+  ],
+  valueAxes: [
+    {
+      title: 'Axis title'
+    }
+  ],
+  legend: {
+    useGraphSettings: true
+  },
+  titles: [
+    {
+      size: 15,
+      text: 'Chart Title'
+    }
+  ]
+}
+
+```
+
+Accepts any [amCharts config parameters](https://docs.amcharts.com/3/javascriptcharts/AmChart) -->
 
 ---
 
