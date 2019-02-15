@@ -1,5 +1,3 @@
-/// <amd-dependency path="esri/core/tsSupport/declareExtendsHelper" name="__extends" />
-
 import { subclass, property, declared } from "esri/core/accessorSupport/decorators";
 
 import * as promiseUtils from "esri/core/promiseUtils";
