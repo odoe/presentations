@@ -26,9 +26,88 @@
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
 
-## Headline Here 4
+## React with the ArcGIS API for JS
 
-* Bullet [points here](http://hakim.se).
+---
+
+### Manage state in React
+
+* You may not need Redux/MobX
+* Context is powerful, and injectable
+
+---
+
+### React Context API
+
+* Create a Context
+
+```ts
+// main application context
+export const AppContext = createContext<ContextProps>({
+  state: initialState,
+  // add methods to communicate
+  setState: (a: any) => void;
+});
+```
+
+---
+
+### React Context API
+
+* Create a Provider
+
+```tsx
+// main application provider
+export const AppProvider = ({ children }: AppProviderProps) => {
+  ...
+  const value = {
+    state,
+    setState
+  };
+  return (
+      <AppContext.Provider value={value}>
+        {children}
+      </AppContext.Provider>
+  );
+};
+```
+
+---
+
+### React Context API
+
+* Use the Provider
+
+```tsx
+ReactDOM.render(
+    <AppProvider location={location}>
+        <AwesomeApp />
+    </AppProvider>
+  document.getElementById("root")
+);
+```
+
+---
+
+### React Context API
+
+* Use the Context
+
+```tsx
+const WebMapView = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const { state, setState } = useContext(AppContext);
+  useEffect(
+    () => {
+      setState(mapRef.current);
+    },
+    []
+  );
+  return (
+    <MapContainer webmapid={state.webmapid} ref={mapRef} />
+  );
+};
+```
 
 ---
 
