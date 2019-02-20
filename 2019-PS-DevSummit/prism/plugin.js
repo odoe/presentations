@@ -1,15 +1,40 @@
-window.revealPrismPlugin = {
-  initPrism: function highlight() {
+(function() {
+  function initPrism() {
     var codes = document.querySelectorAll('code');
     for (var i = codes.length - 1; i >= 0; i--) {
         var code = codes[i];
-        // every code block will have line numbers
-        code.className += " line-numbers";
-        // if no lang is specified, java is presumed
-        if (code.className.indexOf("language") === -1) {
-            code.className += " language-java";
-        }
         Prism.highlightElement(code);
     }
   }
-};
+  
+  function injectPrism() {
+    if (!document.getElementById('prismCSS')) {
+      var link = document.createElement('link');
+      link.id = 'prismCSS';
+      link.rel = 'stylesheet';
+      link.href = '../prism/prism.css';
+      document.head.appendChild(link);
+    }
+  
+    if (!document.getElementById('prismJS')) {
+      var script = document.createElement('script');
+      script.id = 'primsJS';
+      script.src = '../prism/prism.js';
+      document.head.appendChild(script);
+    
+      script.onload = function onPrismLoad() {
+        initPrism();
+      };
+    }
+  }
+  
+  
+  if (Reveal.isReady()) {
+    injectPrism();
+  }
+  else {
+    Reveal.addEventListener('ready', function onRevealReady() {
+      injectPrism();
+    });
+  }
+})();
