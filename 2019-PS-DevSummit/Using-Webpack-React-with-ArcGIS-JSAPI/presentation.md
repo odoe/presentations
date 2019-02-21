@@ -4,7 +4,7 @@
 <h2 style="text-align: left; font-size: 60px;">with the ArcGIS API for JavaScript</h2>
 <p style="text-align: left; font-size: 30px;">René Rubalcava | Tom Wayson</p>
 <p style="text-align: left; font-size: 30px;"><a href="https://github.com/odoenet">@odoenet</a> | <a href="https://github.com/tomwayson">@tomwayson</a></p>
-    <p style="text-align: left; font-size: 30px;">slides: <a href="http://bit.ly/abc123"><code>http://bit.ly/abc123</code></a></p>
+    <p style="text-align: left; font-size: 30px;">slides: <a href="https://git.io/fhFTb"><code>https://git.io/fhFTb</code></a></p>
 
 ---
 
@@ -94,7 +94,7 @@ ReactDOM.render(
 * Use the Context
 
 ```tsx
-const WebMapView = () => {
+const AwesomeApp = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const { state, setState } = useContext(AppContext);
   useEffect(

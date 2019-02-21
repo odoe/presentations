@@ -3,6 +3,10 @@
     var codes = document.querySelectorAll('code');
     for (var i = codes.length - 1; i >= 0; i--) {
         var code = codes[i];
+        // don't highlight simple code in text
+        if (code.className.indexOf("language-undefined") === -1) {
+          break;
+        }
         Prism.highlightElement(code);
     }
   }
