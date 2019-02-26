@@ -221,6 +221,58 @@ const AwesomeApp = () => {
 
 ---
 
+* Do all the API work seperate from your UI
+* _Separate content from navigation_ - pattern in PWAs
+
+```ts
+// src/data/map.ts
+export function initialize(element: Element) {
+  view.container = element;
+  view.when(() => {
+    // magic
+  });
+}
+```
+
+---
+
+* Use in your context or component
+
+```ts
+// src/contexts/App.ts
+const [ container, setContainer ] = useState<HTMLDivElement>(element);
+const loadMap = async () => {
+  // lazy load the API
+  const map = await import("../data/map");
+  map.initialize(container);
+};
+useEffect(
+  () => {
+    if (container) {
+      loadMap();
+    }
+  },
+  [container]
+);
+```
+
+---
+
+## Why lazy load the API?
+
+* So webpack can create async bundles
+* `bundle1.js` -> `bundle2.js` -> `bundle3.js`
+* Only load the resources you need when you need them
+* Leads to faster initial loads
+
+---
+
+## Demo
+
+* [Nearby JavaScript](https://developers.arcgis.com/example-apps/nearby-javascript/)
+
+---
+
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-5.png" -->
 
 ## Headline Here 5
