@@ -179,11 +179,18 @@ useEffect( // happens after render - EVERY TIME
 * Manage local state
 * Keep it simple
 
+```ts
+const [ready, setReady] = useState(false);
+// later
+setReady(true);
+```
+
 ---
 
 ### `useState`
 
 ```ts
+// You could do objects as well
 const initialState = {
   selectedFeatures: [],
   extent: null
