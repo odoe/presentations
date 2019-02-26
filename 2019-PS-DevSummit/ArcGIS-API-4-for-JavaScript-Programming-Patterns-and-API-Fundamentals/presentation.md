@@ -14,6 +14,108 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
+## Widgets
+ - App building blocks
+ - 30+ widgets
+ - Responsive
+ - Accessible
+ - Localized
+
+<aside class="notes">Open documentation and show list of widgets. We'll explore a few </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Architecture
+ - View + View Model
+ - Use View Model (Rene's blog) (maybe demo a directions app (getDirecitons))
+
+<aside class="notes"> Separate data and presentation. Link to doc  </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - CSS
+ - Styles
+ - Themes
+ - Sass
+<aside class="notes">Look at ways to customize appearance of widgets</aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Add to view
+ - Default widgets (components)
+ - View UI
+ - Manually position
+<aside class="notes"> Default widgets for map (attribution,zoom) and Scene View (attribution, navigation-toggle, compass, zoom)  </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Expand
+ - Clickable button to open container
+ - icon class (defaults to widget)
+ - group
+ - mode
+<aside class="notes">Look at a few key widgets start with expand and point out common questions/gotchas </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Use Portal Content
+ - Search
+ - Basemap Gallery
+<aside class="notes">Show how we can provide portal and widgets like search and bmg use that content.  </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Popup
+ - Popup
+ - Menu actions
+ - Dock  (breakpoint false)
+<aside class="notes">   </aside>
+
+---
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Popup Template
+ - fields, charts, custom html content etc
+ - arcade (demo x,y example bernie asked about)
+ - function
+ - promises
+
+<aside class="notes"> Talk about different ways to define/set popup content</aside>
+
+---
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Popup (lazy mode)
+ - web map
+ - web scene
+ - Layer.fromPortalItem
+<aside class="notes">Popups can be lots of work to define field info etc. If you use web map, scene, layer you get popup (and rendering) info for free</aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Feature
+ - Display popup template content
+ - Hover (demo SDK sample) and potentially template with content in view.ui corner
+<aside class="notes">Display popup content someplace else</aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
 ## Fundamentals
 
 ---
