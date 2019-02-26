@@ -24,7 +24,7 @@
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## React with the ArcGIS API for JS
 
@@ -108,6 +108,116 @@ const AwesomeApp = () => {
   );
 };
 ```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+
+## What the hook?
+
+---
+
+### What have I done?
+
+```ts
+const mapRef = useRef<HTMLDivElement>(null);
+const { state, setState } = useContext(AppContext);
+useEffect(
+  () => {
+    setState(mapRef.current);
+  },
+  []
+);
+```
+
+---
+
+### React hooks
+
+* `useEffect`
+* `useState`
+* `useContext`
+* and more!
+
+- [documentation](https://reactjs.org/docs/hooks-intro.html)
+
+---
+
+### `useEffect`
+
+* Replaces some class lifecycle methods... mostly
+  * componentDidMount
+  * componentDidUpdate
+  * componentWillUnmount
+
+---
+
+### `useEffect`
+
+```ts
+let watcher;
+useEffect( // happens after render - EVERY TIME
+  () => {
+    if(watcher) {
+      return;
+    }
+    watcher = mapView.watch("stationary", () => {
+      // do something
+    });
+    return () => watcher.remove();
+  },
+  // when this value changes
+  // rerun this hook
+  [someProp]
+);
+```
+
+---
+
+### `useState`
+
+* Manage local state
+* Keep it simple
+
+---
+
+### `useState`
+
+```ts
+const initialState = {
+  selectedFeatures: [],
+  extent: null
+};
+
+const [state, setState] = useState({ ...initialState });
+```
+
+---
+
+### `useContext`
+
+* Helps you manage application state
+* _Could_ replace redux/mobx
+
+---
+
+### `useContext`
+
+```tsx
+const AwesomeApp = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const { state } = useContext(AppContext);
+  return (
+    <WebMapComponent webmapid={state.webmapid} />
+  );
+};
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+
+## Modularize API usage
 
 ---
 

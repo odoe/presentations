@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>ArcGIS JSAPI 4.6 TypeScript Demo</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+    <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.0-rc.8/css/calcite-web.min.css">
+    <link rel="stylesheet" href="/app/css/custom.css">
+    <script>
+      window.dojoConfig = {
+        has: {
+          "esri-promise-compatibility": 1
+        },
+        packages: [
+          {
+            name: "app",
+            location: "/app"
+          },
+          {
+            name: "react",
+            location: "/node_modules/react/umd",
+            main: "react.development"
+          },
+          {
+            name: "react-dom",
+            location: "/node_modules/react-dom/umd",
+            main: "react-dom.development"
+          }
+        ]
+      };
+    </script>
+    <script src="https://js.arcgis.com/4.6"></script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+    <script>require(["app/main"]);</script>
+  </body>
+</html>

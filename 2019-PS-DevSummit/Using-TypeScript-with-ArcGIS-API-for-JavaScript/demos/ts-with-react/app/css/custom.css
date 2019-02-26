@@ -1,0 +1,23 @@
+.label-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.unmask-all-btn {
+  float: right;
+  cursor: pointer;
+  display: none;
+}
+
+.label-btn {
+  cursor: pointer;
+  background-color: #0079c1;
+}
+
+.label-btn:hover {
+  background-color: #005e95;
+}
+
+.map-container {
+  height: calc(100% - 150px);
+}

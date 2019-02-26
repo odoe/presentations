@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "module": "amd",
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "noImplicitReturns": true,
+      "strictNullChecks": true,
+      "esModuleInterop": true,
+      "target": "es5",
+      "jsx": "react",
+      "experimentalDecorators": true,
+      "preserveConstEnums": true,
+      "suppressImplicitAnyIndexErrors": true
+    },
+    "include": [
+      "./app/*"
+    ],
+    "exclude": [
+      "node_modules"
+    ],
+    "files": [
+      "./node_modules/dojo-typings/dojo/1.11/modules.d.ts",
+      "./node_modules/dojo-typings/dijit/1.11/modules.d.ts",
+      "./node_modules/dojo-typings/dojox/1.11/modules.d.ts"
+    ]
+  }
