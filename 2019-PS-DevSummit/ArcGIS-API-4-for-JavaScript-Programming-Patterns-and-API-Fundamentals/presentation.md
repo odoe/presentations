@@ -84,6 +84,7 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 <aside class="notes">   </aside>
 
 ---
+
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Popup Template
@@ -95,6 +96,7 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 <aside class="notes"> Talk about different ways to define/set popup content</aside>
 
 ---
+
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Popup (lazy mode)
@@ -120,9 +122,78 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" -->
+## Map and View
 
-## Fundamental Stuff
+---
+
+## Map and View
+
+```js
+const map = new Map({
+  basemap: "topo"
+});
+
+const mView = new MapView({
+  map: map,
+  container: "viewDiv"
+});
+const sView = new SceneView({
+  map: map,
+  container: "viewDiv"
+});
+```
+
+---
+
+## Basemaps and Ground
+
+```js
+const map = new Map({
+  /*
+   streets, satellite, hybrid, terrain, topo, gray,
+   dark-gray, oceans, national-geographic, osm,
+   dark-gray-vector, gray-vector, streets-vector, topo-vector,
+   streets-night-vector, streets-relief-vector, streets-navigation-vector
+   */
+  basemap: "streets"
+
+  /*
+   world-elevation 
+   */
+  ground: "world-elevation" 
+});
+```
+
+---
+
+## Basemaps and Ground
+
+```js
+const map = new Map({
+  basemap: {
+    // Layers drawn at the bottom
+    baseLayers: [
+      new TileLayer({ url: baselayer })
+    ],
+    // Layers drawn on top
+    referenceLayers: [
+      new TileLayer({ url: refUrl })
+    ],
+  },
+  ground: {
+    layers: [
+      new ElevationLayer({ url: elevationUrl })
+    ]
+  }
+});
+```
+
+---
+
+## Basemap and Ground
+
+<iframe height='500' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
@@ -177,8 +248,7 @@ view.on("click", ({ x, y }) => {
 
 ## Collections
 
-- `esri/core/Collection`
-- [Collection Doc](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-Collection.html)
+- [`esri/core/Collection`](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-Collection.html)
 
 <iframe height="400" style="width: 100%;" scrolling="no" title="Collection" src="//codepen.io/odoe/embed/preview/MQWLwO/?height=300&theme-id=31222&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/odoe/pen/MQWLwO/'>Collection</a> by Rene Rubalcava
@@ -300,12 +370,8 @@ const doQuery = async (query) => {
 
 ## Promises
 
-- Classes may be Promise
- - Load resources
- - Asychronously initialized `Layer`, `WebMap`, `WebScene`, `View`
- - `view.then()` replaces `map.on('load', ...)`
-
- - We add `when()` to the API.
+- Load resources
+- Asychronously initialized `Layer`, `WebMap`, `WebScene`, `View`
 
 ```js
 const map = new Map({...})
@@ -410,6 +476,149 @@ catch(error) {
       console.error(error);
     });
 ```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## More patterns
+
+---
+
+## Basemaps
+
+```js
+const map = new Map({
+  basemap: "topo-vector"
+});
+```
+
+- Convenience Strings
+- Be more explicit in production apps
+
+---
+
+## Basemaps
+
+<iframe height='500' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Zoom or Scale
+
+```js
+const view = new MapView({
+  container: "viewDiv",
+  map: map,
+  center: [-116.5, 33.80],
+  zoom: 14 // what does that really mean?
+});
+```
+
+- Zoom = LOD (Level of Details)
+- Not all LODs are created equal
+
+---
+
+## Zoom is not Scale
+
+```js
+const view = new MapView({
+  container: "viewDiv",
+  map: map,
+  center: [-116.5, 33.80],
+  scale: 50000 // I know what that means!
+});
+```
+
+- Scale is portable
+- Scale has meaning
+- We still snap to closest LOD/zoom
+
+---
+
+## WebMap is still a Map
+
+```js
+const map = new WebMap({
+  basemap: { ... },
+  layers: [ ... ]
+});
+```
+
+- Still acts like a regular `Map`
+- Has some advantages
+
+---
+
+## WebMap is still a Map
+
+<iframe height='500' scrolling='no' title='Local bookmarks' src='//codepen.io/odoe/embed/preview/QxrEVX/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/QxrEVX/'>Local bookmarks</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## Sublayer to FeatureLayer
+
+- You can extract a FeatureLayer from MapImageLayer Sublayer
+- `sublayer.createFeatureLayer()`
+- Can use capabilities not normally available with Sublayer
+
+---
+
+## Sublayer to FeatureLayer
+
+<iframe height='500' scrolling='no' title='createFeatureLayer' src='//codepen.io/odoe/embed/preview/PaxeyO/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/PaxeyO/'>createFeatureLayer</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## createQuery
+
+- When you can do `layer.createQuery()`
+  - `query` object will already have the layers filters and layer definitions
+  - more consistent
+- Use `new Query()` when you don't want predefined filters to be applied
+
+---
+
+## createQuery
+
+<iframe height='500' scrolling='no' title='createQuery' src='//codepen.io/odoe/embed/preview/rKQqQW/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rKQqQW/'>createQuery</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## MapImageLayer
+
+- If you want to modify Sublayers, do it after you load the layer
+- Defining them upfront overrides the defaults
+  - May not be what you want
+
+---
+
+## MapImageLayer
+
+<iframe height='500' scrolling='no' title='MapImageLayer - Load Sublayers' src='//codepen.io/odoe/embed/preview/WyYBwL/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/WyYBwL/'>MapImageLayer - Load Sublayers</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+---
+
+## LayerViews
+
+- Renders the Layer
+- When is it done though?
+  - _hotly debated topic!_
+  - When can you actually use it!!
+  - Behavior different with optimized FeatureLayer
+
+---
+
+## LayerViews
+
+<iframe height='500' scrolling='no' title='LayerView - Ready' src='//codepen.io/odoe/embed/preview/YvRJgj/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YvRJgj/'>LayerView - Ready</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
 
 ---
 
