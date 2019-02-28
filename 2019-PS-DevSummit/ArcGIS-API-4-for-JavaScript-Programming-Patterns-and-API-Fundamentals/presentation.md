@@ -12,6 +12,17 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ---
 
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+
+## Fundamentals
+
+- Widgets
+- Map
+- View
+- Basemaps
+
+---
+
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets
@@ -116,12 +127,6 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Fundamentals
-
----
-
 ## Map and View
 
 ---
@@ -146,6 +151,8 @@ const sView = new SceneView({
 ---
 
 ## Basemaps and Ground
+
+- Convenience Strings
 
 ```js
 const map = new Map({
@@ -197,55 +204,6 @@ const map = new Map({
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Patterns
-
----
-
-## Interactivity with view events
-
-- Use view events to interact with the view
-- [List of events](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#events-summary)
-- You can stop the propagation of the event to prevent the default behavior
-
-```js
-view.on("drag", event => {
-  // user won't be able to drag
-  event.stopPropagation();
-})
-```
-
----
-
-
-## Interactivity with view events
-
-- Access the features on click
-
-```js
-view.on("click", ({ x, y }) => {
-  const screenPoint = {x, y};
-  view.hitTest(screenPoint)
-    .then(response => {
-       // do something with the result graphic
-       const graphic = response.results[0].graphic;
-    });
-});
-```
-- [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=view-hittest)
-
----
-
-
-## goTo() with View
-
-- Sets the view to a given target.
-  - Navigate to a geometry/feature/location
-- [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=scene-goto)
-
----
-
 ## Collections
 
 - [`esri/core/Collection`](https://developers.arcgis.com/javascript/latest/api-reference/esri-core-Collection.html)
@@ -270,9 +228,6 @@ view.on("click", ({ x, y }) => {
 ### Accessor - property access
 
 ```ts
-console.log(layer.opacity);
-console.log(layer.title);
-
 layer.opacity = 0.5;
 layer.title = "My test layer";
 
@@ -431,6 +386,55 @@ catch(error) {
 
 ---
 
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Patterns
+
+---
+
+## Interactivity with view events
+
+- Use view events to interact with the view
+- [List of events](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#events-summary)
+- You can stop the propagation of the event to prevent the default behavior
+
+```js
+view.on("drag", event => {
+  // user won't be able to drag
+  event.stopPropagation();
+})
+```
+
+---
+
+
+## Interactivity with view events
+
+- Access the features on click
+
+```js
+view.on("click", ({ x, y }) => {
+  const screenPoint = {x, y};
+  view.hitTest(screenPoint)
+    .then(response => {
+       // do something with the result graphic
+       const graphic = response.results[0].graphic;
+    });
+});
+```
+- [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=view-hittest)
+
+---
+
+
+## goTo() with View
+
+- Sets the view to a given target.
+  - Navigate to a geometry/feature/location
+- [API Sample](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=scene-goto)
+
+---
+
 ## Loadables
 
 - brings better control, and scheduling of loading resources.
@@ -476,32 +480,6 @@ catch(error) {
       console.error(error);
     });
 ```
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## More patterns
-
----
-
-## Basemaps
-
-```js
-const map = new Map({
-  basemap: "topo-vector"
-});
-```
-
-- Convenience Strings
-- Be more explicit in production apps
-
----
-
-## Basemaps
-
-<iframe height='500' scrolling='no' title='VT Basemaps' src='//codepen.io/odoe/embed/preview/rpQOEM/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/rpQOEM/'>VT Basemaps</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe>
 
 ---
 
@@ -619,6 +597,43 @@ const map = new WebMap({
 
 <iframe height='500' scrolling='no' title='LayerView - Ready' src='//codepen.io/odoe/embed/preview/YvRJgj/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YvRJgj/'>LayerView - Ready</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
+
+---
+
+## Geocoding
+
+```js
+const locator = new Locator({ url: url });
+locator.addressToLocations({
+  address: {
+    "singleLine": "380 New York St, Redlands, CA 92373"
+  }
+});
+locator.locationToAddress({ location: point });
+```
+
+---
+
+## Geocoding
+
+```js
+const searchVM = new SearchVM();
+searchVM.search("380 New York St, Redlands, CA 92373");
+searchVM.search(location);
+```
+
+---
+
+## Geocoding
+
+```js
+const portal = new Portal(...);
+await portal.load();
+portal.helperServices.map(geocoderService => {
+  // objects with details on
+  // geocode servicws for your portal
+});
+```
 
 ---
 
