@@ -629,9 +629,9 @@ searchVM.search(location);
 ```js
 const portal = new Portal(...);
 await portal.load();
-portal.helperServices.map(geocoderService => {
+portal.helperServices.geocode.map(geocoderService => {
   // objects with details on
-  // geocode servicws for your portal
+  // geocode services for your portal
 });
 ```
 
