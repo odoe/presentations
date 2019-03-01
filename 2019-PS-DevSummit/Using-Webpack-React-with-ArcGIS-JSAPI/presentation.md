@@ -8,11 +8,12 @@
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
 
-## Headline Here 2
+## React
 
-* Bullet [points here](http://hakim.se).
+* It's a tool, not a framework
+* Free to do as you wish
 
 ---
 
