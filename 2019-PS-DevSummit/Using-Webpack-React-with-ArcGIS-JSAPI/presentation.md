@@ -12,8 +12,7 @@
 
 ## React
 
-* It's a tool, not a framework
-* Free to do as you wish
+<p><code>ui = f(s)</code></p>
 
 ---
 
@@ -281,19 +280,278 @@ useEffect(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-5.png" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+## 😎 [@arcgis/webpack-plugin](https://github.com/Esri/arcgis-webpack-plugin) 👍
+<p class="fragment">... but</p>
+<p class="fragment">ArcGIS API 4.7+ only</p>
+<p class="fragment">Must be able to configure webpack</p>
 
-## Headline Here 5
 
-* Bullet [points here](http://hakim.se).
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Popular React Tools & Frameworks
+
+<table class="clis">
+  <tbody>
+    <tr>
+      <td>
+        <a href="https://github.com/facebook/create-react-app">
+          <img src="img/wayson/react-js-img.png" width="240" class="transparent" />
+          <p>create-react-app</p>
+        </a>
+      </td>
+      <td>
+        <a href="https://nextjs.org/">
+          <img style="margin: 80px 0" src="img/wayson/nextjs-white-logo.svg" width="240" class="transparent" />
+          <p>Next.js</p>
+        </a>
+      </td>
+      <td>
+        <a href="https://www.gatsbyjs.org/">
+          <img src="img/wayson/gatsby-logo.png" width="240" class="transparent" />
+          <p>Gatsby</p>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p class="fragment">All insulate you from 😱 of webpack config</p>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<p>👵 ArcGIS API < 4.7x? 👴</p>
+<p class="fragment">🔒 No access to webpack config? 🔒</p>
+<p class="fragment">🙈 Don't _want_ to config webpack? 😱</p>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+###  No problem. Try [esri-loader](https://github.com/Esri/esri-loader)
+
+<div>
+    <img src="img/wayson/esri-loader-band-aid-center-text.png" class="transparent" height="120" />
+</div>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+### Works with ArcGIS API [3.x](https://developers.arcgis.com/javascript/3/) <span class="fragment" data-fragment-index="1">_and_ 4.x</span>
+
+<div>
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/esri.png" class="transparent fragment"  data-fragment-index="1" height="120" />
+</div>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+### Works with _any_ React tool / library / framework
+
+<div>
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/Heart_corazon.svg" class="transparent" height="120" />
+  <img src="img/wayson/react-js-img.png" class="transparent" height="120" />
+  <img src="img/wayson/redux-logo.svg" class="transparent" height="120" />
+  <img src="img/wayson/nextjs-white-logo.svg" class="transparent" height="100" />
+  <img src="img/wayson/gatsby-logo.png" class="transparent" height="120" />
+</div>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+### BTW... <span class="fragment" data-fragment-index="1">Not _just_ for Webpack & React</span>
+
+<div class="fragment" data-fragment-index="1">
+  <img src="img/wayson/webpack-icon-square-big.png" class="transparent" height="120" />
+  <img src="img/wayson/react-js-img.png" class="transparent" height="120" />
+</div>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+### Works with _any_ module loader
+
+<div>
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/Heart_corazon.svg" class="transparent" height="120" />
+  <img src="img/wayson/webpack-icon-square-big.png" class="transparent" height="120" />
+  <img src="img/wayson/rollup1.png" class="transparent" height="100" />
+  <img src="img/wayson/parcel-og.png" class="transparent" height="140" />
+</div>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+### Works with _any_ framework
+
+<div>
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/Heart_corazon.svg" class="transparent" height="120" />
+  <img src="img/wayson/tomster-sm.png" class="transparent" height="120" />
+  <img src="img/wayson/angular.png" class="transparent" height="120" />
+  <img src="img/wayson/vue-logo.png" class="transparent" height="120" />
+  <img src="img/wayson/react-js-img.png" class="transparent" height="120" />
+  <img src="img/wayson/Dojo-New.png" class="transparent" height="120" />
+</div>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Using [esri-loader](https://github.com/Esri/esri-loader#install) with Webpack
+
+<img class="transparent" src="img/wayson/800px-Npm-logo.svg.png" style="width: 300px; margin: 110px 0;">
+<h3><code>npm install --save esri-loader</code></h3>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Using [esri-loader](https://github.com/Esri/esri-loader#install) with Webpack
+
+<img class="transparent" src="img/wayson/yarn-cat-eating-bower-bird.png">
+<h3><code>yarn add esri-loader</code></h3>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Using [`loadModules()`](https://github.com/Esri/esri-loader#usage)
+
+```js
+import { loadModules } from 'esri-loader';
+
+loadModules([
+  "esri/Map",
+  "esri/views/MapView"
+]).then(([Map, MapView]) => {
+  // Code to create the map and view will go here
+});
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Look [familiar](https://developers.arcgis.com/javascript/latest/sample-code/intro-mapview/index.html)?
+
+```js
+// this is what loadModules() does under the hood
+
+require([
+  "esri/Map",
+  "esri/views/MapView"
+], function(Map, MapView) {
+  // Code to create the map and view will go here
+});
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### [Lazy loads the ArcGIS API](https://github.com/Esri/esri-loader#lazy-loading-the-arcgis-api-for-javascript) by default
+
+<pre class="language-js" data-line="2,6">
+<code class="language-js">loadModules(["esri/config"]) // <- loads API 1st time
+.then(([esriConfig]) => {
+  esriConfig.useIdentity = false;
+  // don't worry, this won't load the API again!
+  loadModules(
+    ["esri/Map", "esri/views/MapView"],
+  ]).then(([Map, MapView]) => { /* do map things */ });
+});</code></pre>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Lazy load the ArcGIS CSS
+
+<pre class="language-js" data-line="6">
+<code class="language-js">// pass options as a second argument
+loadModules(
+  ["esri/Map", "esri/views/MapView"],
+  // this stylesheet is only loaded once
+  { css: "https://js.arcgis.com/4.10/esri/css/main.css" }
+]).then(([Map, MapView]) => {
+  /* do map things with style! */
+});</code></pre>
+
+Note:
+for even better initial load performance
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### [Load a specific version of the ArcGIS API](https://github.com/Esri/esri-loader#from-a-specific-version)
+
+```js
+const apiUrl = "https://js.arcgis.com/3.27/";
+loadModules(
+  ["esri/map"],
+  {
+    url: apiUrl,
+    css: `${apiUrl}esri/css/esri.css`
+  }
+]).then(([Map]) => { /* do old skool map things */ });
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Additional options & patterns
+
+See the esri-loader docs for examples of:
+- [configuring Dojo](https://github.com/Esri/esri-loader#configuring-dojo)
+- [using ArcGIS types in TS](https://github.com/Esri/esri-loader#arcgis-types)
+- and [more](https://github.com/Esri/esri-loader#advanced-usage)
 
 ---
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
 
-## Headline Here 6
+## Demo
 
-* Bullet [points here](http://hakim.se).
+[Using esri-loader in React (on CodeSandbox)](https://codesandbox.io/s/qzzwql0yn9)
+
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+
+## Example: Create ArcGIS App
+
+<a href="https://create-arcgis-app.surge.sh/"><img width="852" src="img/wayson/create-arcgis-app-screenshot.png" /></a>
+
+[create-arcgis-app](https://github.com/tomwayson/create-arcgis-app)
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+
+## Example: Next ArcGIS App
+
+<a href="https://next-arcgis-app.now.sh/"><img width="680" src="img/wayson/next-arcgis-app-screenshot.png" /></a>
+
+[next-arcgis-app](https://github.com/tomwayson/next-arcgis-app)
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+
+## Conclusion
+
+<div>
+  <img src="img/wayson/esri.png" class="transparent" height="120" />
+  <img src="img/wayson/Heart_corazon.svg" class="transparent" height="120" />
+  <img src="img/wayson/webpack-icon-square-big.png" class="transparent" height="120" />
+  <img src="img/wayson/react-js-img.png" class="transparent" height="120" />
+</div>
+
+Notes:
+It's never been a better time to be a React dev
+It's never been a better time to be a ArcGIS dev
+Go forth and prosper
 
 ---
 

@@ -1,0 +1,9 @@
+table.clis td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.code-lg pre[class*="language-"], .code-md pre[class*="language-"] {
+  margin-left: auto;
+  margin-right: auto;
+}
