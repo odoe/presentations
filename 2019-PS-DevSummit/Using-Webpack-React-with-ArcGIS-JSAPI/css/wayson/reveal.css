@@ -1,0 +1,98 @@
+.reveal section img {
+  border: 0px;
+}
+/*
+.reveal ul {
+  list-style-type: none;
+}
+*/
+
+/* overlay header */
+.reveal h4 {
+  color:  #fff;
+  left: 0;
+  margin-top: 240px;
+  margin-bottom: 0;
+  font-size: 1.8em;
+  line-height: 1.9em;
+  text-shadow: 0 6px 4px rgba(0,0,0,.75);
+}
+
+.reveal .light-background h4 {
+  background: rgba(0,0,0,.4);
+  border-radius: 10px;
+  text-shadow: none;
+}
+
+.reveal .light-background h4 a {
+  color: #77cfeb;
+}
+
+/* overlay content */
+.reveal .slim-shady {
+    background: rgba(0,0,0,0.5);
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/* images w/ transparencies */
+.reveal img.transparent, .reveal a:hover img.transparent {
+  background: none;
+  box-shadow: none;
+}
+
+.reveal .slide.white {
+  background-color: #fff;
+  color: #000;
+}
+
+.reveal .slide.white h2 {
+  color: #000;
+}
+
+.left {
+  width: 50%;
+  float: left;
+}
+.right {
+  width: 50%;
+  float: right;
+}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+pre.large {
+  font-size: 24px;
+}
+img.esriLogo {
+  position: absolute;
+  top: -120px;
+  right: 0;
+}
+
+.ember-brand, .ember-brand h3 {
+  color: #5f5a5a;
+}
+.ember-brand a, .ember-brand a:hover {
+  color: #cd523d;
+}
+
+
+.code-lg code, .code-md code {
+  margin: 0 auto;
+}
+
+.code-lg pre {
+  width: 60%;
+  font-size: 1em;
+}
+
+.code-md pre {
+  width: 70%;
+  font-size: .8em;
+}
