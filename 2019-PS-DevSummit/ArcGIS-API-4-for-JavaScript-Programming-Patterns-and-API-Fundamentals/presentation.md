@@ -3,7 +3,7 @@
 <h1 style="text-align: left; font-size: 80px;">ArcGIS API for JavaScript</h1>
 <h2 style="text-align: left; font-size: 40px;">Programming Patterns and API Fundamentals</h2>
 <p style="text-align: left; font-size: 30px;">Kelly Hutchins | René Rubalcava</p>
-<p style="text-align: left; font-size: 30px;"><a href="https://twitter.com/kellyhutchins">@kellyhutchins</a> | <a href="https://github.com/odoenet">@odoenet</a></p>
+<p style="text-align: left; font-size: 30px;"><a href="https://twitter.com/kellyhutchins">@kellyhutchins</a> | <a href="https://twitter.com/odoenet">@odoenet</a></p>
     <p style="text-align: left; font-size: 30px;">slides: <a href="https://git.io/fhNcV"><code>https://git.io/fhNcV</code></a></p>
 
 <!--
