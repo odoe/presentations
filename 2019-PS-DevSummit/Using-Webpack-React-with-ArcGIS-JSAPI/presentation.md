@@ -16,14 +16,6 @@
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" -->
-
-## Headline Here 3
-
-* Bullet [points here](http://hakim.se).
-
----
-
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## React with the ArcGIS API for JS
