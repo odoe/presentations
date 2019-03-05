@@ -16,9 +16,205 @@
 
 ---
 
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+
+## ArcGIS API for JavaScript
+
+`🌎 = new F(id, container)`
+
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactArcGISVennDiagram.svg" -->
+
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactArcGISVennDiagram2.svg" -->
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactArcGISVennDiagram3.svg" -->
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactMapAppLight.svg" -->
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactMapAppDark.svg" -->
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactMapAppDarkComponents.svg" -->
+
+---
+
+<!-- .slide: data-background="img/wayson/ReactMapAppDarkArcGISCode.svg" -->
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Create a map component that [renders](https://reactjs.org/docs/react-component.html#render) a `<div>`
+
+```jsx
+class EsriMap extends React.Component {
+
+
+
+
+  render() {
+    return <div className="esri-map" />;
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Get a [ref](https://reactjs.org/docs/refs-and-the-dom.html)erence to the `<div>`
+
+```jsx
+class EsriMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.mapDiv = React.createRef();
+  }
+  render() {
+    return <div className="esri-map" ref={this.mapDiv} />;
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Create a map [after the component renders](https://reactjs.org/docs/react-component.html#componentdidmount)
+
+```jsx
+componentDidMount() {
+  const container = this.mapDiv.current;
+  const basemap = themeToBasemap(this.props.theme);
+  
+  // imported from ./utils/map.js
+  loadMap(container, basemap)
+  .when(view => { this._view = view });
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Handle [updated `theme` (prop)](https://reactjs.org/docs/react-component.html#componentdidupdate)
+
+```jsx
+componentDidUpdate(prevProps) {
+  if (this.props.theme !== prevProps.theme) {
+    if (this._view) {
+      const basemap = themeToBasemap(this.props.theme);
+      this._view.map.basemap = basemap;
+    }
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### [Clean up](https://reactjs.org/docs/react-component.html#componentwillunmount)
+
+```jsx
+componentWillUnmount() {
+  if (this._view) {
+    this._view.container = null;
+    delete this._view;
+  }
+}
+```
+
+---
+
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
-## React with the ArcGIS API for JS
+### 🎉 Success! 🎉
+
+<p class="fragment">✅ created a map using React DOM & state</p>
+<p class="fragment">✅ relay state changes state from React to the ArcGIS API</p>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" class="code-md" data-transition="fade" -->
+### 🤔 Relay state changes from ArcGIS API to React?
+
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Add `mapLoaded` to App state
+
+```jsx
+class App extends React.Component {
+  state = { theme: 'light', mapLoaded: false }
+
+
+  render() {
+    return <EsriMap theme={theme} />;
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Pass a callback to the map component as a prop
+
+```jsx
+class App extends React.Component {
+  state = { theme: 'light', mapLoaded: false }
+  onMapLoad () => { this.setState({ mapLoaded: true }) }
+
+  render() {
+    return <EsriMap theme={theme} onLoad={onMapLoad} />;
+  }
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+### Call the `onLoad()` callback when the view is ready
+
+```jsx
+componentDidMount() {
+  const container = this.mapDiv.current;
+  const basemap = themeToBasemap(this.props.theme);
+  loadMap(container, basemap).when(view => {
+    this._view = view;
+    this.props.onLoad && this.props.onLoad();
+  });
+}
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+### 😒 APIs have changed...
+
+<p class="fragment">... concepts remain the same 🙂</p>
+
+<ul>
+  <li class="fragment">✅ pass `state` & `callbacks` to map component via `props`</li>
+  <li class="fragment">✅ use `refs` to access DOM nodes</li>
+  <li class="fragment">✅ use a module to encapsulate the ArcGIS API</li>
+  <li class="fragment">✅ call functions from that module after render & update</li>
+</li>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Modern React APIs and the ArcGIS API
 
 ---
 
@@ -417,7 +613,7 @@ useEffect(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### Using [esri-loader](https://github.com/Esri/esri-loader#install) with Webpack
 
 <img class="transparent" src="img/wayson/800px-Npm-logo.svg.png" style="width: 300px; margin: 110px 0;">
@@ -425,7 +621,7 @@ useEffect(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### Using [esri-loader](https://github.com/Esri/esri-loader#install) with Webpack
 
 <img class="transparent" src="img/wayson/yarn-cat-eating-bower-bird.png">
@@ -433,7 +629,7 @@ useEffect(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### Using [`loadModules()`](https://github.com/Esri/esri-loader#usage)
 
 ```js
@@ -449,7 +645,7 @@ loadModules([
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### Look [familiar](https://developers.arcgis.com/javascript/latest/sample-code/intro-mapview/index.html)?
 
 ```js
@@ -465,7 +661,7 @@ require([
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### [Lazy loads the ArcGIS API](https://github.com/Esri/esri-loader#lazy-loading-the-arcgis-api-for-javascript) by default
 
 <pre class="language-js" data-line="2,6">
@@ -480,7 +676,7 @@ require([
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### Lazy load the ArcGIS CSS
 
 <pre class="language-js" data-line="6">
@@ -498,7 +694,7 @@ for even better initial load performance
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### [Load a specific version of the ArcGIS API](https://github.com/Esri/esri-loader#from-a-specific-version)
 
 ```js
@@ -514,7 +710,7 @@ loadModules(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
 ### Additional options & patterns
 
 See the esri-loader docs for examples of:
