@@ -12,67 +12,98 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
 
-## Fundamentals
+<!-- .slide: data-background="./images/section.png" -->
 
-- Widgets
-- Map
-- View
-- Basemaps
+## What do I get with the 4x JSAPI?
+
+- Simplified and consistent API <!-- .element: class="fragment" data-fragment-index="1" -->
+- Write apps in ES6 or TypeScript <!-- .element: class="fragment" data-fragment-index="1" -->
+- Modern browser support (IE11+) <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+<!-- .slide: data-background="./images/section.png" -->
+## What are my options?
 
-## Widgets
- - App building blocks
- - 30+ widgets
- - Responsive
- - Accessible
- - Localized
+- Needs?
+- Resources?
+- Time?
+- Customizations?
 
-<aside class="notes">Open documentation and show list of widgets. We'll explore a few </aside>
+---
+
+## Why start from scratch?
+
+[![Esri Github](images/github-esri.png)](https://github.com/search?o=desc&q=topic%3Ajavascript+org%3AEsri+fork%3Atrue&s=updated&type=Repositories)
+
+
+---
+
+<!-- .slide: data-background="./images/section.png" -->
+## Widgets!
+
+- ~30 Widgets out of the box <!-- .element: class="fragment" data-fragment-index="1" -->
+- Widgets help make great apps <!-- .element: class="fragment" data-fragment-index="1" -->
+- Less code for you to write <!-- .element: class="fragment" data-fragment-index="1" -->
+- Designed with responsive apps in mind <!-- .element: class="fragment" data-fragment-index="1" -->
+- We'll look at a few key widgets <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Architecture
- - View + View Model
- - Use View Model (Rene's blog) (maybe demo a directions app (getDirecitons))
 
-<aside class="notes"> Separate data and presentation. Link to doc  </aside>
+ View + View Model
+ ![Search View Model](images/searchviewmodel.png)
+
+<aside class="notes"> Separate business logic and presentation. Link to doc  </aside>
 
 ---
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
-## Widgets - CSS
- - Styles
- - Themes
- - Sass
+## View Models
+
+ - [Custom View](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-frameworks-react)
+ - [Use the view model](https://developers.arcgis.com/example-apps/nearby-javascript/?utm_source=github&utm_campaign=example_apps_nearby_javascript)
+  - [Additional Examples](https://odoe.net/blog/view-models-in-the-arcgis-api-for-javascript/)
+
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Styling
+ Available Themes
+ <iframe  width='500' height='400' scrolling='no' title='Themes' src='//codepen.io/kellyhutchins/embed/preview/Lqebdm/?height=300&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/kellyhutchins/pen/Lqebdm'>Theme Tester</a> by Kelly Hutchins (<a href='https://codepen.io/kellyhutchins'>@kellyhutchins</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
 <aside class="notes">Look at ways to customize appearance of widgets</aside>
 
 ---
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
-## Widgets - Add to view
- - Default widgets (components)
- - View UI
- - Manually position
-<aside class="notes"> Default widgets for map (attribution,zoom) and Scene View (attribution, navigation-toggle, compass, zoom)  </aside>
+## Widgets - Styling
+ - CSS Extension language
+ - SASS
+ - [Theme Utility](https://github.com/jcfranco/jsapi-styles)
+
+
+<aside class="notes">Demo Franco's SASS utility (npm install and show code)</aside>
 
 ---
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Expand
- - Clickable button to open container
- - icon class (defaults to widget)
- - group
- - mode
+
+ - [Clickable button to open container](https://codepen.io/kellyhutchins/pen/drOGNJ)
+ - Icons
+ - Group
+ - Mode
 <aside class="notes">Look at a few key widgets start with expand and point out common questions/gotchas </aside>
 
 ---
@@ -80,7 +111,8 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Use Portal Content
- - Search
+
+ - [Search](https://codepen.io/kellyhutchins/pen/EMNPmZ)
  - Basemap Gallery
 <aside class="notes">Show how we can provide portal and widgets like search and bmg use that content.  </aside>
 
@@ -89,9 +121,8 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Popup
- - Popup
- - Menu actions
- - Dock  (breakpoint false)
+ - [Menu actions](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popup-actions)
+ - [Dock](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popup-docking-position)
 <aside class="notes">   </aside>
 
 ---
@@ -99,10 +130,10 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
 ## Widgets - Popup Template
- - fields, charts, custom html content etc
- - arcade (demo x,y example bernie asked about)
- - function
- - promises
+ - Define fields, charts, custom html content
+ - [Using a function](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popuptemplate-promise)
+ - Promises
+ - Arcade
 
 <aside class="notes"> Talk about different ways to define/set popup content</aside>
 
@@ -110,8 +141,8 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
 
-## Widgets - Popup (lazy mode)
- - web map
+## Widgets - Author popup in online
+ - [Web Map](http://jsapi.maps.arcgis.com/home/webmap/viewer.html?webmap=e9e5311ac8ec4110abe77b026ce87cf7)
  - web scene
  - Layer.fromPortalItem
 <aside class="notes">Popups can be lots of work to define field info etc. If you use web map, scene, layer you get popup (and rendering) info for free</aside>
@@ -122,7 +153,7 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ## Widgets - Feature
  - Display popup template content
- - Hover (demo SDK sample) and potentially template with content in view.ui corner
+ - [Hover](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-feature)
 <aside class="notes">Display popup content someplace else</aside>
 
 ---
@@ -165,9 +196,9 @@ const map = new Map({
   basemap: "streets"
 
   /*
-   world-elevation 
+   world-elevation
    */
-  ground: "world-elevation" 
+  ground: "world-elevation"
 });
 ```
 
