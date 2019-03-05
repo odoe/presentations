@@ -17,9 +17,10 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ## What do I get with the 4x JSAPI?
 
-- Simplified and consistent API <!-- .element: class="fragment" data-fragment-index="1" -->
-- Write apps in ES6 or TypeScript <!-- .element: class="fragment" data-fragment-index="1" -->
-- Modern browser support (IE11+) <!-- .element: class="fragment" data-fragment-index="1" -->
+- Simplified and consistent API
+- Write apps in ES6 or TypeScript
+- Modern browser support (IE11+)
+- [Supported in 30+ locales](http://www.arcgis.com/apps/3DInsetMap/index.html?locale=ja)
 
 ---
 
@@ -35,6 +36,10 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 ## Why start from scratch?
 
+- App starters
+- Widgets
+
+
 [![Esri Github](images/github-esri.png)](https://github.com/search?o=desc&q=topic%3Ajavascript+org%3AEsri+fork%3Atrue&s=updated&type=Repositories)
 
 
@@ -42,12 +47,72 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 <!-- .slide: data-background="./images/section.png" -->
 ## Widgets!
-
+- We'll look at a few <a href="(https://developers.arcgis.com/javascript/latest/sample-code/index.html?search=Widget)">widgets</a>
 - ~30 Widgets out of the box <!-- .element: class="fragment" data-fragment-index="1" -->
-- Widgets help make great apps <!-- .element: class="fragment" data-fragment-index="1" -->
-- Less code for you to write <!-- .element: class="fragment" data-fragment-index="1" -->
-- Designed with responsive apps in mind <!-- .element: class="fragment" data-fragment-index="1" -->
-- We'll look at a few key widgets <!-- .element: class="fragment" data-fragment-index="1" -->
+- Widgets help make great apps <!-- .element: class="fragment" data-fragment-index="2" -->
+- Less code for you to write <!-- .element: class="fragment" data-fragment-index="3" -->
+- Designed with responsive apps in mind <!-- .element: class="fragment" data-fragment-index="4" -->
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Expand
+ - [Clickable button to open container](https://codepen.io/kellyhutchins/pen/drOGNJ)
+ - Icons
+ - Group
+ - Mode
+<aside class="notes">Look at a few key widgets start with expand and point out common questions/gotchas </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Use Portal Content
+
+ - [Search](https://codepen.io/kellyhutchins/pen/EMNPmZ)
+ - Basemap Gallery
+<aside class="notes">Show how we can provide portal and widgets like search and bmg use that content.  </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Popup
+ - [Menu actions](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popup-actions)
+ - [Dock](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popup-docking-position)
+<aside class="notes">   </aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Popup Template
+ - Define fields, charts, custom html content
+ - [Using a function](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popuptemplate-promise)
+ - Promises
+ - Arcade
+
+<aside class="notes"> Talk about different ways to define/set popup content</aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Author popup in online
+ - [Web Map or Web Scene](http://jsapi.maps.arcgis.com/home/webmap/viewer.html?webmap=e9e5311ac8ec4110abe77b026ce87cf7)
+ - Layer.fromPortalItem
+ - [App Demo](http://www.arcgis.com/apps/Media/index.html?appid=ba47f08a73e142908475b841e0e38b02)
+<aside class="notes">Popups can be lots of work to define field info etc. If you use web map, scene, layer you get popup (and rendering) info for free</aside>
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+
+## Widgets - Feature
+ - Display popup template content
+ - [Hover](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-feature)
+<aside class="notes">Display popup content someplace else</aside>
 
 ---
 
@@ -93,68 +158,6 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 
 
 <aside class="notes">Demo Franco's SASS utility (npm install and show code)</aside>
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Widgets - Expand
-
- - [Clickable button to open container](https://codepen.io/kellyhutchins/pen/drOGNJ)
- - Icons
- - Group
- - Mode
-<aside class="notes">Look at a few key widgets start with expand and point out common questions/gotchas </aside>
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Widgets - Use Portal Content
-
- - [Search](https://codepen.io/kellyhutchins/pen/EMNPmZ)
- - Basemap Gallery
-<aside class="notes">Show how we can provide portal and widgets like search and bmg use that content.  </aside>
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Widgets - Popup
- - [Menu actions](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popup-actions)
- - [Dock](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popup-docking-position)
-<aside class="notes">   </aside>
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Widgets - Popup Template
- - Define fields, charts, custom html content
- - [Using a function](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=popuptemplate-promise)
- - Promises
- - Arcade
-
-<aside class="notes"> Talk about different ways to define/set popup content</aside>
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Widgets - Author popup in online
- - [Web Map](http://jsapi.maps.arcgis.com/home/webmap/viewer.html?webmap=e9e5311ac8ec4110abe77b026ce87cf7)
- - web scene
- - Layer.fromPortalItem
-<aside class="notes">Popups can be lots of work to define field info etc. If you use web map, scene, layer you get popup (and rendering) info for free</aside>
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
-
-## Widgets - Feature
- - Display popup template content
- - [Hover](https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=widgets-feature)
-<aside class="notes">Display popup content someplace else</aside>
 
 ---
 
