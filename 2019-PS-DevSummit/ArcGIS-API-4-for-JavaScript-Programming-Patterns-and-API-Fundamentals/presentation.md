@@ -668,30 +668,6 @@ portal.helperServices.geocode.map(geocoderService => {
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
-
-## Headline Here 4
-
-* Bullet [points here](http://hakim.se).
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-5.png" -->
-
-## Headline Here 5
-
-* Bullet [points here](http://hakim.se).
-
----
-
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
-
-## Headline Here 6
-
-* Bullet [points here](http://hakim.se).
-
----
-
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-esri.png" -->
 
 ---
