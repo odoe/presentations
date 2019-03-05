@@ -225,6 +225,30 @@ const AwesomeApp = () => {
 
 <!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
 
+## Suspense
+
+---
+
+## Hold your Suspense
+
+* Lazy-load React components
+* useful in modular apps
+
+```tsx
+import React, { lazy } from "react";
+// lazy load the components that use Maps
+const WebMapView = lazy(() => import("../components/WebMapView"));
+// later on
+<Suspense fallback={<Placeholder />}>
+  <ListView />
+  <WebMapView />
+</Suspense>
+```
+
+---
+
+<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+
 ## Modularize API usage
 
 ---
