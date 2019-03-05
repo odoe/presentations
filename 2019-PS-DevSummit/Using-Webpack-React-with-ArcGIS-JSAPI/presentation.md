@@ -724,8 +724,9 @@ See the esri-loader docs for examples of:
 
 ## Demo
 
-[Using esri-loader in React (on CodeSandbox)](https://codesandbox.io/s/qzzwql0yn9)
+[Theme Switcher (on CodeSandbox)](https://codesandbox.io/s/8ykw098vw0)
 
+<iframe src="https://codesandbox.io/embed/8ykw098vw0?fontsize=14&module=%2Fsrc%2Futils%2Fmap.js" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ---
 
