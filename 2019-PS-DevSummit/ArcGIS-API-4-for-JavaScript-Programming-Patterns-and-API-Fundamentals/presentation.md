@@ -39,7 +39,6 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
 - App starters
 - Widgets
 
-
 [![Esri Github](images/github-esri.png)](https://github.com/search?o=desc&q=topic%3Ajavascript+org%3AEsri+fork%3Atrue&s=updated&type=Repositories)
 
 
@@ -135,6 +134,42 @@ In this session, you'll learn the basics of the ArcGIS API 4.x for JavaScript, i
  - [Use the view model](https://developers.arcgis.com/example-apps/nearby-javascript/?utm_source=github&utm_campaign=example_apps_nearby_javascript)
   - [Additional Examples](https://odoe.net/blog/view-models-in-the-arcgis-api-for-javascript/)
 
+---
+
+## Geocoding
+
+```js
+const locator = new Locator({ url: url });
+locator.addressToLocations({
+  address: {
+    "singleLine": "380 New York St, Redlands, CA 92373"
+  }
+});
+locator.locationToAddress({ location: point });
+```
+
+---
+
+## Geocoding
+
+```js
+const searchVM = new SearchVM();
+searchVM.search("380 New York St, Redlands, CA 92373");
+searchVM.search(location);
+```
+
+---
+
+## Geocoding
+
+```js
+const portal = new Portal(...);
+await portal.load();
+portal.helperServices.geocode.map(geocoderService => {
+  // objects with details on
+  // geocode services for your portal
+});
+```
 
 ---
 
@@ -631,43 +666,6 @@ const map = new WebMap({
 
 <iframe height='500' scrolling='no' title='LayerView - Ready' src='//codepen.io/odoe/embed/preview/YvRJgj/?height=500&theme-id=31222&default-tab=js,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/odoe/pen/YvRJgj/'>LayerView - Ready</a> by Rene Rubalcava (<a href='https://codepen.io/odoe'>@odoe</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
-
----
-
-## Geocoding
-
-```js
-const locator = new Locator({ url: url });
-locator.addressToLocations({
-  address: {
-    "singleLine": "380 New York St, Redlands, CA 92373"
-  }
-});
-locator.locationToAddress({ location: point });
-```
-
----
-
-## Geocoding
-
-```js
-const searchVM = new SearchVM();
-searchVM.search("380 New York St, Redlands, CA 92373");
-searchVM.search(location);
-```
-
----
-
-## Geocoding
-
-```js
-const portal = new Portal(...);
-await portal.load();
-portal.helperServices.geocode.map(geocoderService => {
-  // objects with details on
-  // geocode services for your portal
-});
-```
 
 ---
 
