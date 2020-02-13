@@ -1,4 +1,4 @@
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-1.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-1.png" -->
 
 <h1 style="text-align: left; font-size: 80px;">Using Webpack and React</h1>
 <h2 style="text-align: left; font-size: 60px;">with the ArcGIS API for JavaScript</h2>
@@ -21,7 +21,7 @@
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## ArcGIS API for JavaScript
 
@@ -49,7 +49,7 @@
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### Class-based component
 
 ```jsx
@@ -84,7 +84,7 @@ and [more](https://reactjs.org/docs/hooks-intro.html)!
 
 ### `useRef`
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 
 Get a reference to a DOM node...
 
@@ -100,7 +100,7 @@ const container = elRef.current
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 
 ### `useState`
 
@@ -130,7 +130,7 @@ setReady(true);
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" -->
 
 ### 🎉 Success! 🎉
 
@@ -139,7 +139,7 @@ setReady(true);
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" class="code-md" data-transition="fade" -->
 ### 🤔 Relay state changes between component and view?
 
 ---
@@ -162,7 +162,7 @@ setReady(true);
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" -->
 
 ### Components that wrap views or widgets
 
@@ -177,7 +177,7 @@ setReady(true);
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" -->
 
 ## Modern React APIs and the ArcGIS API
 
@@ -208,7 +208,7 @@ const ThemedMap = () => {
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## Modularize API usage
 
@@ -255,7 +255,7 @@ useEffect(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-4.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## Suspense
 
@@ -290,7 +290,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ## 😎 [@arcgis/webpack-plugin](https://github.com/Esri/arcgis-webpack-plugin) 👍
 <p class="fragment">... but</p>
 <p class="fragment">ArcGIS API 4.7+ only</p>
@@ -299,7 +299,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" -->
 
 ## Popular React Tools & Frameworks
 
@@ -331,14 +331,14 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 <p>👵 ArcGIS API < 4.7x? 👴</p>
 <p class="fragment">🔒 No access to webpack config? 🔒</p>
 <p class="fragment">🙈 Don't _want_ to config webpack? 😱</p>
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ###  No problem. Try [esri-loader](https://github.com/Esri/esri-loader)
 
 <div>
@@ -347,7 +347,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ### Works with ArcGIS API [3.x](https://developers.arcgis.com/javascript/3/) <span class="fragment" data-fragment-index="1">_and_ 4.x</span>
 
 <div>
@@ -359,7 +359,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ### Works with _any_ React tool / library / framework
 
 <div>
@@ -373,7 +373,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ### BTW... <span class="fragment" data-fragment-index="1">Not _just_ for Webpack & React</span>
 
 <div class="fragment" data-fragment-index="1">
@@ -383,7 +383,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ### Works with _any_ module loader
 
 <div>
@@ -396,7 +396,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-2.png" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-2.png" data-transition="fade" -->
 ### Works with _any_ framework
 
 <div>
@@ -411,7 +411,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### Using [esri-loader](https://github.com/Esri/esri-loader#install) with Webpack
 
 <img class="transparent" src="img/wayson/800px-Npm-logo.svg.png" style="width: 300px; margin: 110px 0;">
@@ -419,7 +419,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### Using [esri-loader](https://github.com/Esri/esri-loader#install) with Webpack
 
 <img class="transparent" src="img/wayson/yarn-cat-eating-bower-bird.png">
@@ -427,7 +427,7 @@ const WebMapView = lazy(() => import("../components/WebMapView"));
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### Using [`loadModules()`](https://github.com/Esri/esri-loader#usage)
 
 ```js
@@ -443,7 +443,7 @@ loadModules([
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### Look [familiar](https://developers.arcgis.com/javascript/latest/sample-code/intro-mapview/index.html)?
 
 ```js
@@ -459,7 +459,7 @@ require([
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### [Lazy loads the ArcGIS API](https://github.com/Esri/esri-loader#lazy-loading-the-arcgis-api-for-javascript) by default
 
 <pre class="language-js">
@@ -474,7 +474,7 @@ const [Map, MapView] = await loadModules(
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-3.png" class="code-md" data-transition="fade" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-3.png" class="code-md" data-transition="fade" -->
 ### Additional options & patterns
 
 See the esri-loader docs for examples of:
@@ -485,7 +485,7 @@ See the esri-loader docs for examples of:
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## Demo
 
@@ -495,7 +495,7 @@ See the esri-loader docs for examples of:
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## Example: Create ArcGIS App
 
@@ -505,7 +505,7 @@ See the esri-loader docs for examples of:
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## Example: Next ArcGIS App
 
@@ -515,7 +515,7 @@ See the esri-loader docs for examples of:
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-6.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-4.png" -->
 
 ## Conclusion
 
@@ -533,8 +533,8 @@ Go forth and prosper
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-esri.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-esri.png" -->
 
 ---
 
-<!-- .slide: data-background="../reveal.js/img/2019/devsummit/bg-rating.png" -->
+<!-- .slide: data-background="../reveal.js/img/2020/fed/bg-rating.png" -->
