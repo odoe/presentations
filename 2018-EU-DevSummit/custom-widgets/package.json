@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "highlightjs": "^9.10.0",
-    "reveal.js": "^3.5.0"
+    "reveal.js": "^4.3.0"
   },
   "devDependencies": {
     "@types/arcgis-js-api": "~4.8.0",
